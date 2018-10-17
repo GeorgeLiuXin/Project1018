@@ -1,0 +1,15 @@
+FinishNpc	FinishDlg	EventID	EventContent	EventCount	LocationDesID	EventtitleID	GiftCheck	FinishCheck	EventDesID	EventActionLua
+int32	int32	int32	char	int32	int32	int32	int32	int32	int32	char
+-1	-1	999999	<data><monster id="1049" /></data>	4	3999999	2999999	-1	-1	5999999	-1
+-1	-1	1001	<data><getitem id="114" checkbag="1" /></data>	1	3001001	2001001	-1	-1	5001001	-1
+-1	-1	1002	<data><useitem id="103004" /></data>	1	3001002	2001002	-1	-1	5001002	-1
+-1	-1	1003	<data><dialog groupid="1007" npcid="1" /></data>	1	3001003	2001003	-1	-1	5001003	-1
+-1	-1	1004	<data><scene id="2" triggerid="0" /></data>	1	3001004	2001004	-1	-1	5001004	-1
+-1	-1	1005	<data><getvitem id="32" /></data>	1	3001005	2001005	-1	-1	5001005	-1
+-1	-1	1006	<data><ai id="111" /></data>	1	3001006	2001006	-1	-1	5001006	-1
+-1	-1	1007	<data><getskill id="250" /></data>	1	3001007	2001007	-1	-1	5001007	-1
+-1	-1	1008	<data><useitem id="222" /></data>	4	3001008	2001008	-1	-1	5001008	-1
+-1	-1	1009	<data><scenario contentID="1" flowID="1" sceneSID="1" /></data>	1	3001009	2001009	-1	-1	5001009	-1
+-1	-1	1010	<data><skillpractice vocation="0" groupid="1" /></data>	1	3001010	2001010	-1	-1	5001010	-1
+-1	-1	1011	<data><systemfunction param="0" systemtype="1" /></data>	1	3001011	2001011	-1	-1	5001011	-1
+-1	-1	1012	<data><levelup level="5" /></data>	1	3001012	2001012	-1	-1	5001012	-1

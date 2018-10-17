@@ -1,0 +1,6 @@
+﻿Idx	AreaType	AreaEffectID	FollowType	RangeType	RangeEffectID	CameraEffectID
+int32	int32	int32	int32	int32	int32	int32
+15001	4	201	0	1	204	
+15003	2	203	1	1	204	
+15002	1					
+15004	0					

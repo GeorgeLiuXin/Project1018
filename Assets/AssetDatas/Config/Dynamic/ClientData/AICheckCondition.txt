@@ -1,0 +1,20 @@
+GroupID	LogicType	ConditionName1	ParamString1	CmpType1	ErrorCode1	FailTips1	ConditionName2	ParamString2	CmpType2	ErrorCode2	FailTips2	ConditionName3	ParamString3	CmpType3	ErrorCode3	FailTips3	ConditionName4	ParamString4	CmpType4	ErrorCode4	FailTips4	ConditionName5	ParamString5	CmpType5	ErrorCode5	FailTips5	ConditionName6	ParamString6	CmpType6	ErrorCode6	FailTips6	ConditionName7	ParamString7	CmpType7	ErrorCode7	FailTips7	ConditionName8	ParamString8	CmpType8	ErrorCode8	FailTips8	ConditionName9	ParamString9	CmpType9	ErrorCode9	FailTips9	ConditionName10	ParamString10	CmpType10	ErrorCode10	FailTips10
+int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32	char	char	int32	int32	int32
+1		#N/A	10	3	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+2	0	AIEnemyDistance	5	0	-1	-1	SDCheckAISkillCDState	30005	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+3	0	SDCheckStun	-1	-1	-1	-1	SDCheckAISkillCDState	5009	-1	-1	-1						-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1																				
+4	0	-1	-1	-1	-1	-1	SDCheckAISkillCDState	5013	-1	-1	-1											SDCheckAvatarHpPer	30	5	-1	-1	-1	-1	-1	-1	-1																				
+5	0	AIEnemyDistance	5	3	-1	-1	SDCheckAISkillCDState	30001	-1	-1	-1						SDCheckAvatarHpPer	30	3	-1	-1	SDCheckAvatarHpPer	100	5	-1	-1	-1	-1	-1	-1	-1																				
+6	0	AIEnemyDistance	3	3	-1	-1	SDCheckAISkillCDState	30002	-1	-1	-1																																								
+7	0	AIEnemyDistance	3	0	-1	-1	SDCheckAISkillCDState	30005	8	-1	-1																																								
+8	0	AIEnemyDistance	3	3	-1	-1	SDCheckAISkillCDState	30002	8	-1	-1																																								
+9	0	AIHasEnemy	-1	8	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1																																			
+10	0	AIEnemyDistance	30	0	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1																																			
+11	0	AIHasEnemy	-1	-1	-1	-1	SDCheckAISkillCDState	5106	-1	-1	-1																																								
+12	0	AIHasEnemy	-1	-1	-1	-1	SDCheckAISkillCDState	5107	-1	-1	-1																																								
+13	0	AIHasEnemy	-1	-1	-1	-1	SDCheckAISkillCDState	5108	-1	-1	-1																																								
+14	0	AIEnemyDistance	10	2	-1	-1	SDCheckAISkillCDState	30003	-1	-1	-1	SDCheckBuffID	5111	8	-1	-1																																			
+15	0	AIEnemyDistance	5	0	-1	-1	AIEnemyDistance	10	2	-1	-1	SDCheckBuffID	5111	-1	-1	-1	SDCheckAISkillCDState	30003	-1	-1	-1																														
+16	0	AIEnemyDistance	10	1	-1	-1	SDCheckBuffID	5111	-1	-1	-1																																								
+17	0	AIEnemyDistance	5	3	-1	-1	SDCheckBuffID	5111	-1	-1	-1																																								
+18	0	AIEnemyDistance	5	0	-1	-1	SDCheckBuffID	5111	-1	-1	-1	SDCheckAISkillCDState	30003	-1	-1	-1																																			

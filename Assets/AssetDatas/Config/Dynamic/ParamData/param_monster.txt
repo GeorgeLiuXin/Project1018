@@ -1,0 +1,6 @@
+﻿ID	Des	titleid	MNTitleStr	Remark	level	starlevel	vocation	aidataid	skillgroup	aialarmid	modid	ModSize	camp	sex	MinReliveTime	MaxReliveTime	movespeed	turnspeed	collisiontype	npcflag	dialogid	bubbleid	ownershiplogic	growid	growcount	evil_value_dec	dropcustomid	dropquestid	droptemplateid	dropworldid	dropradius	triggereventflag	npcexp	npcexpparam
+int32	char	int32	int32	char	int32	int32	int32	int32	int32	int32	int32	f32	int32	int32	int32	int32	f32	f32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	f32	int32	int32	f32
+211	怪物160	99999999	99999999		25	2	93	18	0	18	20002	4	-1	0	0	0	4	0	9	61	7708	0	2	0	0	1	0	0	0	105	0	0	0	0
+212	怪物161	99999999	99999999		25	2	93	16	0	0	20001	4	11	0	0	0	4	0	9	61	-1	0	4	0	0	1	0	0	0	0	0	0	0	0
+213	怪物162	99999999	99999999		25	2	93	6	0	0	2	4	11	0	0	0	4	0	9	61	7708	0	1	0	0	1	0	0	0	105	0	0	0	0
+214	怪物163	99999999	99999999		25	2	93	18	0	18	20001	4	11	0	0	0	4	0	9	61	-1	0	4	0	0	1	0	0	0	0	0	0	0	0

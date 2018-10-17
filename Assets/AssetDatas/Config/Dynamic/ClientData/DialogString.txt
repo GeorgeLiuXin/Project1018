@@ -1,0 +1,3 @@
+ContentID	Content
+int32	char
+100000	对话测试

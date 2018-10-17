@@ -1,0 +1,1319 @@
+ParamID	id	name	AValue	remark	type	defaultvalue	max	min	flag	MySqlFlag
+int32	int32	char	int32	char	char	char	char	char	int32	int32
+0	1	avatardid	0	avatardid	int64		9223372036854775807	-9223372036854775808	100663417	0
+0	2	title	0	名称	Char64		255	0	100663353	0
+0	3	level	0	等级	uint8		255	0	234881337	0
+0	4	vocation	0	职业	uint8		255	0	100663353	0
+0	5	sex	0	性别	int8			0	33554489	0
+0	6	comsaveflag	0	通用存储位	uint8		255	0	41	0
+0	7	skillclassdisableflag	0	技能分类禁止使用标记位	uint32	0	4294967294	0	9	0
+0	8	comstate	0	com功能位	uint64		18446744073709551615	0	281	0
+0	9	camp	0	势力	uint8		255	1	57	0
+0	10	tempcamp	0	临时势力	uint8		255	0	281	0
+0	11	pkmode	0	PK模式	uint8	0	4	0	313	0
+0	12	modid	0		int32		30000	0	25	0
+0	13	fsm_gameflag	0	状态机上层数据标记	uint32	0	4294967294	0	25	0
+0	14	target_id	0		int32	0	2147483647	-2147483647	25	0
+0	15	curfire	0	当前异火	int32	0			41	0
+0	16	curfire_id	0	当前异火AvatarID	int32	0	2147483647	-2147483647	9	0
+0	24	hp	0	当前生命值	f32	2147483647	2147483647	0	201326649	0
+0	25	hpmax	1	生命值上限	f32		2147483647	0	67108889	0
+0	27	mp	0	当前魔法值	f32		65535	0	218103849	0
+0	28	mpmax	1	魔法值上限	f32		65535	0	16777225	0
+0	30	eb	0	当前怒气值	f32		65535	0	9	0
+0	31	ebmax	1	怒气值上限	f32		65535	0	9	0
+0	35	vp	0	当前精力度	f32	0	65535	0	218103849	0
+0	36	vpmax	1	最大精力度	f32		65535	0	16777225	0
+0	38	leveltimestamp	0	等级时间戳	uint32	0		0	33	0
+0	40	fc	0	战斗力	uint32	1	4294967294	0	16777257	0
+0	71	lyingresistrate	0		int8		100	0	9	0
+0	80	viplevel	0	vip等级	uint8	0	255	0	201326905	0
+0	81	guildid	0	帮会id	int64	0			57	0
+0	82	familyid	0	家族id	int64				9	0
+0	83	reputeid	0	称号id	int32		2147483647	0	25	0
+0	84	guildtitle	0	帮会名称	Char32		255	0	25	0
+0	85	guildbill	0	帮会名字版	int32		2147483647	0	25	0
+0	91	operatemode	0	操作模式FPS&蛮荒	int8	-1			41	0
+0	156	currentexp_yf	0	盈福经验	int64	0	9223372036854775807	-9223372036854775807	201326889	0
+0	157	currentexp	0	当前经验值	int64	0	9223372036854775807	-9223372036854775807	201326889	0
+0	166	binginggold	0	绑定金币	uint32		4294967294	0	201326633	0
+0	167	gold	0	金币	uint32		4294967294	0	201326633	0
+0	168	yuanbao	0	元宝	uint32		100000000	0	201326633	0
+0	169	bindingyuanbao	0	绑定元宝	uint32		100000000	0	201326633	0
+0	170	yuanbao_t	0	充值总元宝数	int32	0	2147483647	0	67108905	0
+0	171	yuanbao_c	0	消耗总元宝数	int32	0	2147483647	0	67108905	0
+0	173	cypoint	0	畅游点	uint32	0	100000000	0	67108905	0
+0	174	downcoordinatex	0		f32		2048	0	33	0
+0	175	downcoordinatey	0		f32		2048	0	33	0
+0	176	downcoordinatez	0		f32		2048	0	33	0
+0	177	onlinetime	0		uint32		4294967295	0	41	0
+0	178	lastlandtime	0		uint32				41	0
+0	179	lastdowntime	0		uint32				100663337	0
+0	180	lastvuptime	0		uint32				33	0
+0	182	create_time	0	角色创建时间	uint32	0	4294967294	0	33554529	0
+0	183	del_time	0	预删除时间	uint32	0	4294967294	0	33554537	0
+0	300	dirx	0		f32		2147483647	-1	17	0
+0	301	diry	0		f32		2147483647	-1	17	0
+0	302	dirz	0		f32		2147483647	-1	17	0
+0	308	baselogicid	0		int32		65536	-1	0	0
+0	309	basedataid	0		int32		65536	-1	0	0
+0	310	collisiontype	0		int32		2147483647	0	25	0
+0	313	environment	0		int32		4096	0	25	0
+0	316	sceneid	0		int32		2147483647	-2147483647	33554473	0
+0	350	accountname	0		Char64		2147483647	-1	33554537	0
+0	354	teamid	0	队伍ID	int64	0	9223372036854775807	-9223372036854775807	41	0
+0	356	vehicleid	0		int32		2147483647	-2147483647	25	0
+0	357	bagslotcount	0		int16		32767	-1	47	0
+0	358	scenerule	0		int32		2147483647	-2147483647	11	0
+0	359	petcagevalidslotcount	0		int16		32767	-1	47	0
+0	360	evilvalue	0		uint32		2147483647	0	201326905	0
+0	366	hairid	0		int32	-1	2147483647	-1	33	0
+0	367	haircolor	0		int8	0	127	-1	33	0
+0	370	faceid	0		int32	-1	2147483647	-1	33	0
+0	375	skincolor	0		int8	0	127	-1	33	0
+0	376	magictreasureid	0		int32		2147483647	-2147483647	33554489	0
+0	377	weaponid	0		int32		2147483647	-2147483647	33554495	0
+0	378	fashionid	0		int32	-1	65535	-1	33	0
+0	379	tattoo	0	纹身	int8	-1	127	-1	33	0
+0	380	beard_eyeshadow	0	胡须眼影	int8	-1	127	-1	33	0
+0	381	brow	0	眉毛	int8	0	127	-1	33	0
+0	382	eyeid	0	眼睛	int32	-1	2147483647	-1	33	0
+0	383	fashioncolor	0	时装颜色	int8	0	127	-1	33	0
+0	384	morph_1	0	morph	int32	0	2147483647	-2147483647	33	0
+0	385	morph_2	0	morph	int32	0	2147483647	-2147483647	33	0
+0	386	morph_3	0	morph	int32	0	2147483647	-2147483647	33	0
+0	387	lipcolor	0	嘴唇颜色	int8	0	127	-1	33	0
+0	390	temphairid	0		int32	-1	2147483647	-1	33554489	0
+0	391	temphaircolor	0		int8	-1	127	-1	33554489	0
+0	392	tempfaceid	0		int32	-1	2147483647	-1	33554489	0
+0	393	tempskincolor	0		int8	-1	127	-1	33554489	0
+0	394	tempfashionid	0		int32	-1	2147483647	-1	33554489	0
+0	395	temptattoo	0		int8	-1	127	-1	33554489	0
+0	396	tempbeard_eyeshadow	0		int8	-1	127	-1	33554489	0
+0	397	tempbrow	0		int8	-1	127	-1	33554489	0
+0	398	tempeyeid	0		int32	-1	2147483647	-1	33554489	0
+0	399	tempfashioncolor	0		int8	-1	127	-1	33554489	0
+0	400	tempmorph_1	0		int32	0			33554473	0
+0	401	tempmorph_2	0		int32	0			33554473	0
+0	402	tempmorph_3	0		int32	0			33554473	0
+0	403	templipcolor	0	嘴唇颜色	int8	-1	127	-1	33554489	0
+0	500	scoretotal	0	总分	int32	0	2147483647	0	16777257	0
+0	501	scorebase	0	人物基础分	int32	0	2147483647	0	16777257	0
+0	502	scoreequip	0	装备分	int32	0	2147483647	0	16777257	0
+0	503	scoreornament	0	饰品分	int32	0	2147483647	0	16777257	0
+0	504	scorefabao	0	法宝分	int32	0	2147483647	0	16777257	0
+0	505	scoretalent	0	天赋分	int32	0	2147483647	0	16777257	0
+0	506	scorejueji	0	绝技分	int32	0	2147483647	0	16777257	0
+0	507	scorechaoxiliu	0	潮汐流分	int32	0	2147483647	0	16777257	0
+0	508	scorezhenyuan	0	真元分	int32	0	2147483647	0	16777257	0
+0	509	scoreneidan	0	内丹分	int32	0	2147483647	0	16777257	0
+0	510	scorepet	0	神兽分	int32	0	2147483647	0	16777257	0
+0	592	loginlogicid	0		int32		4096	-1	2	0
+0	593	logindataid	0		int32		4096	-1	2	0
+0	594	wuxingstate	0		uint8		255	0	11	0
+0	650	stallname	0	摊位名称	Char64				57	0
+0	652	enh0	0	角色修炼0 五行修炼	uint64	0			16777257	0
+0	653	enh1	0	角色修炼1 五行修炼	uint64	0			16777257	0
+0	654	enh2	0	角色修炼2 帮会修炼	uint64	0			16777257	0
+0	655	webregister	0	weibo注册	int32	0			41	0
+0	701	pose	0		int32	0	65535	0	25	0
+0	702	union_struct_1	0	可以组合多个字段	uint64	0			41	0
+0	703	union_struct_2	0	可以组合多个字段	uint64	0			41	0
+0	704	ban_game_date	0	这个日期之前禁止进游戏	uint32	0			33554529	0
+0	799	titleflag	0		Char64		255	0	41	0
+0	800	titlestr	0		Char32		255	0	57	0
+0	801	titleid	0		int32		65535	-1	57	0
+0	802	titleaid	0		int32		65535	-1	41	0
+0	803	titlepoint	0		int32		65535	-1	9	0
+0	804	client_ip	0	客户端的IP地址	uint32	0			1	0
+0	805	left_point	0	剩余点数	uint32	0			9	0
+0	850	fexplain	0	好友说明	Char32				41	0
+0	851	activeval	0	活跃值	int32	0			201326633	0
+0	852	lastfetchtimes	0	玩家上一次领取英雄斩的时间	uint32	0	9223372036854775807	0	41	0
+0	853	actvalue	0	活跃度	int32	0	100	0	41	0
+0	854	actaward	0	活跃奖励领取	int32	0	65535	0	41	0
+0	855	enrvalue	0	生产值	int32	0	100	0	201326633	0
+0	857	actweekvalue	0	周活跃度	int32	0	7	0	41	0
+0	861	dayupdatetime	0	天刷新时间	uint32	0	9223372036854775807	0	33	0
+0	862	weekupdatetime	0	周刷新时间	uint32	0	9223372036854775807	0	33	0
+0	863	marry_state	0	结婚状态 2订婚3结婚	int8	0			57	0
+0	864	marry_tar_name	0	结婚对象昵称	Char64				57	0
+0	865	marry_value	0	婚姻值	uint32	0			41	0
+0	866	marry_weddingcombo	0	婚礼套餐ID	int32	0			41	0
+0	867	TokenID	0	个人令牌	uint16	0			1	0
+0	868	wedding_time	0	婚礼时间	uint32	0	9223372036854775807	0	41	0
+0	1001	str	1	力量	f32	0			9	0
+0	1002	wis	1	魔力	f32	0			9	0
+0	1003	dex	1	敏捷	f32	0			9	0
+0	1004	vit	1	耐力	f32	0			9	0
+0	1005	con	1	体质	f32	0			9	0
+0	2001	atk_d	1	物理攻击力	f32	0			9	0
+0	2002	atk_d_p	1	物理攻击精通	f32	0			9	0
+0	2003	atk_d_r	1	物理攻击精通加成	f32	0			9	0
+0	2011	ddc	1	物理伤增	f32	0			9	0
+0	2012	ddr	1	物理伤增加成	f32	0			9	0
+0	2021	i_d_ac	1	破甲	f32	0			9	0
+0	2022	i_d_ac_p	1	破甲等级	f32	0			9	0
+0	2023	i_d_ac_r	1	破甲加成	f32	0			9	0
+0	2101	atk_p	1	法术攻击力	f32	0			9	0
+0	2102	atk_p_p	1	法术攻击精通	f32	0			9	0
+0	2103	atk_p_r	1	法术攻击精通加成	f32	0			9	0
+0	2111	pdc	1	法术伤增	f32	0			9	0
+0	2112	pdr	1	法术伤增加成	f32	0			9	0
+0	2121	i_p_ac	1	穿透	f32	0			9	0
+0	2122	i_p_ac_p	1	穿透等级	f32	0			9	0
+0	2123	i_p_ac_r	1	穿透加成	f32	0			9	0
+0	2201	dm	1	附加伤害	f32	0			9	0
+0	2211	dc	1	伤增	f32	0			9	0
+0	2212	dr	1	伤增加成	f32	0			9	0
+0	2301	hitp	1	命中等级	f32	0			9	0
+0	2302	hitr	1	命中率修正	f32	0			9	0
+0	2401	dhp	1	会心等级	f32	0			9	0
+0	2402	dhr	1	会心加成	f32	0			9	0
+0	2411	dhcp	1	会心效果等级	f32	0			9	0
+0	2412	dhcr	1	会心效果加成	f32	0			9	0
+0	2501	threat_p	1	仇恨等级	f32	0			9	0
+0	2502	threat_r	1	仇恨加成	f32	0			9	0
+0	2503	threat	1	仇恨值	f32	0			9	0
+0	2601	attr	1	自定义数值	f32	0			9	0
+0	2602	attr_r	1	自定义系数	f32	0			9	0
+0	3001	d_ac	1	护甲	f32	0			9	0
+0	3002	d_ac_p	1	护甲精通	f32	0			9	0
+0	3003	d_ac_r	1	护甲精通加成	f32	0			9	0
+0	3011	cddc	1	物理伤减	f32	0			9	0
+0	3012	cddr	1	物理伤减加成	f32	0			9	0
+0	3101	p_ac	1	抗性	f32	0			9	0
+0	3102	p_ac_p	1	抗性精通	f32	0			9	0
+0	3103	p_ac_r	1	抗性精通加成	f32	0			9	0
+0	3111	cpdc	1	法术伤减	f32	0			9	0
+0	3112	cpdr	1	法术伤减加成	f32	0			9	0
+0	3201	da	1	伤害吸收	f32	0			9	0
+0	3211	cdc	1	伤减	f32	0			9	0
+0	3212	cdr	1	伤减加成	f32	0			9	0
+0	3301	advp	1	闪避等级	f32	0			9	0
+0	3302	advr	1	闪避率修正	f32	0			9	0
+0	3401	be_dhp	1	坚韧等级	f32	0			9	0
+0	3402	be_dhr	1	坚韧加成	f32	0			9	0
+0	3403	be_dhcp	1	会心伤害减免等级	f32	0			9	0
+0	3404	be_dhcr	1	会心伤害减免加成	f32	0			9	0
+0	4011	hp_p	1	生命精通	f32	0			9	0
+0	4012	hp_r	1	生命精通加成	f32	0			9	0
+0	4021	hprecoveryspd	1	生命值恢复	f32	0			9	0
+0	4022	hprecoveryspd_p	1	生命值恢复等级	f32	0			9	0
+0	4023	hprecoveryspd_r	1	生命值恢复加成	f32	0			9	0
+0	4031	hhp_p	1	治疗效果等级	f32	0			9	0
+0	4032	hhp_r	1	治疗效果加成	f32	0			9	0
+0	4041	be_hhp_p	1	承受治疗效果等级	f32	0			9	0
+0	4042	be_hhp_r	1	承受治疗效果加成	f32	0			9	0
+0	4111	mprecoveryspd	1	魔法值恢复	f32	0			9	0
+0	4112	mprecoveryspd_p	1	魔法值恢复等级	f32	0			9	0
+0	4113	mprecoveryspd_r	1	魔法值恢复加成	f32	0			9	0
+0	4121	sk_mp_p	1	魔法消耗减免等级	f32	0			9	0
+0	4122	sk_mp_r	1	魔法消耗减免加成	f32	0			9	0
+0	5001	spp	1	移动速度等级	f32	0	10	0	281	0
+0	5002	spr	1	移动速度加成	f32	0	10	-1	281	0
+0	5101	f_spp	1	飞行速度等级	f32	0	20	0	281	0
+0	5102	f_spr	1	飞行速度加成	f32	0	20	0	281	0
+0	6001	back_time_p	1	击退时间缩短等级	f32	0			9	0
+0	6002	back_time_r	1	击退时间缩短等级	f32	0			9	0
+0	6003	air_time_p	1	浮空时间缩短等级	f32	0			9	0
+0	6004	air_time_r	1	浮空时间缩短加成	f32	0			9	0
+0	6005	stun_time_p	1	眩晕时间缩短等级	f32	0			9	0
+0	6006	stun_time_r	1	眩晕时间缩短加成	f32	0			9	0
+0	6007	terrif_time_p	1	恐惧时间缩短等级	f32	0			9	0
+0	6008	terrif_time_r	1	恐惧时间缩短加成	f32	0			9	0
+0	6009	freeze_time_p	1	定身时间缩短等级	f32	0			9	0
+0	6010	freeze_time_r	1	定身时间缩短加成	f32	0			9	0
+0	6011	bind_time_p	1	缠绕时间缩短等级	f32	0			9	0
+0	6012	bind_time_r	0	缠绕时间缩短加成	f32	0			9	0
+0	6013	sleep_time_p	1	睡眠时间缩短等级	f32	0			9	0
+0	6014	sleep_time_r	1	睡眠时间缩短加成	f32	0			9	0
+0	6015	frozen_time_p	1	冰冻时间缩短等级	f32	0			9	0
+0	6016	frozen_time_r	1	冰冻时间缩短加成	f32	0			9	0
+0	6017	charm_time_p	1	魅惑时间缩短等级	f32	0			9	0
+0	6018	charm_time_r	1	魅惑时间缩短加成	f32	0			9	0
+0	6019	taunt_time_p	1	嘲讽时间缩短等级	f32	0			9	0
+0	6020	taunt_time_r	1	嘲讽时间缩短加成	f32	0			9	0
+0	6021	blind_time_p	1	致盲时间缩短等级	f32	0			9	0
+0	6022	blind_time_r	0	致盲时间缩短加成	f32	0			9	0
+0	6023	silent_time_p	1	沉默时间缩短等级	f32	0			9	0
+0	6024	silent_time_r	1	沉默时间缩短加成	f32	0			9	0
+0	6025	distortion_time_p	1	变形时间缩短等级	f32	0			9	0
+0	6026	distortion_time_r	1	变形时间缩短加成	f32	0			9	0
+0	7101	k_exp_gr	1	杀怪经验加成	f32	0			9	0
+0	7102	exp_gr	1	所有经验加成	f32	0			9	0
+0	7103	energypoint	1	闪避点	f32	0			9	0
+1	2	titleid	0		uint32		2147483647	0	17	0
+1	3	level	0		uint8		255	0	17	0
+1	4	vocation	0		uint8		127	0	0	0
+1	5	camp	0		uint8		255	1	0	0
+1	6	sex	0		int8		0	0	0	0
+1	7	modid	0		int32		30000	0	17	0
+1	8	tempcamp	0		uint8		255	0	273	0
+1	12	part_enable_mask	0		int32		2147483647	-1	17	0
+1	13	part_break_mask	0		int32		2147483647	-1	17	0
+1	14	target_id	0		int32		2147483647	-2147483647	25	0
+1	24	hp	0		f32		2147483647	0	17	0
+1	25	hpmax	0		f32		2147483647	-2147483647	17	0
+1	30	movespeed	0		f32		2147483647	0	0	0
+1	33	mp	0		f32		65535	-65535	1	0
+1	34	mpmax	0		f32		65535	-65535	1	0
+1	40	sceneuid	0		int32		2147483647	-1	17	0
+1	64	masterid	0		int32	0	2147483647		17	0
+1	100	npcexp	0		int32		2147483647	0	0	0
+1	101	npcexpparam	0		f32		10000	0	0	0
+1	208	animtablename	0		int32		2147483647	-1	0	0
+1	240	aialarmid	0		int32		2147483647	-1	17	0
+1	241	aichaseid	0		int32		2147483647	-1	0	0
+1	260	turnspeed	0		f32		2147483647	-1	0	0
+1	261	relivetime	0		int32		2147483647	-1	0	0
+1	310	collisiontype	0		int32		2147483647	-1	0	0
+1	316	sceneid	0		int32		2147483647	-2147483647	0	0
+1	318	removedelaytime	0		int32		2147483647	0	0	0
+1	354	titleimage	0		int32		255	0	0	0
+1	359	hpperbar	0		int32		2147483647	0	17	0
+1	365	npcflag	0		int32		512	0	17	0
+1	386	dialogid	0		int32		2147483647	-1	0	0
+1	387	aidataid	0		int32		2147483647	-1	0	0
+1	388	aiparamid	0		int32		2147483647	-1	0	0
+1	403	starlevel	0		int8		10	0	0	0
+1	442	ownershiplogic	0		int32			0	0	0
+1	443	ownershipstate	0		int32			0	17	0
+1	444	ownershipavatar	0		int64	0	9223372036854775807	-9223372036854775808	19	0
+1	445	ownershipteam	0		int64	0	9223372036854775807	-9223372036854775808	19	0
+1	458	bubbleid	0		int32		2147483647	-1	19	0
+1	480	droptemplateid	0		int32		2147483647	-1	0	0
+1	481	dropworldid	0		int32		2147483647	-1	0	0
+1	482	dropcustomid	0		int32		2147483647	-1	0	0
+1	483	dropquestid	0		int32		2147483647	-1	0	0
+1	484	dropradius	0		f32	0			0	0
+1	500	part_model_type_id_0	0		uint32		4294967295	0	0	0
+1	501	part_model_type_id_1	0		uint32		4294967295	0	0	0
+1	502	part_model_type_id_2	0		uint32		4294967295	0	0	0
+1	503	part_model_type_id_3	0		uint32		4294967295	0	0	0
+1	504	part_model_type_id_4	0		uint32		4294967295	0	0	0
+1	620	growid	0		int32		65535	-1	19	0
+1	621	growcount	0		int8		127	-1	17	0
+1	623	evil_value_dec	0		int32		65535	0	0	0
+1	700	spp	1		f32	1	10	0	273	0
+1	701	spr	0		f32	1	10	0	273	0
+1	702	triggereventflag	0		int8	1	1	0	0	0
+1	703	userdata1	0		int32		2147483647	-1	0	0
+1	704	userdata2	0		int32		2147483647	-1	0	0
+1	705	userdata3	0		int32		2147483647	-1	0	0
+2	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	105	0
+2	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	105	0
+2	2	skilllevel	0		uint8	1			47	0
+2	3	skillstar	0		int8	0			41	0
+2	4	skillexp	0		uint32	0			41	0
+4	0	coinid	0	货币类型	uint16				41	0
+4	1	count	0	数量	int32				41	0
+4	3	guidhigh	0		int64				97	0
+4	4	guidlow	0		int64				97	0
+4	5	daycount	0		int32				41	0
+6	0	activitytype	0	奖励类型	int16	3	32767	0	41	0
+6	1	intdata0	0	上月签到数据	int32	0	2147483647	-2147483647	41	0
+6	2	intdata1	0	当月签到数据	int32	0	2147483647	-2147483647	41	0
+6	3	intdata2	0	累积签到次数	int32	0	2147483647	-2147483647	41	0
+6	4	intdata3	0	最后一次更新时间	int32		2147483647	-2147483647	41	0
+6	5	floatdata0	0		f32		2147483647	-2147483647	41	0
+6	6	floatdata1	0		f32		2147483647	-2147483647	41	0
+6	7	lastoptime	0	最后一次操作时间	uint32		4294967294	0	41	0
+6	8	rewardgroup	0	对应奖励类型中的一组	int16		32767	0	41	0
+6	9	guidhigh	0		int64		9223372036854775807	-9223372036854775807	33	0
+6	10	guidlow	0		int64		9223372036854775807	-9223372036854775807	33	0
+7	0	gameid	0	活动ID	uint16				41	0
+7	1	count	0	活动次数	uint16				41	0
+7	3	guidhigh	0		int64				33	0
+7	4	guidlow	0		int64				33	0
+8	0	CreditID	0	声望类型索引	uint16				41	0
+8	1	CreditValue	0	声望值	int32				297	0
+8	2	CreditFlag	0	是否战斗状态	uint8				297	0
+8	3	guidhigh	0		int64				97	0
+8	4	guidlow	0		int64				97	0
+9	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	97	0
+9	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	97	0
+9	2	barid	0		int32		20	0	41	0
+9	3	slotid	0		int32		20	0	41	0
+9	4	actiontype	0		int32		20	0	41	0
+9	5	data0	0		int32		2147483647	-2147483647	41	0
+9	6	data1	0		int32		2147483647	-2147483647	41	0
+9	7	data2	0		int32		2147483647	-2147483647	41	0
+9	8	data3	0		int32		2147483647	-2147483647	41	0
+9	9	data4	0		int32		2147483647	-2147483647	41	0
+10	0	bagtype	0		int8		127	-1	41	0
+10	1	slotid	0		int16		32767	-1	41	0
+10	4	quantity	0		int32		2147483647	0	1065	0
+10	5	guidhigh	0		int64		9223372036854775807	-9223372036854775808	105	0
+10	6	guidlow	0		int64		9223372036854775807	-9223372036854775808	105	0
+10	9	usecount	0		int32		2147483647	-9223372036854775808	1065	0
+10	10	validtime	0		int64		9223372036854775807	-9223372036854775808	1065	0
+10	11	bind	0		int8		1	0	1065	0
+10	23	exattrnum	0		int32			0	1065	0
+10	33	quality	0		int32			0	1065	0
+10	34	qualitymod	0		int32			-1	1065	0
+10	36	proxydataid	0		int32		2147483647	-1	41	0
+10	37	proxyguidhigh	0		int64		9223372036854775807	-9223372036854775808	41	0
+10	38	proxyguidlow	0		int64		9223372036854775807	-9223372036854775808	41	0
+10	39	enhancelevel	0		int32		2147483647	-1	1065	0
+10	40	level	0		int32		2147483647	-1	1065	0
+10	41	exp	0		int32			0	1065	0
+10	50	equipdec	0		int32			-1	1065	0
+10	51	colorindex	0		int8		127	-1	1065	0
+10	60	exattr0	0		uint32			0	1065	0
+10	61	exattr1	0		uint32			0	1065	0
+10	62	exattr2	0		uint32			0	1065	0
+10	63	exattr3	0		uint32			0	1065	0
+10	64	exattr4	0		uint32			0	1065	0
+10	65	exattr5	0		uint32			0	1065	0
+10	66	exattr6	0		uint32			0	1065	0
+10	67	exattr7	0		uint32			0	1065	0
+10	68	exattr8	0		uint32			0	1065	0
+10	69	exattr9	0		uint32			0	1065	0
+10	70	exattr10	0		uint32			0	1065	0
+10	71	exattr11	0		uint32			0	1065	0
+10	72	exattr12	0		uint32			0	1065	0
+10	73	exattr13	0		uint32			0	1065	0
+10	74	exattr14	0		uint32			0	1065	0
+10	75	hole1	0		uint32		4294967295		41	0
+10	76	hole2	0		uint32		4294967295		41	0
+10	77	hole3	0		uint32		4294967295		41	0
+10	78	hole4	0		uint32		4294967295		41	0
+10	79	hole5	0		uint32		4294967295		49	0
+10	80	holenum	0		int8	0	5	0	41	0
+10	81	forge	0		int8	0	255	0	41	0
+10	100	score	0		int32			0	9	0
+10	101	durability	0		int32	0		0	1065	0
+12	0	buffid	0		int32		65536	0	63	0
+12	1	bufflevel	0		int8		100	0	63	0
+12	2	casterdid	0		int64		9223372036854775807	-9223372036854775808	63	0
+12	3	totaltime	0		int32		2147483647	0	63	0
+12	4	lasttime	0		int32		2147483647	0	63	0
+12	5	curperiod	0		int32		100000	0	39	0
+12	7	layercnt	0		int8		10	0	63	0
+12	8	createtime	0		uint64		18446744073709551615	0	63	0
+12	9	guidhigh	0		int64		9223372036854775807	-9223372036854775808	97	0
+12	10	guidlow	0		int64		9223372036854775807	-9223372036854775808	97	0
+12	11	casterid	0		int32		2147483647	-2147483647	25	0
+13	0	questid	0		int32		2147483647	0	47	0
+13	1	eventid	0		uint32				41	0
+13	2	eventcount	0		int32				41	0
+13	3	queststate	0		int32		10	0	47	0
+13	4	accepttype	0		int32		65536	-1	47	0
+13	5	taravatardid	0		int64				47	0
+13	6	data2	0		int32		65536	-1	47	0
+13	7	data3	0		int32		65536	-1	47	0
+13	8	data4	0		int32		65536	-1	47	0
+13	9	data5	0		int32		65536	-1	47	0
+13	10	data6	0		int32		65536	-1	47	0
+13	11	data7	0		int32		65536	-1	47	0
+13	12	data8	0		int32		2147483647	-1	47	0
+13	13	data9	0		int32		2147483647	-1	41	0
+13	14	guidhigh	0		int64		9223372036854775807	-9223372036854775808	105	0
+13	15	guidlow	0		int64		9223372036854775807	-9223372036854775808	105	0
+14	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	105	0
+14	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	105	0
+14	2	idx	0		int32		2147483647	-2147483647	47	0
+14	3	data0	0		int32		2147483647	-2147483647	47	0
+14	4	data1	0		int32		2147483647	-2147483647	47	0
+14	5	data2	0		int32		2147483647	-2147483647	47	0
+14	6	data3	0		int32		2147483647	-2147483647	47	0
+14	7	data4	0		int32		2147483647	-2147483647	47	0
+14	8	data5	0		int32		2147483647	-2147483647	47	0
+14	9	data6	0		int32		2147483647	-2147483647	47	0
+14	10	data7	0		int32		2147483647	-2147483647	47	0
+14	11	data8	0		int32		2147483647	-2147483647	47	0
+14	12	data9	0		int32		2147483647	-2147483647	47	0
+14	13	data10	0		int32		2147483647	-2147483647	47	0
+14	14	data11	0		int32		2147483647	-2147483647	47	0
+14	15	data12	0		int32		2147483647	-2147483647	47	0
+14	16	data13	0		int32		2147483647	-2147483647	47	0
+14	17	data14	0		int32		2147483647	-2147483647	47	0
+14	18	data15	0		int32		2147483647	-2147483647	47	0
+14	19	data16	0		int32		2147483647	-2147483647	47	0
+14	20	data17	0		int32		2147483647	-2147483647	47	0
+14	21	data18	0		int32		2147483647	-2147483647	47	0
+14	22	data19	0		int32		2147483647	-2147483647	47	0
+14	23	data20	0		int32		2147483647	-2147483647	47	0
+15	0	guildid	0	帮会DID	int64				49	0
+15	1	guildlevel	0	帮会等级	int32				49	0
+15	2	guildtitle	0	帮会名称	Char64				49	0
+15	3	guildnotice	0	帮派通知	Char128				49	0
+15	4	createtime	0	帮派创建	uint32				49	0
+15	5	leaderdid	0	帮会会长DID	int64				49	0
+15	6	leadertitle	0	帮主名称	Char64				49	0
+15	7	warstate	0	帮战状态	int8	0			17	0
+15	8	bonus	0	红利	int32				49	0
+15	9	defendlevel	0	防御等级	int32				49	0
+15	10	TokenID	0		uint16	0			1	0
+15	11	guildkey	0	帮会ID	int32				49	7
+15	12	maxmember	0	人数上限	int32				17	0
+15	13	deputyleader	0	副帮主权限	int32				49	0
+15	14	officeholder	0	官员权限	int32				49	0
+15	15	elitemember	0	精英权限	int32				49	0
+15	16	normalmember	0	帮众权限	int32				49	0
+15	19	weekupdatetime	0	周维护时间	uint32				33	0
+15	20	updatetype	0	维护类型	int32				33	0
+15	21	updatetime	0	维护时间(上次)	uint32				33	0
+15	22	shoplevel	0	商店等级	int32				17	0
+15	23	skilllevel	0	技能等级	int32				17	0
+15	30	reswood	0	木材	int32				49	0
+15	31	maxwood	0	木材上限	int32				17	0
+15	32	resstone	0	石材	int32				49	0
+15	33	maxstone	0	石材上限	int32				17	0
+15	34	resbuildtoken	0	建造令牌	int32				49	0
+15	35	answeractivies	0	答题活动次数	int32				49	0
+15	41	buildnpc	0	建造NPCID 	int32				17	0
+15	42	buildtime	0	建造时间	uint32				17	0
+15	50	wartime	0	帮战时间	uint32				49	0
+15	51	warattacktimes	0	帮战攻击次数	int8				49	0
+15	52	wardefendtimes	0	帮战防御次数	int8				49	0
+15	53	warscore	0	帮战积分	int32				49	0
+15	60	localsceneid	0	帮会场景id	int32				1	0
+15	61	allianceid	0	同盟ID	int64	0			49	0
+15	62	alliancecd	0	同盟CD	uint32				33	0
+15	70	guildflag	0	帮会flag	uint32				49	0
+15	71	declarewartarget	0	宣战目标	int64				49	0
+15	72	declarewartime	0	宣战时间	uint32				49	0
+15	73	declarewarcd	0	宣战CD	uint32				49	0
+15	80	protecttime	0	保护时间	uint32				49	0
+15	81	basebroken	0	基地破坏时间	uint32				49	0
+15	82	shopbroken	0	商铺破坏时间	uint32				49	0
+15	83	skillbroken	0	修炼破坏时间	uint32				49	0
+15	84	defendbroken	0	防御破坏时间	uint32				49	0
+15	90	guildhonor	0	帮会荣誉	int32				49	0
+16	0	guildid	0	帮会ID	int64				49	0
+16	1	memberdid	0	成员DID	int64				49	0
+16	2	name	0	成员名称	Char64				49	0
+16	3	vocation	0	成员职业	uint8		255	0	49	0
+16	4	level	0	成员等级	uint8		255	0	49	0
+16	5	post	0	职位	int32				49	0
+16	6	sceneid	0	场景	int32				1	0
+16	7	jointime	0	加入时间	uint32				49	0
+16	8	onlinetime	0	在线时间	uint32				49	0
+16	10	worldflag	0	是否在线	uint8		255	0	1	0
+16	13	contributionweek	0	周帮贡	int32				49	0
+16	14	contributionall	0	总帮贡	int32				49	0
+16	15	payvalue	0	消费额	int32				33	0
+16	16	viplevel	0	vip等级	uint8		255	0	49	0
+17	0	teamid	0		int64				33	0
+17	1	leaderdid	0		int64				33	0
+17	2	teamtype	0		uint8		255	0	289	0
+17	3	allotrule	0		uint8		255	0	289	0
+17	4	marksceneid	0		int32	0			1	0
+17	5	markzoneid	0		uint16	0			1	0
+17	6	markposx	0		f32	0			1	0
+17	7	markposy	0		f32	0			1	0
+17	8	markposz	0		f32	0			1	0
+17	9	marktitle	0		Char64				1	0
+17	10	TokenID	0		uint16	0			1	0
+18	0	teamid	0	队DID	int64				33	0
+18	1	avatardid	0	成员DID	int64				33	0
+18	2	name	0	成员名称	Char64				33	0
+18	3	vocation	0	成员职业	uint8		255	0	33	0
+18	4	worldflag	0	是否在线	uint8		255	0	145	0
+18	11	avatarid	0	成员ID	int32				145	0
+18	12	sceneid	0	成员所在场景	int32				657	0
+18	13	positionx	0	x坐标	f32	0			529	0
+18	14	positiony	0	y坐标	f32	0			529	0
+18	15	positionz	0	z坐标	f32	0			529	0
+18	16	level	0	成员等级	uint8		100	0	657	0
+18	17	nodeflag	0	成员在线、死亡等状态标志	uint8		255	0	657	0
+18	18	hp	0	成员当前血量	f32				529	0
+18	19	maxhp	0	最大血量	f32				529	0
+18	20	teamslot	0	团队成员的位置	int8	-1	127		529	0
+18	21	teampost	0	成员职位	uint8		255		529	0
+18	30	TokenID	0	队伍成员令牌	uint16	0			529	0
+19	0	page_index	0		int8	0	4	0	41	0
+19	1	page_count	0		int8	1	5	1	41	0
+19	11	level_jin	0		Char64				41	0
+19	12	level_mu	0		Char64				41	0
+19	13	level_shui	0		Char64				41	0
+19	14	level_huo	0		Char64				41	0
+19	15	level_tu	0		Char64				41	0
+19	21	page_0	0		Char64				41	0
+19	22	page_1	0		Char64				41	0
+19	23	page_2	0		Char64				41	0
+19	24	page_3	0		Char64				41	0
+19	25	page_4	0		Char64				41	0
+19	31	page_0_name	0		Char32				41	0
+19	32	page_1_name	0		Char32				41	0
+19	33	page_2_name	0		Char32				41	0
+19	34	page_3_name	0		Char32				41	0
+19	35	page_4_name	0		Char32				41	0
+19	41	guidhigh	0		int64				33	0
+19	42	guidlow	0		int64				33	0
+20	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	97	0
+20	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	97	0
+20	2	fireid	0		int32				41	0
+20	3	firelevel	0	等级	uint32	1			41	0
+20	4	callcd	0	召唤异火CD	uint32				41	0
+20	5	lifecd	0	火源扣除时间	uint32				41	0
+20	6	resid	0	资源id	uint16				49	0
+20	7	exp	0	经验	uint64				41	0
+20	8	life	0	寿命	uint16				41	0
+20	9	unusedpoint	0	未使用点数	uint16				41	0
+20	10	aptseed	0	初始资质种子	uint32				41	0
+20	11	attseed	0	初始二级属性种子	uint32				41	0
+20	12	name	0	名字	Char64				41	0
+20	13	grow	0	成长值	uint16				41	0
+20	14	attackpreference	0	灵智(攻击偏好)	int8				41	0
+20	15	refininglevel	0	炼化等级	int8	1			41	0
+20	16	melting	0	淬炼次数	int8				41	0
+20	17	sortid	0	排序ID	int16				41	0
+20	18	preparewarid	0	备战编号	int8				41	0
+20	19	lock	0	锁	int8				41	0
+20	20	curhp	0	当前生命	f32				41	0
+20	30	strength	0	力量	int16				41	0
+20	31	intelligence	0	魔力	int16				41	0
+20	32	agility	0	敏捷	int16				41	0
+20	33	stamina	0	耐力	int16				41	0
+20	34	constitution	0	体质	int16				41	0
+20	39	strengthaptitude	0	力量资质	int16				41	0
+20	40	intelligenceaptitude	0	魔力资质	int16				41	0
+20	41	agilityaptitude	0	敏捷资质	int16				41	0
+20	42	staminaaptitude	0	耐力资质	int16				41	0
+20	44	constitutionaptitude	0	体质资质	int16				41	0
+20	50	skillid1	0	技能	uint16				41	0
+20	51	skillid2	0	技能	uint16				41	0
+20	52	skillid3	0	技能	uint16				41	0
+20	53	skillid4	0	技能	uint16				41	0
+20	54	skillid5	0	技能	uint16				41	0
+20	55	skillid6	0	技能	uint16				41	0
+20	56	skillid7	0	技能	uint16				41	0
+20	57	skillid8	0	技能	uint16				41	0
+20	58	skillactivation	0	技能激活状态	int16				41	0
+20	60	bornstrength	0	天生力量	int16				41	0
+20	61	bornintelligence	0	天生魔力	int16				41	0
+20	62	bornagility	0	天生敏捷	int16				41	0
+20	63	bornstamina	0	天生耐力	int16				41	0
+20	64	bornconstitution	0	天生体质	int16				41	0
+21	1	playerdid	0	好友DID	int64		9223372036854775807	-9223372036854775808	41	0
+21	9	guidhigh	0	guid	int64		9223372036854775807	-9223372036854775808	33	0
+21	10	guidlow	0	guid	int64		9223372036854775807	-9223372036854775808	33	0
+21	11	avatarname	0	好友名字	Char32				41	0
+21	12	vocation	0	职业	uint8	0			41	0
+21	13	level	0	等级	uint8	0			41	0
+21	21	flag	0	在线,组队状态	uint8	0			9	0
+21	23	scenesid	0	所在场景	uint16	0			9	0
+21	30	intparam0	0		int32	0			41	0
+21	31	intparam1	0		int32	0			41	0
+21	32	intparam2	0		int32	0			41	0
+21	33	intparam3	0		int32	0			41	0
+21	34	intparam4	0		int32	0			41	0
+21	41	int8param0	0		int8	0			41	0
+21	42	int8param1	0		int8	0			41	0
+21	51	char32param0	0		Char32				41	0
+22	0	guidhigh	0	guid	int64		9223372036854775807	-9223372036854775808	33	0
+22	1	guidlow	0	guid	int64		9223372036854775807	-9223372036854775808	33	0
+22	2	savetime	0	存储的时间	int64	0	9223372036854775807	0	33	0
+22	3	groupid0	0	0组	int64	-1	9223372036854775807	-1	33	0
+22	4	groupid1	0	1组	int64	-1	9223372036854775807	-1	33	0
+22	5	groupid2	0	2	int64	-1	9223372036854775807	-1	33	0
+22	6	groupid3	0	3	int64	-1	9223372036854775807	-1	33	0
+22	7	groupid4	0	4	int64	-1	9223372036854775807	-1	33	0
+22	8	groupid5	0	5	int64	-1	9223372036854775807	-1	33	0
+22	9	groupid6	0	6	int64	-1	9223372036854775807	-1	33	0
+22	10	groupid7	0	7	int64	-1	9223372036854775807	-1	33	0
+22	11	groupid8	0	8	int64	-1	9223372036854775807	-1	33	0
+22	12	groupid9	0	9	int64	-1	9223372036854775807	-1	33	0
+22	13	groupid10	0	10	int64	-1	9223372036854775807	-1	33	0
+22	14	groupid11	0	11	int64	-1	9223372036854775807	-1	33	0
+22	15	groupid12	0	12	int64	-1	9223372036854775807	-1	33	0
+22	16	groupid13	0	13	int64	-1	9223372036854775807	-1	33	0
+22	17	groupid14	0	14	int64	-1	9223372036854775807	-1	33	0
+22	18	groupid15	0	15	int64	-1	9223372036854775807	-1	33	0
+23	0	guidhigh	0	guid	int64		9223372036854775807	-9223372036854775808	41	0
+23	1	guidlow	0	guid	int64		9223372036854775807	-9223372036854775808	41	0
+23	2	level	0	等级	int32		2147483647	0	41	0
+23	3	exp	0	当前熟练度	int32		2147483647	0	41	0
+23	4	expmax	0	升级所需熟练度	int32		2147483647	0	41	0
+23	5	paramint1	0	捕虫1时间	int64				41	0
+23	6	paramint2	0	捕虫1时间	int64				41	0
+23	7	paramint3	0	int参数	int64				41	0
+23	8	info1	0	捕虫1信息	int64		9223372036854775807	-9223372036854775808	41	0
+23	9	info2	0	捕虫2信息	int64		9223372036854775807	-9223372036854775808	41	0
+23	10	info3	0	捕虫3信息	int64		9223372036854775807	-9223372036854775808	41	0
+23	11	lineinfo	0	各虫点分线信息	int32		2147483647	-2147483647	41	0
+23	12	avatarid1	0	虫点id1	int64	-1	9223372036854775807	-9223372036854775808	41	0
+23	13	avatarid2	0	虫点id2	int64	-1	9223372036854775807	-9223372036854775808	41	0
+23	14	avatarid3	0	虫点id3	int64	-1	9223372036854775807	-9223372036854775808	41	0
+32	1	resid	0		int32		2147483647	0	17	0
+32	2	slotcount	0		int32		6	0	17	0
+32	3	slot0	0		int32		2147483647	-1	17	0
+32	4	slot1	0		int32		2147483647	-1	17	0
+32	5	slot2	0		int32		2147483647	-1	17	0
+32	6	slot3	0		int32		2147483647	-1	17	0
+32	7	slot4	0		int32		2147483647	-1	17	0
+32	8	ownerid	0		int32	0	2147483647	-1	17	0
+32	10	mp	0		f32		2147483647	-1	17	0
+32	11	mpmax	0		f32		2147483647	-1	17	0
+32	12	part_enable_mask	0		int32		2147483647	-1	17	0
+32	13	part_break_mask	0		int32		2147483647	-1	17	0
+32	14	bornanim	0		int16		20000	-1	17	0
+32	15	npcflag	0		int32		256	0	17	0
+32	16	createshow	0		int8		1	0	17	0
+32	17	homeposx	0		f32		2147483647	0	17	0
+32	18	homeposy	0		f32		2147483647	0	17	0
+32	19	homeposz	0		f32		2147483647	0	17	0
+32	20	level	0		uint8		255	0	17	0
+32	21	modid	0		int32		30000	0	17	0
+32	22	starlevel	0		int8		100	0	0	0
+32	23	vocation	0		uint8		127	0	0	0
+32	24	hp	0		f32		2147483647	0	17	0
+32	25	hpmax	0		f32		2147483647	0	17	0
+32	26	vehicletype	0		int8		100	0	17	0
+32	27	camp	0		uint8		255	1	0	0
+32	28	collisiontype	0		int32		2147483647	0	0	0
+32	30	part_model_type_id_0	0		int32		2147483647	-1	0	0
+32	31	part_model_type_id_1	0		int32		2147483647	-1	0	0
+32	32	part_model_type_id_2	0		int32		2147483647	-1	0	0
+32	33	part_model_type_id_3	0		int32		2147483647	-1	0	0
+32	34	part_model_type_id_4	0		int32		2147483647	-1	0	0
+32	35	part_model_type_id_5	0		int32		2147483647	-1	0	0
+32	36	part_model_type_id_6	0		int32		2147483647	-1	0	0
+32	37	part_model_type_id_7	0		int32		2147483647	-1	0	0
+32	38	slot_info_0	0		int32	-1	2147483647	-1	17	0
+32	39	slot_info_1	0		int32	-1	2147483647	-1	17	0
+32	40	slot_info_2	0		int32	-1	2147483647	-1	17	0
+32	41	slot_info_3	0		int32	-1	2147483647	-1	17	0
+32	42	slot_info_4	0		int32	-1	2147483647	-1	17	0
+32	43	comstate	0		uint64		18446744073709551615	0	273	0
+32	44	sceneid	0		int32		2147483647	-2147483647	0	0
+32	45	playergeton_slot0	0		int8	0	1	0	17	0
+32	46	playergeton_slot1	0		int8	0	1	0	17	0
+32	47	playergeton_slot2	0		int8	0	1	0	17	0
+32	48	playergeton_slot3	0		int8	0	1	0	17	0
+32	49	playergeton_slot4	0		int8	0	1	0	17	0
+32	50	downcoordinatex	0		f32		2048	0	17	0
+32	51	downcoordinatey	0		f32		2048	0	17	0
+32	52	downcoordinatez	0		f32		2048	0	17	0
+32	53	bornmoveposx	0		f32		2147483647	0	0	0
+32	54	bornmoveposy	0		f32		2147483647	0	0	0
+32	55	bornmoveposz	0		f32		2147483647	0	0	0
+32	56	skill_id0	0		int32	-1			17	0
+32	57	skill_id1	0		int32	-1			17	0
+32	58	skill_id2	0		int32	-1			17	0
+32	59	skill_id3	0		int32	-1			17	0
+32	60	skill_id4	0		int32	-1			17	0
+32	61	skill_id5	0		int32	-1			17	0
+32	62	spr	0		f32	1	10	0	273	0
+32	63	skillvalidflag	0		uint32			0	273	0
+32	64	masterid	0		int32	0	2147483647		17	0
+33	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	105	0
+33	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	105	0
+33	2	data0	0		int32		2147483647	-2147483647	47	0
+33	3	data1	0		int32		2147483647	-2147483647	47	0
+33	4	data2	0		int32		2147483647	-2147483647	47	0
+33	5	data3	0		int32		2147483647	-2147483647	47	0
+33	6	data4	0		int32		2147483647	-2147483647	47	0
+33	7	data5	0		int32		2147483647	-2147483647	47	0
+33	8	data6	0		int32		2147483647	-2147483647	47	0
+33	9	data7	0		int32		2147483647	-2147483647	47	0
+33	10	data8	0		int32		2147483647	-2147483647	47	0
+33	11	data9	0		int32		2147483647	-2147483647	47	0
+33	12	data10	0		int32		2147483647	-2147483647	47	0
+33	13	data11	0		int32		2147483647	-2147483647	47	0
+33	14	data12	0		int32		2147483647	-2147483647	47	0
+33	15	data13	0		int32		2147483647	-2147483647	47	0
+33	16	data14	0		int32		2147483647	-2147483647	47	0
+33	17	data15	0		int32		2147483647	-2147483647	47	0
+33	18	data16	0		int32		2147483647	-2147483647	47	0
+33	19	data17	0		int32		2147483647	-2147483647	47	0
+33	20	data18	0		int32		2147483647	-2147483647	47	0
+33	21	data19	0		int32		2147483647	-2147483647	47	0
+40	0	SceneProcessBits	0		int64	1			17	0
+40	1	SceneInstanceBits	0		int64	1			17	0
+40	2	ComState	0		int64	0			17	0
+40	3	Timer	0	计时器	int32	0			17	0
+40	4	TimerTipID	0	计时器Tip	int32	0			17	0
+40	5	CountDown	0	倒计时的计时器	int32	0			17	0
+40	6	CountDownTipID	0	倒计时Tip	int32	0			17	0
+40	7	ParallelBits	0	分线标志	uint32	0			17	0
+40	8	SceneCollisionBits	0	场景碰撞标记为	int64	0			17	0
+40	9	DayTime	0	TOD时间	f32	0			17	0
+40	10	TODSpeed	0	Tod Speed	f32	1			17	0
+40	21	UserData0	0		int32	0			17	0
+40	22	UserData1	0		int32	0			17	0
+40	23	UserData2	0		int32	0			17	0
+40	24	UserData3	0		int32	0			17	0
+40	25	UserData4	0		int32	0			17	0
+40	26	UserData5	0		int32	0			17	0
+40	27	UserData6	0		int32	0			17	0
+40	28	UserData7	0		int32	0			17	0
+40	29	UserData8	0		int32	0			17	0
+40	30	UserData9	0		int32	0			17	0
+40	40	UserDataStr0	0		Char64	0			17	0
+40	41	UserDataStr1	0		Char64	0			17	0
+45	0	logicid	0		int32		65536	0	7	0
+45	1	dataid	0		int32		65536	0	7	0
+45	2	name	0		Char32		0	0	31	0
+45	3	modelid	0		int32		655360	-1	7	0
+45	4	str	0		int32		655360	0	7	0
+45	9	level	0		uint8		100	0	31	0
+45	10	reqlevel	0		uint8		100	0	7	0
+45	11	type	0		int32		119	-1	7	0
+45	12	profession	0		uint8		64	0	7	0
+45	13	durability	0		int16		32767	0	31	0
+45	14	agi	0		int32		655360	0	7	0
+45	15	hpmax	0		int32		655360	0	7	0
+45	16	wit	0		int32		655360	0	7	0
+45	17	spmax	0		int32		655360	0	7	0
+45	18	phy	0		int32		655360	0	7	0
+45	21	loricae	0		int32		655360	0	7	0
+45	22	atkpoint	0		int32		655360	0	7	0
+45	23	defpoint	0		int32		655360	0	7	0
+45	24	critical	0		int32		655360	0	7	0
+45	25	ctlresist	0		int32		655360	0	7	0
+45	26	ctlmultiple	0		int32		655360	0	7	0
+45	27	damenhance	0		int32		655360	0	7	0
+45	28	damreduce	0		int32		655360	0	7	0
+45	29	blockdamagederate	0		int32		100	0	7	0
+45	30	sprecover	0		int32		2147483647	-4294967295	7	0
+45	31	hprecover	0		int32		655360	0	7	0
+45	32	breakpoint	0		int32		655360	0	7	0
+45	33	breakresistance	0		int32		655360	0	7	0
+45	34	attackspeed	0		int32		655360	0	7	0
+45	35	movespeed	0		int32		655360	0	7	0
+45	36	faint	0		int32		655360	0	7	0
+45	37	faintresistance	0		int32		655360	0	7	0
+45	38	expendable	0		uint8		1	0	7	0
+45	39	bagtype	0		int8		2	-1	47	0
+45	41	slotid	0		int16		32767	-1	47	0
+45	42	actionbarid	0		int8		63	-1	47	0
+45	43	actionslotid	0		int8		100	-1	47	0
+45	44	quantity	0		int32		100	0	47	0
+45	45	icon	0		Char32		0	0	7	0
+45	47	ringpos	0		int8		1	0	7	0
+45	48	charmpos	0		int8		1	0	7	0
+45	49	weapontype	0		int32		655360	0	7	0
+45	50	AttributeGroupID	0		int32		655360	0	7	0
+45	60	itemhighid	0		int64		9223372036854775807	-9223372036854775808	39	0
+45	61	itemlowid	0		int64		9223372036854775807	-9223372036854775808	39	0
+45	62	maxnum	0		int32		100	0	7	0
+45	63	ownerid	0		int64		9223372036854775807	-9223372036854775808	39	0
+45	64	ownertype	0		int8		1	0	39	0
+45	65	reqprofession	0		uint8		64	0	39	0
+45	66	durabilitymax	0		int16		32767	0	39	0
+45	67	quality	0		uint8		3	0	39	0
+45	68	color	0		int32		255	-1	55	0
+45	69	slotsize	0		uint8		3	0	39	0
+45	70	nextlevelid	0		int32		655360	0	7	0
+45	71	lvuplogicid	0		int32		655360	0	7	0
+45	72	lvup_param01	0		int32		655360	0	7	0
+45	73	lvup_data01	0		int32		655360	0	7	0
+45	74	lvup_num01	0		int32		655360	0	7	0
+45	75	lvup_param02	0		int32		655360	0	7	0
+45	76	lvup_data02	0		int32		655360	0	7	0
+45	77	lvup_num02	0		int32		655360	0	7	0
+45	78	lvup_param03	0		int32		655360	0	7	0
+45	79	lvup_data03	0		int32		655360	0	7	0
+45	80	lvup_num03	0		int32		655360	0	7	0
+45	81	lvup_param04	0		int32		655360	0	7	0
+45	82	lvup_data04	0		int32		655360	0	7	0
+45	83	lvup_num04	0		int32		655360	0	7	0
+45	84	lvup_param05	0		int32		655360	0	7	0
+45	85	lvup_data05	0		int32		655360	0	7	0
+45	86	lvup_num05	0		int32		655360	0	7	0
+45	87	make_param01	0		int32		655360	0	7	0
+45	88	make_data01	0		int32		655360	0	7	0
+45	89	make_num01	0		int32		655360	0	7	0
+45	90	make_param02	0		int32		655360	0	7	0
+45	91	make_data02	0		int32		655360	0	7	0
+45	92	make_num02	0		int32		655360	0	7	0
+45	93	make_param03	0		int32		655360	0	7	0
+45	94	make_data03	0		int32		655360	0	7	0
+45	95	make_num03	0		int32		655360	0	7	0
+45	96	make_param04	0		int32		655360	0	7	0
+45	97	make_data04	0		int32		655360	0	7	0
+45	98	make_num04	0		int32		655360	0	7	0
+45	99	make_param05	0		int32		655360	0	7	0
+45	100	make_data05	0		int32		655360	0	7	0
+45	101	make_num05	0		int32		655360	0	7	0
+45	102	makelogicid	0		int32		655360	0	7	0
+45	103	lootresid	0		int32		2147483647	0	7	0
+45	120	colorsize	0		int32		255	0	39	0
+45	144	deflevel	0		int32		2147483647	0	7	0
+46	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	105	0
+46	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	105	0
+46	2	idx	0		int32		2147483647	-2147483647	47	0
+46	3	data0	0		int32		2147483647	-2147483647	47	0
+46	4	data1	0		int32		2147483647	-2147483647	47	0
+46	5	data2	0		int32		2147483647	-2147483647	47	0
+46	6	data3	0		int32		2147483647	-2147483647	47	0
+46	7	data4	0		int32		2147483647	-2147483647	47	0
+46	8	data5	0		int32		2147483647	-2147483647	47	0
+46	9	data6	0		int32		2147483647	-2147483647	47	0
+46	10	data7	0		int32		2147483647	-2147483647	47	0
+46	11	data8	0		int32		2147483647	-2147483647	47	0
+46	12	data9	0		int32		2147483647	-2147483647	47	0
+46	13	data10	0		int32		2147483647	-2147483647	47	0
+46	14	data11	0		int32		2147483647	-2147483647	47	0
+46	15	data12	0		int32		2147483647	-2147483647	47	0
+46	16	data13	0		int32		2147483647	-2147483647	47	0
+46	17	data14	0		int32		2147483647	-2147483647	47	0
+46	18	data15	0		int32		2147483647	-2147483647	47	0
+46	19	data16	0		int32		2147483647	-2147483647	47	0
+46	20	data17	0		int32		2147483647	-2147483647	47	0
+46	21	data18	0		int32		2147483647	-2147483647	47	0
+46	22	data19	0		int32		2147483647	-2147483647	47	0
+49	0	auctionhighid	0		int64		9223372036854775807	-9223372036854775808	47	0
+49	1	auctionlowid	0		int64		9223372036854775807	-9223372036854775808	47	0
+49	2	srcavatardid	0		int64		9223372036854775807	-9223372036854775808	47	0
+49	3	srcname	0		Char32		255	0	47	0
+49	4	bideravatardid	0		int64		9223372036854775807	-9223372036854775808	47	0
+49	5	bidername	0		Char32		255	0	47	0
+49	6	startprice	0		int32		127	0	47	0
+49	7	buyoutprice	0		int32		2147483647	0	47	0
+49	8	highestprice	0		int32		2147483647	0	47	0
+49	9	objtypeid	0		int32		2147483647	-2147483648	47	0
+49	11	count	0		int32		2147483647	0	47	0
+49	12	expiretime	0		int32		2147483647	-2147483648	47	0
+49	13	state	0		int32		2147483647	-2147483648	47	0
+49	14	time	0		uint32		4294967295	0	47	0
+50	0	FrameMin	0		int32	0	2147483647	0	1	0
+50	1	FrameMax	0		int32	0	2147483647	0	1	0
+50	2	FrameAvg	0		int32	0	2147483647	0	1	0
+50	3	GameMin	0		int32	0	2147483647	0	1	0
+50	4	GameMax	0		int32	0	2147483647	0	1	0
+50	5	GameAvg	0		int32	0	2147483647	0	1	0
+50	6	PacketMin	0		int32	0	2147483647	0	1	0
+50	7	PacketMax	0		int32	0	2147483647	0	1	0
+50	8	PacketAvg	0		int32	0	2147483647	0	1	0
+50	9	SleepMin	0		int32	0	2147483647	0	1	0
+50	10	SleepMax	0		int32	0	2147483647	0	1	0
+50	11	SleepAvg	0		int32	0	2147483647	0	1	0
+50	12	SleepRate	0		f32	0	100	0	1	0
+50	13	AvgFrameTime	0		f32	0	2147483647	0	1	0
+50	14	TotalSeconds	0		f32	0	2147483647	0	1	0
+50	17	ServerID	0		int32	0	2147483647	0	1	0
+50	18	RunState	0		int8	0	127	0	1	0
+50	19	FrameCnt	0		uint64	0	9223372036854775807	0	1	0
+50	20	PeerIP	0	内网IP	Char32				1	0
+50	21	PeerPort	0	内网端口	int32	0	2147483647	0	1	0
+50	22	WorldIP	0		Char32				1	0
+50	23	WorldPort	0		int32	0	2147483647	0	1	0
+50	24	DBType	0		int32	0	2147483647	0	1	0
+50	25	DBCName	0		Char32	0	2147483647	0	1	0
+50	26	PeerIOCP	0	内网完成端口模型	uint8	0	127	0	1	0
+50	30	PeerRecvPacketCnt	0		f32	0	2147483647	0	1	0
+50	31	PeerRecvBytes	0		f32	0	2147483647	0	1	0
+50	32	PeerRecvPacketAvgSize	0		f32	0	2147483647	0	1	0
+50	33	PeerRecvListSize	0		int32	0	2147483647	0	1	0
+50	40	PeerSendPacketCnt	0		f32	0	2147483647	0	1	0
+50	41	PeerSendBytes	0		f32	0	2147483647	0	1	0
+50	42	PeerSendPacketAvgSize	0		f32	0	2147483647	0	1	0
+50	43	PeerSendListSize	0		int32	0	2147483647	0	1	0
+51	1	DBAID	0		int32	0	2147483647	0	1	0
+51	2	LoginID	0		int32	0	2147483647	0	1	0
+51	4	GateCnt	0		int32	0	2147483647	0	1	0
+51	5	LocalNodeCnt	0		int32	0	2147483647	0	1	0
+51	6	RemoteNodeCnt	0		int32	0	2147483647	0	1	0
+51	7	PlayerCnt	0		int32	0	2147483647	0	1	0
+51	8	SceneCnt	0		int32	0	2147483647	0	1	0
+51	9	TrunkCnt	0		int32	0	2147483647	0	1	0
+51	10	CopyCnt	0		int32	0	2147483647	0	1	0
+51	11	TeamCopyCnt	0		int32	0	2147483647	0	1	0
+51	12	TrunkCopyCnt	0		int32	0	2147483647	0	1	0
+51	13	RootCopyCnt	0		int32	0	2147483647	0	1	0
+51	14	SceneLoadValue	0		int32	0	2147483647	0	1	0
+51	15	SubWorldCnt	0		int32	0	2147483647	0	1	0
+51	16	WarID	0		int32	0	2147483647	0	1	0
+51	20	DBAIP	0		Char32				1	0
+51	21	DBAPort	0		int32	0	2147483647	0	1	0
+51	22	MotherIP	0		Char32				1	0
+51	23	MotherPort	0		int32	0	2147483647	0	1	0
+51	24	WarIP	0		Char32				1	0
+51	25	WarPort	0		int32	0	2147483647	0	1	0
+51	26	ZoneID	0		int32	0	2147483647	0	1	0
+51	27	GroupID	0		int32	0	2147483647	0	1	0
+51	28	WarWorld	0		int8	0	127	0	1	0
+51	30	WS_Logining	0		int32	0	2147483647	0	1	0
+51	31	WS_Logined	0		int32	0	2147483647	0	1	0
+51	32	WS_DataLoading	0		int32	0	2147483647	0	1	0
+51	33	WS_DataReady	0		int32	0	2147483647	0	1	0
+51	34	WS_WaitScene	0		int32	0	2147483647	0	1	0
+51	35	WS_Decommission	0		int32	0	2147483647	0	1	0
+51	36	WS_Commission	0		int32	0	2147483647	0	1	0
+51	37	WS_Jumping	0		int32	0	2147483647	0	1	0
+51	38	WS_Gaming	0		int32	0	2147483647	0	1	0
+51	39	WS_ExitGame	0		int32	0	2147483647	0	1	0
+51	40	WS_DataSaving	0		int32	0	2147483647	0	1	0
+51	41	WS_Billing	0		int32	0	2147483647	0	1	0
+51	42	GuildCopyCnt	0		int32	0	2147483647	0	1	0
+52	1	WorldID	0		int32	0	2147483647	0	1	0
+52	4	GateCnt	0		int32	0	2147483647	0	1	0
+52	5	ClientCnt	0		int32	0	2147483647	0	1	0
+52	10	NewLinkCnt	0		int32	0	2147483647	0	1	0
+52	11	LoginUserCnt	0		int32	0	2147483647	0	1	0
+52	12	WaitUserCnt	0		int32	0	2147483647	0	1	0
+52	13	SrvIP	0		Char32	0			1	0
+52	14	SrvPort	0		int32	0	2147483647	0	1	0
+52	15	SrvIOCP	0		uint8	0	127	0	1	0
+52	22	BillingIP	0		Char32				1	0
+52	23	BillingPort	0		int32	0	2147483647	0	1	0
+52	24	IsBillingConnect	0		int32	0	2147483647	0	1	0
+52	30	CltRecvPacketCnt	0		int32	0	2147483647	0	1	0
+52	31	CltRecvBytes	0		int32	0	2147483647	0	1	0
+52	32	CltRecvPacketAvgSize	0		int32	0	2147483647	0	1	0
+52	33	CltSendPacketCnt	0		int32	0	2147483647	0	1	0
+52	34	CltSendBytes	0		int32	0	2147483647	0	1	0
+52	35	CltSendPacketAvgSize	0		int32	0	2147483647	0	1	0
+53	1	WorldID	0		int32	0	2147483647	0	1	0
+53	22	DBName	0		Char32				1	0
+54	1	WorldID	0		int32	0	2147483647	0	1	0
+54	4	GateCnt	0		int32	0	2147483647	0	1	0
+54	5	PlayerCnt	0		int32	0	2147483647	0	1	0
+54	6	NPCCnt	0		int32	0	2147483647	0	1	0
+54	7	SceneLoadValue	0		int32	0	2147483647	0	1	0
+54	8	SceneCnt	0		int32	0	2147483647	0	1	0
+54	9	TrunkCnt	0		int32	0	2147483647	0	1	0
+54	10	CopyCnt	0		int32	0	2147483647	0	1	0
+54	11	TeamCopyCnt	0		int32	0	2147483647	0	1	0
+54	12	TrunkCopyCnt	0		int32	0	2147483647	0	1	0
+54	13	RootCopyCnt	0		int32	0	2147483647	0	1	0
+54	14	GuildCopyCnt	0		int32	0	2147483647	0	1	0
+55	1	WorldID	0		int32	0	2147483647	0	1	0
+55	2	LoginID	0		int32	0	2147483647	0	1	0
+55	5	LocalNodeCnt	0		int32	0	2147483647	0	1	0
+55	6	RemoteNodeCnt	0		int32	0	2147483647	0	1	0
+55	7	AvatarCnt	0		int32	0	2147483647	0	1	0
+55	10	NewLinkCnt	0		int32	0	2147483647	0	1	0
+55	11	PasskeyInfoCnt	0		int32	0	2147483647	0	1	0
+55	12	ClientInfoCnt	0		int32	0	2147483647	0	1	0
+55	13	SrvIP	0		Char32	0			1	0
+55	14	SrvPort	0		int32	0	2147483647	0	1	0
+55	15	SrvIOCP	0		uint8	0	127	0	1	0
+55	30	CltRecvPacketCnt	0		f32	0	2147483647	0	1	0
+55	31	CltRecvBytes	0		f32	0	2147483647	0	1	0
+55	32	CltRecvPacketAvgSize	0		f32	0	2147483647	0	1	0
+55	33	CltRecvListSize	0		int32	0	2147483647	0	1	0
+55	40	CltSendPacketCnt	0		f32	0	2147483647	0	1	0
+55	41	CltSendBytes	0		f32	0	2147483647	0	1	0
+55	42	CltSendPacketAvgSize	0		f32	0	2147483647	0	1	0
+55	43	CltSendListSize	0		int32	0	2147483647	0	1	0
+56	0	shopid	0		int32	-1	2147483647	-2147483647	41	0
+56	1	avatardid	0		int64	-1	9223372036854775807	-9223372036854775808	41	0
+56	2	avatartitle	0		Char32		255	0	41	0
+56	3	shopname	0		Char32		255	0	41	0
+56	4	shoptype	0		int32	0	2147483647	-2147483647	41	0
+56	5	shopdes	0		Char64		255	0	41	0
+56	6	shopgold	0		uint32	0	4294967294	0	41	0
+56	7	nametype	0		int32	0	2147483647	-2147483647	41	0
+56	8	barcount	0		int32	0	2147483647	-2147483647	41	0
+56	9	shopstate	0		int32	0	2147483647	-2147483647	41	0
+56	10	lasttime	0		int32	0	2147483647	-2147483647	41	0
+56	11	sellgold	0		uint32	0	2147483647	0	41	0
+56	12	repairgold	0		uint32	0	4294967294	0	41	0
+56	14	repairgoldcd	0		uint32	0	4294967294	0	41	0
+56	15	newrepairgold	0		uint32	0	4294967294	0	41	0
+56	16	breakouttime	0		uint32	0	4294967294	0	41	0
+57	0	shopid	0		int32	-1	2147483647	-2147483648	41	0
+57	1	shopbarid	0		int32	-1	2147483647	-2147483648	41	0
+57	2	barstate	0		int32	0	2147483647	-2147483648	41	0
+57	3	itemcount	0		int32	0	2147483647	-2147483648	41	0
+57	4	typeid0	0		int32	-1	2147483647	-2147483648	41	0
+57	5	cost0	0		uint32	0	2147483647	0	41	0
+57	6	typeid1	0		int32	-1	2147483647	-2147483648	41	0
+57	7	cost1	0		uint32	0	2147483647	0	41	0
+57	8	typeid2	0		int32	-1	2147483647	-2147483648	41	0
+57	9	cost2	0		uint32	0	2147483647	0	41	0
+57	10	typeid3	0		int32	-1	2147483647	-2147483648	41	0
+57	11	cost3	0		uint32	0	2147483647	0	41	0
+57	12	typeid4	0		int32	-1	2147483647	-2147483648	41	0
+57	13	cost4	0		uint32	0	2147483647	0	41	0
+57	14	typeid5	0		int32	-1	2147483647	-2147483648	41	0
+57	15	cost5	0		uint32	0	2147483647	0	41	0
+57	16	typeid6	0		int32	-1	2147483647	-2147483648	41	0
+57	17	cost6	0		uint32	0	2147483647	0	41	0
+57	18	typeid7	0		int32	-1	2147483647	-2147483648	41	0
+57	19	cost7	0		uint32	0	2147483647	0	41	0
+57	20	typeid8	0		int32	-1	2147483647	-2147483648	41	0
+57	21	cost8	0		uint32	0	2147483647	0	41	0
+57	22	typeid9	0		int32	-1	2147483647	-2147483648	41	0
+57	23	cost9	0		uint32	0	2147483647	0	41	0
+57	24	typeid10	0		int32	-1	2147483647	-2147483648	41	0
+57	25	cost10	0		uint32	0	2147483647	0	41	0
+57	26	typeid11	0		int32	-1	2147483647	-2147483648	41	0
+57	27	cost11	0		uint32	0	2147483647	0	41	0
+57	28	typeid12	0		int32	-1	2147483647	-2147483648	41	0
+57	29	cost12	0		uint32	0	2147483647	0	41	0
+57	30	typeid13	0		int32	-1	2147483647	-2147483648	41	0
+57	31	cost13	0		uint32	0	2147483647	0	41	0
+57	32	typeid14	0		int32	-1	2147483647	-2147483648	41	0
+57	33	cost14	0		uint32	0	2147483647	0	41	0
+57	34	typeid15	0		int32	-1	2147483647	-2147483648	41	0
+57	35	cost15	0		uint32	0	2147483647	0	41	0
+57	36	typeid16	0		int32	-1	2147483647	-2147483648	41	0
+57	37	cost16	0		uint32	0	2147483647	0	41	0
+57	38	typeid17	0		int32	-1	2147483647	-2147483648	41	0
+57	39	cost17	0		uint32	0	2147483647	0	41	0
+57	40	typeid18	0		int32	-1	2147483647	-2147483648	41	0
+57	41	cost18	0		uint32	0	2147483647	0	41	0
+57	42	typeid19	0		int32	-1	2147483647	-2147483648	41	0
+57	43	cost19	0		uint32	0	2147483647	0	41	0
+57	44	statecd	0		uint32	0	2147483647	-2147483648	41	0
+58	0	shopid	0		int32	-1	2147483647	-2147483648	41	0
+58	1	shopbarid	0		int32	-1	2147483647	-2147483648	41	0
+58	2	barstate	0		int32	0	2147483647	-2147483648	41	0
+58	3	itemcount	0		int32	0	2147483647	-2147483648	41	0
+58	4	typeid0	0		int32	-1	2147483647	-2147483648	41	0
+58	5	count0	0		int32	0	2147483647	-2147483648	41	0
+58	6	maxcount0	0		int32	0	2147483647	-2147483648	41	0
+58	7	cost0	0		uint32	0	2147483647	0	41	0
+58	8	typeid1	0		int32	-1	2147483647	-2147483648	41	0
+58	9	count1	0		int32	0	2147483647	-2147483648	41	0
+58	10	maxcount1	0		int32	0	2147483647	-2147483648	41	0
+58	11	cost1	0		uint32	0	2147483647	0	41	0
+58	12	typeid2	0		int32	-1	2147483647	-2147483648	41	0
+58	13	count2	0		int32	0	2147483647	-2147483648	41	0
+58	14	maxcount2	0		int32	0	2147483647	-2147483648	41	0
+58	15	cost2	0		uint32	0	2147483647	0	41	0
+58	16	typeid3	0		int32	-1	2147483647	-2147483648	41	0
+58	17	count3	0		int32	0	2147483647	-2147483648	41	0
+58	18	maxcount3	0		int32	0	2147483647	-2147483648	41	0
+58	19	cost3	0		uint32	0	2147483647	0	41	0
+58	20	typeid4	0		int32	-1	2147483647	-2147483648	41	0
+58	21	count4	0		int32	0	2147483647	-2147483648	41	0
+58	22	maxcount4	0		int32	0	2147483647	-2147483648	41	0
+58	23	cost4	0		uint32	0	2147483647	0	41	0
+58	24	typeid5	0		int32	-1	2147483647	-2147483648	41	0
+58	25	count5	0		int32	0	2147483647	-2147483648	41	0
+58	26	maxcount5	0		int32	0	2147483647	-2147483648	41	0
+58	27	cost5	0		uint32	0	2147483647	0	41	0
+58	28	typeid6	0		int32	-1	2147483647	-2147483648	41	0
+58	29	count6	0		int32	0	2147483647	-2147483648	41	0
+58	30	maxcount6	0		int32	0	2147483647	-2147483648	41	0
+58	31	cost6	0		uint32	0	2147483647	0	41	0
+58	32	typeid7	0		int32	-1	2147483647	-2147483648	41	0
+58	33	count7	0		int32	0	2147483647	-2147483648	41	0
+58	34	maxcount7	0		int32	0	2147483647	-2147483648	41	0
+58	35	cost7	0		uint32	0	2147483647	0	41	0
+58	36	typeid8	0		int32	-1	2147483647	-2147483648	41	0
+58	37	count8	0		int32	0	2147483647	-2147483648	41	0
+58	38	maxcount8	0		int32	0	2147483647	-2147483648	41	0
+58	39	cost8	0		uint32	0	2147483647	0	41	0
+58	40	typeid9	0		int32	-1	2147483647	-2147483648	41	0
+58	41	count9	0		int32	0	2147483647	-2147483648	41	0
+58	42	maxcount9	0		int32	0	2147483647	-2147483648	41	0
+58	43	cost9	0		uint32	0	2147483647	0	41	0
+58	44	typeid10	0		int32	-1	2147483647	-2147483648	41	0
+58	45	count10	0		int32	0	2147483647	-2147483648	41	0
+58	46	maxcount10	0		int32	0	2147483647	-2147483648	41	0
+58	47	cost10	0		uint32	0	2147483647	0	41	0
+58	48	typeid11	0		int32	-1	2147483647	-2147483648	41	0
+58	49	count11	0		int32	0	2147483647	-2147483648	41	0
+58	50	maxcount11	0		int32	0	2147483647	-2147483648	41	0
+58	51	cost11	0		uint32	0	2147483647	0	41	0
+58	52	typeid12	0		int32	-1	2147483647	-2147483648	41	0
+58	53	count12	0		int32	0	2147483647	-2147483648	41	0
+58	54	maxcount12	0		int32	0	2147483647	-2147483648	41	0
+58	55	cost12	0		uint32	0	2147483647	0	41	0
+58	56	typeid13	0		int32	-1	2147483647	-2147483648	41	0
+58	57	count13	0		int32	0	2147483647	-2147483648	41	0
+58	58	maxcount13	0		int32	0	2147483647	-2147483648	41	0
+58	59	cost13	0		uint32	0	2147483647	0	41	0
+58	60	typeid14	0		int32	-1	2147483647	-2147483648	41	0
+58	61	count14	0		int32	0	2147483647	-2147483648	41	0
+58	62	maxcount14	0		int32	0	2147483647	-2147483648	41	0
+58	63	cost14	0		uint32	0	2147483647	0	41	0
+58	64	typeid15	0		int32	-1	2147483647	-2147483648	41	0
+58	65	count15	0		int32	0	2147483647	-2147483648	41	0
+58	66	maxcount15	0		int32	0	2147483647	-2147483648	41	0
+58	67	cost15	0		uint32	0	2147483647	0	41	0
+58	68	typeid16	0		int32	-1	2147483647	-2147483648	41	0
+58	69	count16	0		int32	0	2147483647	-2147483648	41	0
+58	70	maxcount16	0		int32	0	2147483647	-2147483648	41	0
+58	71	cost16	0		uint32	0	2147483647	0	41	0
+58	72	typeid17	0		int32	-1	2147483647	-2147483648	41	0
+58	73	count17	0		int32	0	2147483647	-2147483648	41	0
+58	74	maxcount17	0		int32	0	2147483647	-2147483648	41	0
+58	75	cost17	0		uint32	0	2147483647	0	41	0
+58	76	typeid18	0		int32	-1	2147483647	-2147483648	41	0
+58	77	count18	0		int32	0	2147483647	-2147483648	41	0
+58	78	maxcount18	0		int32	0	2147483647	-2147483648	41	0
+58	79	cost18	0		uint32	0	2147483647	0	41	0
+58	80	typeid19	0		int32	-1	2147483647	-2147483648	41	0
+58	81	count19	0		int32	0	2147483647	-2147483648	41	0
+58	82	maxcount19	0		int32	0	2147483647	-2147483648	41	0
+58	83	cost19	0		uint32	0	2147483647	0	41	0
+58	84	statecd	0		uint32	0	2147483647	-2147483648	41	0
+60	1	ServerID	0		int32	0	2147483647	0	1	0
+60	2	ClientCnt	0		int32	0	2147483647	0	1	0
+61	1	ServerID	0		int32	0	2147483647	0	1	0
+61	2	SceneLoadValue	0		int32	0	2147483647	0	1	0
+63	0	titleid	0		int32		65535	0	41	0
+63	1	titlestr	0		Char32		2147483647	0	41	0
+63	3	guidhigh	0		int64		9223372036854775807	-9223372036854775808	41	0
+63	4	guidlow	0		int64		9223372036854775807	-9223372036854775808	41	0
+64	0	guildid	0	帮派ID	int64				33	0
+64	1	npcid	0	帮派NPCID	int32				49	0
+64	2	npcdataid	0	帮派NPC Data ID	int32				49	0
+64	3	npclevel	0	帮派NPC等级	int32				49	0
+64	4	posinfo	0	位置信息	int32			0	49	0
+64	5	posx	0	坐标X	f32				33	0
+64	6	posy	0	坐标Y	f32				33	0
+64	7	rotz	0	朝向,需要诚意90	int8				33	0
+64	8	buildtime	0	建造时间	uint32			0	49	0
+64	9	instorage	0	存在仓库	int8				33	0
+65	0	level	0	等级	int32	0	2147483647	0	41	0
+65	1	vocation	0	职业	int8		255	0	41	0
+65	2	lasttimes	0	上次刷新的时间	int32	0	2147483647	0	41	0
+65	3	dayreword	0	日常领奖标记	int32	0	2147483647	0	41	0
+65	4	wintimes	0	单人胜利次数	int32	0	2147483647	0	41	0
+65	5	losetimes	0	单人失败次数	int32	0	2147483647	0	41	0
+65	6	drawtimes	0	单人平局次数	int32	0	2147483647	0	41	0
+65	7	ladderscore	0	单人分数	int32	0	2147483647	0	41	0
+65	8	daygametimes	0	单人日常参与次数	int32	0	2147483647	0	41	0
+65	9	daywintimes	0	单人日常胜利次数	int32	0	2147483647	0	41	0
+65	10	daycombowin	0	单人日常连胜次数	int32	0	2147483647	0	41	0
+65	11	daycombowintmp	0	单人日常连胜次数临时值	int32	0	2147483647	0	41	0
+65	12	wintimes3	0	当天单人天梯次数	int32	0	2147483647	0	41	0
+65	13	losetimes3	0	当天多人天梯次数	int32	0	2147483647	0	41	0
+65	14	drawtimes3	0	连胜场次	int32	0	2147483647	0	41	0
+65	15	ladderscore3	0	单人天梯平局场次	int32	0	2147483647	0	41	0
+65	16	daygametimes3	0	多人胜场	int32	0	2147483647	0	41	0
+65	17	daywintimes3	0	多人平局	int32	0	2147483647	0	41	0
+65	18	daycombowin3	0	多人天梯积分	int32	0	2147483647	0	41	0
+65	19	daycombowintmp3	0	多人负场	int32	0	2147483647	0	41	0
+65	20	wintimes5	0	赛季id	int32	0	2147483647	0	41	0
+65	21	losetimes5	0	定级赛次数	int32	0	2147483647	0	41	0
+65	22	drawtimes5	0	上赛季天梯分	int32	0	2147483647	0	41	0
+65	23	ladderscore5	0	定级赛获胜次数	int32	0	2147483647	0	41	0
+65	24	daygametimes5	0	上赛季id	int32	0	2147483647	0	41	0
+65	25	daywintimes5	0	领奖赛季id	int32	0	2147483647	0	41	0
+65	26	daycombowin5	0	领奖赛季id	int32	0	2147483647	0	41	0
+65	27	daycombowintmp5	0	领奖赛季id	int32	0	2147483647	0	41	0
+65	28	seasonid	0		int32	0	2147483647	0	41	0
+65	29	lastseasonid	0		int32	0	2147483647	0	41	0
+65	30	rewardseasonid	0		int32	0	2147483647	0	41	0
+65	31	lastseasonladder	0	上赛季1v1天梯分	int32	0	2147483647	0	41	0
+65	32	lastseasonladderscore3	0	上赛季3v3天梯分	int32	0	2147483647	0	41	0
+65	33	lastseasonladderscore5	0	上赛季5v5天梯分	int32	0	2147483647	0	41	0
+65	34	title	0	名称	Char64		255	0	41	0
+65	35	ladder2v2lv	0	2V2等级	int32	0	2147483647	0	41	0
+65	36	ladder3v3lv	0	3V3等级	int32	0	2147483647	0	41	0
+65	37	ladder5v5lv	0	3V3等级	int32	0	2147483647	0	41	0
+65	38	guidhigh	0		int64		9223372036854775807	-9223372036854775807	41	0
+65	39	guidlow	0		int64		9223372036854775807	-9223372036854775807	41	0
+65	40	totalladderscore	0	总天梯分	int32	0	2147483647	0	41	0
+65	41	lasttotalladderscore	0	上赛季总天梯分	int32	0	2147483647	0	41	0
+66	0	guildid	0	帮派ID	int64				17	0
+66	1	applicant	0	申请者DID	int64				17	0
+66	2	name	0	申请者名称	Char32				17	0
+66	3	vocation	0	申请者职业	uint8		255	0	17	0
+66	4	level	0	申请者等级	uint8		255	0	17	0
+66	5	applytime	0	剩余时间	uint32				17	0
+66	6	viplevel	0	vip等级	uint8		255	0	17	0
+67	0	guidhigh	0	guidhigh	int64		9223372036854775807	-9223372036854775808	97	0
+67	1	guidlow	0	guidlow	int64		9223372036854775807	-9223372036854775808	97	0
+67	2	avatardid	0	avatardid	int64		9223372036854775807	-9223372036854775808	49	0
+67	3	shopid	0	shopid	int32		2147483647	-1	113	0
+67	4	shopname	0	shopname	Char64				49	0
+67	5	ownername	0	ownername	Char64				49	0
+67	6	shoptype	0	店铺类型	int16				49	0
+67	7	validbarcount	0	营业中柜台数量	int8		127	-128	49	0
+67	8	tbarcount	0	已开启柜台数量	int8		127	-128	49	0
+67	9	bartypebits	0	柜台类型(出售、收购)	int32				49	0
+67	10	barstatebits	0	柜台类型(营业、打烊)	int32				49	0
+67	11	shopasset	0	店铺资金	int32				49	0
+67	12	shopboard	0	店铺牌匾	int32				49	0
+67	13	shopstate	0	店铺状态(营业、盘出、冻结)	int8		127	-128	49	0
+67	14	baseasset	0	基础运营费用	int32				49	0
+67	15	shopopex	0	shopopex	int32				49	0
+67	16	lastpaytime	0	上次缴费时间	int32				49	0
+67	17	createtime	0	店铺创建时间	int32				49	0
+67	18	shopanno	0	店铺信息	Char128				49	0
+67	19	modifyratime	0	上次修改运营费用时间	int32				49	0
+68	0	slotid	0		int32		65535	0	41	0
+68	1	slotlevel	0		int32	0	65535	0	41	0
+68	2	orbdataid	0		int32		2147483647	-1	41	0
+68	3	guidhigh	0		int64		9223372036854775807	-9223372036854775808	41	0
+68	4	guidlow	0		int64		9223372036854775807	-9223372036854775808	41	0
+69	0	allianceid	0	同盟ID	int64				17	0
+69	1	guildid	0	帮会ID	int64				1	0
+69	2	guildtitle	0	帮会名称	Char64				17	0
+69	3	guildflag	0	帮会状态	uint32				17	0
+69	4	guildlevel	0	帮会等级	int32				17	0
+70	0	wartime	0	战场时间	uint32				17	0
+70	1	guildid_1	0	帮会ID1	int64				17	0
+70	2	guildid_2	0	帮会ID2	int64				17	0
+70	3	guildtitle_1	0	帮会名称1	Char64				17	0
+70	4	guildtitle_2	0	帮会名称2	Char64				17	0
+70	5	guildscore_1	0	帮会得分1	int32				17	0
+70	6	guildscore_2	0	帮会得分2	int32				17	0
+70	7	guildtroops_1	0	帮会兵力1	int32				17	0
+70	8	guildtroops_2	0	帮会兵力2	int32				17	0
+70	9	guildappointcd_1	0	帮会任命CD1	uint32				17	0
+70	10	guildappointcd_2	0	帮会任命CD2	uint32				17	0
+70	11	guildadvskillnum_1	0	帮会高级锦囊1	int32				17	0
+70	12	guildadvskillnum_2	0	帮会高级锦囊2	int32				17	0
+70	13	guildadvskillcd_1	0	帮会高级锦囊CD1	uint32				17	0
+70	14	guildadvskillcd_2	0	帮会高级锦囊CD2	uint32				17	0
+70	15	guildskillnum_1	0	帮会普通锦囊CD1	int32				17	0
+70	16	guildskillnum_2	0	帮会普通锦囊CD2	int32				17	0
+70	17	guildskillcd_1	0	帮会普通锦囊CD1	uint32				17	0
+70	18	guildskillcd_2	0	帮会普通锦囊CD2	uint32				17	0
+70	19	guildnum_1	0	帮会参加人数1	int32				17	0
+70	20	guildnum_2	0	帮会参加人数2	int32				17	0
+71	0	playerdid	0	统计类型	int64				17	0
+71	1	playerguild	0	角色帮会	int64				17	0
+71	2	playertitle	0	角色名称	Char64				17	0
+71	3	killcount	0	击杀数	int32				17	0
+71	4	deadcount	0	被杀数	int32				17	0
+71	5	monstercount	0	杀怪数	int32				17	0
+71	6	flagcount	0	开旗数	int32				17	0
+72	0	guildid	0	帮派id	int64	0			49	0
+72	1	score	0	积分	int32	0			49	0
+72	2	rankindex	0	排名	int32	0			49	0
+72	3	winnum	0	胜利场数	int32	0			49	0
+72	4	lossnum	0	败场数	int32	0			49	0
+72	5	joinnum	0	参加数	int32	0			49	0
+72	6	session	0	第几届	int32	0			49	0
+72	7	mathing	0	匹配	int32	0			49	0
+72	8	starcrafttype	0	争霸赛类型	int32	0			49	0
+72	9	signuptime	0	报名时间	uint32	0			49	0
+73	0	round	0	轮数	int32	0			49	0
+73	1	session	0	届	int32	0			49	0
+73	2	reward	0	是否发奖	int32	0			49	0
+73	3	dbkey	0	存储时使用	int8	0			49	0
+74	0	round	0	轮数	int32	0			49	0
+74	1	id1	0	帮派ID1	int64	0			49	0
+74	2	id2	0	帮派ID2	int64	0			49	0
+74	3	warresult1	0	结果1	int32	0			49	0
+74	4	warresult2	0	结果2	int32	0			49	0
+74	5	title1	0	名称1	Char64	0			49	0
+74	6	title2	0	名称2	Char64	0			49	0
+75	0	session	0	届	int32	0			49	0
+75	1	starcrafttype	0	联赛类型	int32	0			49	0
+75	2	title	0	帮派名称	Char64	0			49	0
+75	3	score	0	积分	int32	0			49	0
+75	4	rankindex	0	排序	int32	0			49	0
+76	0	guildid_1	0	帮派ID	int64	0			17	0
+76	1	guildid_2	0	帮派ID	int64	0			17	0
+76	2	guildpointall_1	0	总分数	int32	0			17	0
+76	3	guildpointall_2	0	总分数	int32	0			17	0
+76	4	guildpoint_1	0	当前分数	int32	0			17	0
+76	5	guildpoint_2	0	当前分数	int32	0			17	0
+77	0	guidhigh	0		int64	0	9223372036854775807	-9223372036854775808	16777321	0
+77	1	guidlow	0		int64	0	9223372036854775807	-9223372036854775808	16777321	0
+77	2	slotid	0		int16	-1	32767	-1	16777257	0
+77	3	active	0		int8	0	1	0	16777257	0
+77	4	ownerid	0		int64	0	9223372036854775807	-9223372036854775808	16777257	0
+77	5	curexp	0		int64	0	9223372036854775807	0	16777257	0
+77	6	level	0		uint8	0	255	0	16777257	0
+77	7	quality	0		int32	0	9223372036854775807	0	16777257	0
+77	8	partnerid	0		int32	0	9223372036854775807	0	16777257	0
+78	0	avatarid	0		int32	0			17	0
+78	1	threatvalue	0		int32	0			17	0
+78	2	threatstate	0		int32	0			17	0
+79	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	97	0
+79	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	97	0
+79	2	refineid	0		int32				41	0
+79	3	refinelevel	0	等级	int32			0	41	0
+79	4	refinelucky	0	幸运值	int32			0	41	0
+81	0	guidhigh	0		int64		9223372036854775807	-9223372036854775808	97	0
+81	1	guidlow	0		int64		9223372036854775807	-9223372036854775808	97	0
+81	3	count	0	抽取次数	int32	0			33	0
+81	4	woncount	0	抽中次数	int32	0			33	0
+81	5	createtime	0	创建时间	uint32	0			33	0

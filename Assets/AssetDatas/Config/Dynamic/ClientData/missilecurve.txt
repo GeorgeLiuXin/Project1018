@@ -1,0 +1,5 @@
+CurveID	CltPath	Up	Fly	Down
+int32	char	char	char	char
+0	AssetDatas/Config/MissileCurve/	up_001.curve	fly_001.curve	down_001.curve
+1	AssetDatas/Config/MissileCurve/	up_002.curve	fly_002.curve	down_002.curve
+2	AssetDatas/Config/MissileCurve/	L1.curve	F1.curve	A1.curve

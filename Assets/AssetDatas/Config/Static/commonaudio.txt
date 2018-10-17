@@ -1,0 +1,5 @@
+﻿audioid	des	isLoop	path	lifetime	fadeinTime	fadeoutTime	maxCount
+int32	char	int32	char	f32	f32	f32	int32
+0	点击普通按钮	0	Audios/Sound/Tap	-1	0	0	5
+1	点击地面	0	Audios/Sound/Swipe	-1	0	0	5
+2	背景音乐	1	Audios/Sound/Kalimba	-1	2	2	1
