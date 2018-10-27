@@ -3,7 +3,7 @@
     using System;
     using System.IO;
 
-    internal class PersistentAssetsLoader
+    public class PersistentAssetsLoader
     {
         public byte[] Load(string name)
         {

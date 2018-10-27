@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using XWorld;
 using System;
 
 namespace XWorld.AssetPipeline
