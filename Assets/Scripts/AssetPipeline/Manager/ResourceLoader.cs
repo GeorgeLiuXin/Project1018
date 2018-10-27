@@ -33,8 +33,8 @@ namespace XWorld.AssetPipeline
 
         public abstract void Init();
 
-        public abstract int LoadAsset(string relativePath)
+        public abstract int LoadAsset(string rc, LoadAssetCallback callback, object userdata = null);
 
     }
-    
+
 }

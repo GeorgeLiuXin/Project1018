@@ -4,20 +4,17 @@ using UnityEngine;
 
 namespace XWorld
 {
-    public class LoadAssetCallback : MonoBehaviour
+    public delegate void LoadAssetCallback(LoadResult result);
+
+    public class LoadResult
     {
+        public bool isSuccess = true;
+        public string[] assetNames;
+        public UnityEngine.Object[] assets;
+        public string[] errorAssetNames;
+        public object userData;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // 提供给Array排序
+        public int index;
     }
-
 }
