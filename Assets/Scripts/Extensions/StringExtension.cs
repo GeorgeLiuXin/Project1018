@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Extension
+namespace XWorld
 {
     /// <summary>
     /// This class contain extension functions for string objects

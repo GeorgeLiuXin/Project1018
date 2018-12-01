@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Extension
+namespace XWorld
 {
     public static class DictionaryExtension
     {
@@ -266,6 +266,30 @@ namespace Extension
             return dic;
         }
 
+        /// <summary>
+        /// dictionary值排序  默认为正序
+        /// </summary>
+        public static void DictionarySort<T, V>(this Dictionary<T, V> dict, bool isInverted = false) where V : System.IComparable
+        {
+            if (dict.Count <= 0)
+                return;
+
+            List<KeyValuePair<T, V>> lst = new List<KeyValuePair<T, V>>(dict);
+            lst.Sort(delegate (KeyValuePair<T, V> s1, KeyValuePair<T, V> s2)
+            {
+                if (isInverted)
+                {
+                    return s2.Value.CompareTo(s1.Value);
+                }
+                return s1.Value.CompareTo(s2.Value);
+            });
+            dict.Clear();
+
+            foreach (KeyValuePair<T, V> kvp in lst)
+            {
+                dict.Add(kvp.Key, kvp.Value);
+            }
+        }
     }
 }
 
