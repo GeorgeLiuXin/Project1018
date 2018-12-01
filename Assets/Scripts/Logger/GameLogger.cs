@@ -10,7 +10,7 @@ namespace XWorld
 
         public delegate void LogDelegate(LOG_CHANNEL channel, LogType logType, string content);
         public static event LogDelegate OnLogReceived;
-        
+
 
         static GameLogger()
         {
@@ -65,7 +65,8 @@ namespace XWorld
         }
 
 
-        public static void SafeDebugLog(LOG_CHANNEL channel, string message) {
+        public static void SafeDebugLog(LOG_CHANNEL channel, string message)
+        {
             InternalSafeLog(LogType.Log, channel, message);
         }
 
@@ -74,7 +75,8 @@ namespace XWorld
             InternalSafeLog(LogType.Warning, channel, message);
         }
 
-        public static void SafeError(LOG_CHANNEL channel, string message) {
+        public static void SafeError(LOG_CHANNEL channel, string message)
+        {
             InternalSafeLog(LogType.Error, channel, message);
         }
 
@@ -88,10 +90,10 @@ namespace XWorld
         }
 
         #endregion multi thread
-        
+
         public static void DebugLog(LOG_CHANNEL channel, string message)
         {
-			string content = CoreLogger.Debug(channel, message);
+            string content = CoreLogger.Debug(channel, message);
             if (OnLogReceived != null) { OnLogReceived(channel, LogType.Log, content); }
         }
 

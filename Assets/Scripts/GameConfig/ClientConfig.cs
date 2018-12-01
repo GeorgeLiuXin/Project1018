@@ -53,44 +53,44 @@ namespace XWorld
 
         private static void InitConfigFiles()
         {
-            string data = ResourcesProxy.LoadTextString(CLIENT_CONFIG);
-            if (data != null)
-            {
-                GameLogger.DebugLog(LOG_CHANNEL.LOGIC, CLIENT_CONFIG + "加载成功！");
-                PreInitCFG.Instance.Parse(data);
-            }
-            else
-            {
-                GameLogger.Error(LOG_CHANNEL.LOGIC, CLIENT_CONFIG + "加载失败！");
-            }
+            //string data = ResourcesProxy.LoadTextString(CLIENT_CONFIG);
+            //if (data != null)
+            //{
+            //    GameLogger.DebugLog(LOG_CHANNEL.LOGIC, CLIENT_CONFIG + "加载成功！");
+            //    PreInitCFG.Instance.Parse(data);
+            //}
+            //else
+            //{
+            //    GameLogger.Error(LOG_CHANNEL.LOGIC, CLIENT_CONFIG + "加载失败！");
+            //}
 			
-            InitDebugConfigs();
+            //InitDebugConfigs();
         }
 
-        private static void InitDebugConfigs()
-        {
-            Dictionary<LOG_CHANNEL, bool> dictLogFlag = new Dictionary<LOG_CHANNEL, bool>();
+        //private static void InitDebugConfigs()
+        //{
+        //    Dictionary<LOG_CHANNEL, bool> dictLogFlag = new Dictionary<LOG_CHANNEL, bool>();
 
-            string LogChannelStr = string.Empty;
-            PreInitCFG.Instance.GetString(SACTION_EDITOR, LOG, out LogChannelStr);
-            if (!string.IsNullOrEmpty(LogChannelStr))
-            {
-                string[] enumContents = LogChannelStr.Split(',');
-                foreach (string content in enumContents)
-                {
-                    try
-                    {
-                        LOG_CHANNEL channel = (LOG_CHANNEL)Enum.Parse(typeof(LOG_CHANNEL), content);
-                        dictLogFlag.Add(channel, true);
-                    }
-                    catch (Exception e)
-                    {
-                        UnityEngine.Debug.LogError("LOG解析错误" + e.ToString());
-                    }
-                }
-            }
-            CoreLogger.SetDictLogFlag(dictLogFlag);
-            GameLogger.DebugLog(LOG_CHANNEL.LOGIC, string.Format("当前LOG输出：{0}", LogChannelStr));
-        }
+        //    string LogChannelStr = string.Empty;
+        //    PreInitCFG.Instance.GetString(SACTION_EDITOR, LOG, out LogChannelStr);
+        //    if (!string.IsNullOrEmpty(LogChannelStr))
+        //    {
+        //        string[] enumContents = LogChannelStr.Split(',');
+        //        foreach (string content in enumContents)
+        //        {
+        //            try
+        //            {
+        //                LOG_CHANNEL channel = (LOG_CHANNEL)Enum.Parse(typeof(LOG_CHANNEL), content);
+        //                dictLogFlag.Add(channel, true);
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                UnityEngine.Debug.LogError("LOG解析错误" + e.ToString());
+        //            }
+        //        }
+        //    }
+        //    CoreLogger.SetDictLogFlag(dictLogFlag);
+        //    GameLogger.DebugLog(LOG_CHANNEL.LOGIC, string.Format("当前LOG输出：{0}", LogChannelStr));
+        //}
     }
 }

@@ -20,32 +20,32 @@ namespace XWorld
 
         public static void LogStart()
         {
-            m_dictLogChannels.Clear();
-            m_dictLogFlag.Clear();
+            //m_dictLogChannels.Clear();
+            //m_dictLogFlag.Clear();
 
-            string data = ResourcesProxy.LoadTextString("PreInit.cfg");
-            if (data != null)
-            {
-                PreInitCFG.Instance.Parse(data);
-            }
-            string LogChannelStr = string.Empty;
-            PreInitCFG.Instance.GetString("Editor", "LogChannel", out LogChannelStr);
-            if (!string.IsNullOrEmpty(LogChannelStr))
-            {
-                string[] enumContents = LogChannelStr.Split(',');
-                foreach (string content in enumContents)
-                {
-                    try
-                    {
-                        LOG_CHANNEL channel = (LOG_CHANNEL)Enum.Parse(typeof(LOG_CHANNEL), content);
-                        m_dictLogFlag.Add(channel, true);
-                    }
-                    catch (Exception e)
-                    {
-                        UnityEngine.Debug.LogError("LOG_CHANNEL解析错误" + e.ToString());
-                    }
-                }
-            }
+            //string data = ResourcesProxy.LoadTextString("PreInit.cfg");
+            //if (data != null)
+            //{
+            //    PreInitCFG.Instance.Parse(data);
+            //}
+            //string LogChannelStr = string.Empty;
+            //PreInitCFG.Instance.GetString("Editor", "LogChannel", out LogChannelStr);
+            //if (!string.IsNullOrEmpty(LogChannelStr))
+            //{
+            //    string[] enumContents = LogChannelStr.Split(',');
+            //    foreach (string content in enumContents)
+            //    {
+            //        try
+            //        {
+            //            LOG_CHANNEL channel = (LOG_CHANNEL)Enum.Parse(typeof(LOG_CHANNEL), content);
+            //            m_dictLogFlag.Add(channel, true);
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            UnityEngine.Debug.LogError("LOG_CHANNEL解析错误" + e.ToString());
+            //        }
+            //    }
+            //}
         }
 
         public static string Debug(LOG_CHANNEL channel, string strLog)
