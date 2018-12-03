@@ -88,7 +88,7 @@ namespace XWorld
             return string.IsNullOrEmpty(source);
         }
 
-        /*
+		/*
          //Download open source library for more extensions, database APIs, synchronization from http://coresystem.codeplex.com
  
         var myEnum = "Pending".ToEnum<Status>();
@@ -101,5 +101,5 @@ namespace XWorld
  
         var result = "CoreSystem".In("CoreSystem", "Library");
          */
-    }
+	}
 }
