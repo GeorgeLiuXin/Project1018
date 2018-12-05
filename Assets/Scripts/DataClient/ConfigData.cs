@@ -19,6 +19,7 @@ namespace XWorld
         string GetString();
     }
 
+    //一个数据
     public class Data<TValue> : IConfigData
     {
         public TValue value;
@@ -57,17 +58,27 @@ namespace XWorld
         }
     }
 
+    //一行数据
     public class ConfigData : IDisposable
     {
+        //一行数据
+        public Dictionary<string, IConfigData> RowDataMap;
+
         public ConfigData()
         {
-
+            RowDataMap = new Dictionary<string, IConfigData>();
+        }
+        
+        public void Dispose()
+        {
+            RowDataMap.Clear();
+            RowDataMap = null;
         }
 
         public bool GetBool(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetBool();
             }
@@ -76,7 +87,7 @@ namespace XWorld
         public int GetInt(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetInt();
             }
@@ -85,17 +96,16 @@ namespace XWorld
         public uint GetUint(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetUint();
             }
             return 0;
         }
-
         public long GetInt64(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetInt64();
             }
@@ -104,17 +114,16 @@ namespace XWorld
         public ulong GetUint64(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetUint64();
             }
             return 0;
         }
-
         public float GetFloat(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetFloat();
             }
@@ -123,7 +132,7 @@ namespace XWorld
         public string GetString(string sName)
         {
             IConfigData iData = null;
-            if (DataMap.TryGetValue(sName, out iData))
+            if (RowDataMap.TryGetValue(sName, out iData))
             {
                 return iData.GetString();
             }
@@ -132,10 +141,7 @@ namespace XWorld
 
         public void AddValue(string sTypes, string sName, string sValue)
         {
-            if (sTypes == "int8" ||
-                sTypes == "int16" ||
-                sTypes == "int32"
-                )
+            if (sTypes == "int8" || sTypes == "int16" || sTypes == "int32")
             {
                 Data<int> iData = new Data<int>();
                 int iv = 0;
@@ -147,11 +153,9 @@ namespace XWorld
                 {
                     iData.SetValue(0);
                 }
-                DataMap.Add(sName, iData);
+                RowDataMap.Add(sName, iData);
             }
-            else if (sTypes == "uint8" ||
-                sTypes == "uint16" ||
-                sTypes == "uint32")
+            else if (sTypes == "uint8" || sTypes == "uint16" || sTypes == "uint32")
             {
                 Data<uint> uiData = new Data<uint>();
                 uint uiv = 0;
@@ -163,7 +167,7 @@ namespace XWorld
                 {
                     uiData.SetValue(0);
                 }
-                DataMap.Add(sName, uiData);
+                RowDataMap.Add(sName, uiData);
             }
             else if (sTypes == "int64")
             {
@@ -177,7 +181,7 @@ namespace XWorld
                 {
                     i64Data.SetValue(0);
                 }
-                DataMap.Add(sName, i64Data);
+                RowDataMap.Add(sName, i64Data);
             }
             else if (sTypes == "uint64")
             {
@@ -191,7 +195,7 @@ namespace XWorld
                 {
                     ui64Data.SetValue(0);
                 }
-                DataMap.Add(sName, ui64Data);
+                RowDataMap.Add(sName, ui64Data);
             }
             else if (sTypes == "f32" || sTypes == "f64")
             {
@@ -205,13 +209,13 @@ namespace XWorld
                 {
                     fData.SetValue(0);
                 }
-                DataMap.Add(sName, fData);
+                RowDataMap.Add(sName, fData);
             }
             else if (sTypes == "char")
             {
                 Data<string> sData = new Data<string>();
                 sData.SetValue(sValue);
-                DataMap.Add(sName, sData);
+                RowDataMap.Add(sName, sData);
             }
             else if (sTypes == "bool")
             {
@@ -225,15 +229,8 @@ namespace XWorld
                 {
                     boolData.SetValue(false);
                 }
-                DataMap.Add(sName, boolData);
+                RowDataMap.Add(sName, boolData);
             }
         }
-        public void Dispose()
-        {
-            DataMap.Clear();
-            DataMap = null;
-        }
-
-        Dictionary<string, IConfigData> DataMap = new Dictionary<string, IConfigData>();
     }
 }

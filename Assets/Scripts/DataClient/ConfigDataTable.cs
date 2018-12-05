@@ -1,48 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace XWorld
 {
+    //一张表
     public class ConfigDataTable : IDisposable
     {
-        public void AddData(int id, int id1, ConfigData data)
+        public string TableName;
+        public Dictionary<long, ConfigData> DataMap;
+        public ConfigDataTable()
         {
-            long rid = id;
-            if (id1 >= 0)
-            {
-                rid = ((long)id << 32) + (long)id1;
-            }
-            if (DataMap.ContainsKey(rid))
-            {
-                GameLogger.Error(LOG_CHANNEL.ERROR, "Table:" + mTableName + ",Has Same Key:" + id + "/" + id1);
-            }
-            DataMap.Add(rid, data);
-        }
-        public ConfigData GetData(int id)
-        {
-            ConfigData iData = null;
-            if (DataMap.TryGetValue(id, out iData))
-            {
-                return iData;
-            }
-            return null;
-        }
-
-        public ConfigData[] GetAllData()
-        {
-            return DataMap.Values.ToArray();
-        }
-
-        public ConfigData GetData(int id, int id2)
-        {
-            long rID = ((long)id << 32) + (long)id2;
-            ConfigData iData = null;
-            if (DataMap.TryGetValue(rID, out iData))
-            {
-                return iData;
-            }
-            return null;
+            TableName = "";
+            DataMap = new Dictionary<long, ConfigData>();
         }
 
         public void Dispose()
@@ -55,13 +26,40 @@ namespace XWorld
             DataMap = null;
         }
 
-        // TODO 以后去掉该接口
-        public List<ConfigData> GetConfigs()
+        public ConfigData GetData(int pk)
         {
-            return new List<ConfigData>(DataMap.Values);
+            if (!DataMap.ContainsKey(pk))
+                return null;
+            return DataMap[pk];
         }
-        public string mTableName = "";
-        Dictionary<long, ConfigData> DataMap = new Dictionary<long, ConfigData>();
-    }
+        public ConfigData GetData(int firstPK, int secondPK)
+        {
+            long longPK = ((long)firstPK << 32) + (long)secondPK;
+            ConfigData iData = null;
+            if (DataMap.TryGetValue(longPK, out iData))
+            {
+                return iData;
+            }
+            return null;
+        }
 
+        public ConfigData[] GetAllData()
+        {
+            return DataMap.Values.ToArray();
+        }
+
+        public void AddData(int firstPK, int secondPK, ConfigData data)
+        {
+            long longID = firstPK;
+            if (secondPK >= 0)
+            {
+                longID = ((long)firstPK << 32) + (long)secondPK;
+            }
+            if (DataMap.ContainsKey(longID))
+            {
+                GameLogger.Error(LOG_CHANNEL.ERROR, "Table:" + TableName + ",Has Same Key:" + firstPK + "/" + secondPK);
+            }
+            DataMap.Add(longID, data);
+        }
+    }
 }

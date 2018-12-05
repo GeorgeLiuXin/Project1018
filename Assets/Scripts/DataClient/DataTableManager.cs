@@ -14,6 +14,7 @@ namespace XWorld
     /// 
     /// 添加表格的重读方法，提升改表效率
     /// </summary>
+    /// 
     public class ConfigDataTableManager : Singleton<ConfigDataTableManager>
     {
         public void Clear()
