@@ -10,38 +10,100 @@ namespace XWorld
 	/// <summary>
 	/// 修改读表方式
 	/// 修改之前的生成
+    /// 将表格在当前位置读取出来
 	/// 
 	/// 添加表格的重读方法，提升改表效率
 	/// </summary>
 	public class ConfigDataTableManager : Singleton<ConfigDataTableManager>
 	{
-		private Dictionary<string, ConfigData> m_TableDefineList;
+		private ConfigDataTable m_TableDefine;
 		private Dictionary<string, ConfigDataTable> m_TableMap;
 
 		public ConfigDataTableManager()
 		{
 			m_TableMap = new Dictionary<string, ConfigDataTable>();
-			m_TableDefineList = new Dictionary<string, ConfigData>();
 		}
 
-		public void LoadTableDefineList(string sContent)
-		{
-			string[] values = sContent.Split('\n');
-			foreach (string value in values)
-			{
-				string[] subValues = value.TrimStart('\n').Split('\t');
-			}
-		}
+        public string LoadTxtContentFromPath(string path)
+        {
+            return "";
+        }
 
-		public void LoadAllTable()
-		{
+		public void LoadTableDefineList(string tableName, string sContent)
+        {
+            if (m_TableDefine != null)
+            {
+                m_TableDefine.Dispose();
+                m_TableDefine = null;
+            }
+            m_TableDefine = LoadTable(sContent);
+            m_TableDefine.TableName = tableName;
+        }
+        
+        public void LoadAllTable()
+        {
+            if (m_TableDefine == null)
+            {
+                GameLogger.DebugLog(LOG_CHANNEL.ERROR, "数据管理表尚未加载完毕");
+                return;
+            }
+            ConfigData[] datas = m_TableDefine.GetAllData();
+            foreach (ConfigData data in datas)
+            {
+                string tableName = data.GetString("tableName");
+                string tablePath = data.GetString("tablePath");
+                string tablePK2 = data.GetString("extKey");
 
-		}
+                string content = LoadTxtContentFromPath(tablePath);
+                ConfigDataTable table = LoadTable(content, tablePK2);
+                m_TableMap.Add(tableName, table);
+            }
+        }
 
-		public void LoadTable()
-		{
+        public ConfigDataTable LoadTable(string sContent, string pk2 = default(string))
+        {
+            int pk2Index = -1;
+            string[] values = sContent.Split('\r');
+            string[] lables = values[0].TrimStart('\n').Split('\t');
+            string[] types = values[1].TrimStart('\n').Split('\t');
+            if (pk2 != default(string))
+            {
+                for (int i = 0; i < lables.Length; i++)
+                {
+                    if (lables[i] == pk2)
+                    {
+                        pk2Index = i;
+                        break;
+                    }
+                }
+                if (pk2Index == -1)
+                {
+                    GameLogger.Error(LOG_CHANNEL.ERROR, "当前表中原注册的第二主键丢失");
+                    return null;
+                }
+            }
 
-		}
+            ConfigDataTable table = new ConfigDataTable();
+            for (int i = 2; i < values.Length; i++)
+            {
+                string[] subValues = values[i].TrimStart('\n').Split('\t');
+                if (subValues.Length != lables.Length)
+                    continue;
+                ConfigData data = new ConfigData();
+                if (pk2Index != -1)
+                {
+                    pk2Index = Convert.ToInt32(subValues[pk2Index]);
+                }
+
+                for (int j = 0; j < subValues.Length; j++)
+                {
+                    data.AddValue(types[j], lables[j], subValues[j]);
+                }
+
+                table.AddData(Convert.ToInt32(subValues[0]), pk2Index, data);
+            }
+            return table;
+        }
 
 		public ConfigDataTable GetTable(string tableName)
 		{
@@ -101,7 +163,7 @@ namespace XWorld
 			m_TableMap = null;
 		}
 
-		public void ReloadTable()
+		public void ReloadTable(string tableName)
 		{
 
 		}
