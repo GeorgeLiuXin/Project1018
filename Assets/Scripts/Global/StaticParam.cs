@@ -6,6 +6,9 @@ namespace XWorld
 {
     public static class StaticParam
     {
+        //数据读取
+        public static readonly string CONFIG_DEFINE_PATH = "Config/Static/client_config_define";
+
         //tag
         public static readonly string MAIN_CAMERA_TAG = "MainCamera";
         public static readonly string NPC_TAG = "NPC";

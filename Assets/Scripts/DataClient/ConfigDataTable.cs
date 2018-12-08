@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace XWorld
+namespace XWorld.GameData
 {
     //一张表
     public class ConfigDataTable : IDisposable

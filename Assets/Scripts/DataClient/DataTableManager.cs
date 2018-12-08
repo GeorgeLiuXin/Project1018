@@ -4,8 +4,10 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Linq;
+using XWorld.AssetPipeline;
+using XWorld.GameData;
 
-namespace XWorld
+namespace XWorld.GameData
 {
 	/// <summary>
 	/// 修改读表方式
@@ -26,17 +28,18 @@ namespace XWorld
 
         public string LoadTxtContentFromPath(string path)
         {
+            ResourcesProxy.LoadAsset(path)
             return "";
         }
 
-		public void LoadTableDefineList(string tableName, string sContent)
+		public void LoadDefineTableList(string tableName, string sContent)
         {
             if (m_TableDefine != null)
             {
                 m_TableDefine.Dispose();
                 m_TableDefine = null;
             }
-            m_TableDefine = LoadTable(sContent);
+            m_TableDefine = LoadTable(tableName, sContent);
             m_TableDefine.TableName = tableName;
         }
         
@@ -55,12 +58,13 @@ namespace XWorld
                 string tablePK2 = data.GetString("extKey");
 
                 string content = LoadTxtContentFromPath(tablePath);
-                ConfigDataTable table = LoadTable(content, tablePK2);
+                ConfigDataTable table = LoadTable(tableName, content, tablePK2);
+                table.TableName = tableName;
                 m_TableMap.Add(tableName, table);
             }
         }
 
-        public ConfigDataTable LoadTable(string sContent, string pk2 = default(string))
+        public ConfigDataTable LoadTable(string tableName, string sContent, string pk2 = default(string))
         {
             int pk2Index = -1;
             string[] values = sContent.Split('\r');
@@ -84,6 +88,7 @@ namespace XWorld
             }
 
             ConfigDataTable table = new ConfigDataTable();
+            table.TableName = tableName;
             for (int i = 2; i < values.Length; i++)
             {
                 string[] subValues = values[i].TrimStart('\n').Split('\t');
@@ -105,7 +110,7 @@ namespace XWorld
             return table;
         }
 
-		public ConfigDataTable GetTable(string tableName)
+		private ConfigDataTable GetTable(string tableName)
 		{
 			if (!m_TableMap.ContainsKey(tableName))
 				return null;

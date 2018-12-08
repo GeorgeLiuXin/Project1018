@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XWorld.AssetPipeline;
 
-namespace XWorld.AssetPipeline
+namespace XWorld
 {
     public class ResourcesProxy
     {
