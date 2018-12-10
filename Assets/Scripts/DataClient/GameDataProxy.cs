@@ -5,9 +5,12 @@ using XWorld.GameData;
 
 namespace XWorld
 {
+    /// <summary>
+    /// 面向前端逻辑  连接了数据层和前端逻辑
+    /// </summary>
     public class GameDataProxy
     {
-
+        
         /// <summary>
         /// 获取对应表格的对应数据
         /// </summary>
@@ -48,9 +51,27 @@ namespace XWorld
         /// <summary>
         /// 析构DataTableMgr
         /// </summary>
-        public void Clear()
+        public static void Clear()
         {
             ConfigDataTableManager.Instance.Clear();
+        }
+
+        //以下为数据层加载方法
+
+        /// <summary>
+        /// 加载总表格
+        /// </summary>
+        public static void LoadDefineTableList()
+        {
+            ConfigDataTableManager.Instance.LoadDefineTableList();
+        }
+
+        /// <summary>
+        /// 加载所有define定义中的表
+        /// </summary>
+        public static void LoadAllTable()
+        {
+            ConfigDataTableManager.Instance.LoadAllTable();
         }
 
         /// <summary>
@@ -61,7 +82,7 @@ namespace XWorld
         {
             ConfigDataTableManager.Instance.ReloadTable(tableName);
         }
-        
+
     }
 
 }

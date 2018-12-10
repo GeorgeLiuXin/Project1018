@@ -6,6 +6,9 @@ using XWorld.GameData;
 
 namespace XWorld
 {
+    /// <summary>
+    /// 面向加载   连接了资源层与数据层
+    /// </summary>
     public class GameDataLoader
     {
 

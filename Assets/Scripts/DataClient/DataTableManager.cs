@@ -21,10 +21,13 @@ namespace XWorld.GameData
 		private ConfigDataTable m_TableDefine;
 		private Dictionary<string, ConfigDataTable> m_TableMap;
 
+        public GameDataLoader m_Loader;
+
 		public ConfigDataTableManager()
 		{
 			m_TableMap = new Dictionary<string, ConfigDataTable>();
-		}
+            m_Loader = new GameDataLoader();
+        }
 
         public string LoadTxtContentFromPath(string path)
         {
@@ -32,7 +35,7 @@ namespace XWorld.GameData
             return "";
         }
 
-		public void LoadDefineTableList(string tableName, string sContent)
+		public void LoadDefineTableList()
         {
             if (m_TableDefine != null)
             {
@@ -40,7 +43,6 @@ namespace XWorld.GameData
                 m_TableDefine = null;
             }
             m_TableDefine = LoadTable(tableName, sContent);
-            m_TableDefine.TableName = tableName;
         }
         
         public void LoadAllTable()
@@ -59,7 +61,6 @@ namespace XWorld.GameData
 
                 string content = LoadTxtContentFromPath(tablePath);
                 ConfigDataTable table = LoadTable(tableName, content, tablePK2);
-                table.TableName = tableName;
                 m_TableMap.Add(tableName, table);
             }
         }
@@ -109,8 +110,13 @@ namespace XWorld.GameData
             }
             return table;
         }
+        
+        public void ReloadTable(string tableName)
+        {
 
-		private ConfigDataTable GetTable(string tableName)
+        }
+
+        private ConfigDataTable GetTable(string tableName)
 		{
 			if (!m_TableMap.ContainsKey(tableName))
 				return null;
@@ -166,11 +172,6 @@ namespace XWorld.GameData
 			}
 			m_TableMap.Clear();
 			m_TableMap = null;
-		}
-
-		public void ReloadTable(string tableName)
-		{
-
 		}
 
 	}
