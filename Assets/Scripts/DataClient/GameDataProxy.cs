@@ -59,19 +59,11 @@ namespace XWorld
         //以下为数据层加载方法
 
         /// <summary>
-        /// 加载总表格
+        /// 加载总表格及相关表格  ConfigData整体加载
         /// </summary>
         public static void LoadDefineTableList()
         {
             ConfigDataTableManager.Instance.LoadDefineTableList();
-        }
-
-        /// <summary>
-        /// 加载所有define定义中的表
-        /// </summary>
-        public static void LoadAllTable()
-        {
-            ConfigDataTableManager.Instance.LoadAllTable();
         }
 
         /// <summary>

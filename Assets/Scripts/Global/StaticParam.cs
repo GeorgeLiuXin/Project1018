@@ -7,6 +7,7 @@ namespace XWorld
     public static class StaticParam
     {
         //数据读取
+        public static readonly string CONFIG_DEFINE_NAME = "client_config_define";
         public static readonly string CONFIG_DEFINE_PATH = "Config/Static/client_config_define";
 
         //tag

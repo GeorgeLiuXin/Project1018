@@ -17,9 +17,8 @@ namespace XWorld.GameData
 	/// 添加表格的重读方法，提升改表效率
 	/// </summary>
 	public class ConfigDataTableManager : Singleton<ConfigDataTableManager>
-	{
-		private ConfigDataTable m_TableDefine;
-		private Dictionary<string, ConfigDataTable> m_TableMap;
+    {
+        private Dictionary<string, ConfigDataTable> m_TableMap;
 
         public GameDataLoader m_Loader;
 
@@ -29,42 +28,15 @@ namespace XWorld.GameData
             m_Loader = new GameDataLoader();
         }
 
-        public string LoadTxtContentFromPath(string path)
-        {
-            ResourcesProxy.LoadAsset(path)
-            return "";
-        }
-
 		public void LoadDefineTableList()
         {
-            if (m_TableDefine != null)
-            {
-                m_TableDefine.Dispose();
-                m_TableDefine = null;
-            }
-            m_TableDefine = LoadTable(tableName, sContent);
+            m_Loader.StartLoadDefineTableList();
         }
         
-        public void LoadAllTable()
+        public void OnLoadTableComplete(string tableName, string sContent)
         {
-            if (m_TableDefine == null)
-            {
-                GameLogger.DebugLog(LOG_CHANNEL.ERROR, "数据管理表尚未加载完毕");
-                return;
-            }
-            ConfigData[] datas = m_TableDefine.GetAllData();
-            foreach (ConfigData data in datas)
-            {
-                string tableName = data.GetString("tableName");
-                string tablePath = data.GetString("tablePath");
-                string tablePK2 = data.GetString("extKey");
 
-                string content = LoadTxtContentFromPath(tablePath);
-                ConfigDataTable table = LoadTable(tableName, content, tablePK2);
-                m_TableMap.Add(tableName, table);
-            }
         }
-
         public ConfigDataTable LoadTable(string tableName, string sContent, string pk2 = default(string))
         {
             int pk2Index = -1;
