@@ -1,4 +1,0 @@
-ID	Des	resid	modid
-int32	char	int32	int32
-0	炮台0	0	1
-1	炮台1	1	1

@@ -1,0 +1,9 @@
+WeaponID	WeaponPath	WeaponName	SizeX	SizeY	SizeZ
+int32	char	char	f32	f32	f32
+1	Prefabs/Wepon/pc/Wep_bs.prefab		1	1	1
+2	Prefabs/Wepon/pc/Wep_bq.prefab	Bone_Rifle_Base_003	1	1	1
+3	Prefabs/Wepon/pc/Wep_dp.prefab		1	1	1
+4	Prefabs/Wepon/pc/Wep_sq_left.prefab	SM_Wep_Pistol_Slide_right01	1	1	1
+5	Prefabs/Wepon/pc/Wep_sq_right.prefab	SM_Wep_Pistol_Slide_left01	1	1	1
+6	Prefabs/Wepon/pc/Wep_bq.prefab	Bone_Rifle_Base_003	1	1	1
+7	Prefabs/Wepon/pc/Wep_none.prefab	None	1	1	1

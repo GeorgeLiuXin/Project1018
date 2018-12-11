@@ -1,0 +1,5 @@
+DrawID	Continuous	ItemID	ItemCount	CoinID	CoinCount	GoldCount	BindCount	index	Name	Info
+int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32
+1	1	40001	1	3	100	100	0	1	212100	212100
+2	1	0	1	3	100	100	0	2	212101	212101
+3	1	40001	1	3	100	100	0	3	212102	212102

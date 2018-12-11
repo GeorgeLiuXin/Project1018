@@ -1,7 +1,40 @@
-ModelID	ModelName	AnimationSetName	BillboardHight
-int32	char	char	f32
-20000	Prefabs/cike	Misc/misc_wupingbao_001_anm	0.4
-20001	Prefabs/Hero/0_main/hero_main.prefab	SkillEffect/SkillEffcet01.xml	0.4
-20002	Prefabs/Monster/Boss/2_skill_3_npc.prefab	Misc/misc_wupingbao_001_anm	0.4
-20003	Prefabs/Monster/Boss/2_skill_3_npc.prefab	Misc/misc_wupingbao_001_anm	0.4
-30000	Prefabs/Hero/0_main/hero_main_new.prefab	SkillEffect/SkillEffcet01.xml	0.4
+ModelID	ModelName	AnimationSetName	BillboardHight	UseCollider	walkspeed	runspeed	circuityspeed	skillmovespeed	walkrunThreshold
+int32	char	char	f32	int32	f32	f32	f32	f32	f32
+101	Prefabs/Hero/Norm/GirlParts/BasicBone/NormGirlBone_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+201	Prefabs/Hero/Norm/ManParts/BasicBone/NormManBone_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+1001	Prefabs/Hero/Norm/GirlParts/body/normgirl_body_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+1101	Prefabs/Hero/Norm/GirlParts/face/normgirl_face_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+1201	Prefabs/Hero/Norm/GirlParts/hair/normgirl_hair_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+2001	Prefabs/Hero/Norm/ManParts/body/normman_body_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+2101	Prefabs/Hero/Norm/ManParts/face/normman_face_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+2201	Prefabs/Hero/Norm/ManParts/hair/normman_hair_01.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	1.5	4	2	1.5	2.75
+1	Prefabs/Hero/0_main/hero_main_make.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+2	Prefabs/Hero/0_main/hero_main_new3b.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+3	Prefabs/Hero/0_main/hero_main_lili.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+20000	Prefabs/cike	Misc/misc_wupingbao_001_anm	0.4	0	4	6	2	2	5
+20001	Prefabs/Hero/0_main/hero_main.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+20002	Prefabs/Monster/Boss/2_skill_3_npc.prefab	Misc/misc_wupingbao_001_anm	0.4	0	4	6	2	2	5
+20003	Prefabs/Monster/Boss/2_skill_3_npc.prefab	Misc/misc_wupingbao_001_anm	0.4	0	4	6	2	2	5
+30000	Prefabs/Hero/0_main/hero_main_new.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+15108	Prefabs/Monster/Boss/Effect_skill_bq_both_n_0001.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+10001	Prefabs/Monster/monster_robot_bob.prefab	SkillEffect/SkillEffcet01.xml	0.4	0	4	6	2	2	5
+15001	Prefabs/Monster/boss_b_bw_289.prefab	SkillEffect/SkillEffcet01.xml	0.4	1	4	6	2	2	5
+15002	Prefabs/Monster/monster_jigu.prefab	SkillEffect/jigu.xml	0.4	1	4	6	2	2	5
+15003	Prefabs/Monster/monster_gouzi.prefab	SkillEffect/SkillEffcet01.xml	0.4	1	3	6	3	2	4.5
+15004	Prefabs/Monster/monster_gouzi3.prefab	SkillEffect/gouzi.xml	0.4	1	5	7	4	2	6
+15005	Prefabs/Monster/monster_dajigu.prefab	SkillEffect/jigu.xml	0.4	1	4	6	2	2	5
+15006	Prefabs/Monster/monster_juhua.prefab	SkillEffect/SkillEffcet01.xml	0.4	1	5.4	10	5.4	2	7.7
+15007	Prefabs/Monster/npc_minors.prefab	SkillEffect/SkillEffcet01.xml	0.4	1	2	4	2	2	3
+15010	Prefabs/Monster/monster_touming.prefab	SkillEffect/SkillEffcet01.xml	0.4	1	0	0	0	0	0
+15011	Prefabs/Monster/monster_routu_a.prefab	SkillEffect/SkillEffcet01.xml	0.4	1	0	0	0	0	0
+15012	Prefabs/Monster/monster_routu_b.prefab	SkillEffect/SkillEffcet02.xml	0.4	1	0	0	0	0	0
+15013	Prefabs/Monster/monster_routu_c.prefab	SkillEffect/SkillEffcet03.xml	0.4	1	0	0	0	0	0
+15014	Prefabs/Monster/monster_routu_d.prefab	SkillEffect/SkillEffcet04.xml	0.4	1	0	0	0	0	0
+15015	Prefabs/Monster/monster_routu_e.prefab	SkillEffect/SkillEffcet05.xml	0.4	1	0	0	0	0	0
+15016	Prefabs/Monster/monster_routu_f.prefab	SkillEffect/SkillEffcet06.xml	0.4	1	0	0	0	0	0
+15017	Prefabs/Monster/monster_routu_g.prefab	SkillEffect/SkillEffcet07.xml	0.4	1	0	0	0	0	0
+15018	Prefabs/Monster/monster_routu_h.prefab	SkillEffect/SkillEffcet08.xml	0.4	1	0	0	0	0	0
+15019	Prefabs/Monster/monster_routu_i.prefab	SkillEffect/SkillEffcet09.xml	0.4	1	0	0	0	0	0
+15020	Prefabs/Monster/monster_routu_k.prefab	SkillEffect/SkillEffcet10.xml	0.4	1	0	0	0	0	0
+15021	Prefabs/Monster/monster_routu_l.prefab	SkillEffect/SkillEffcet11.xml	0.4	1	0	0	0	0	0
+15022	Prefabs/Monster/monster_routu_m.prefab	SkillEffect/SkillEffcet12.xml	0.4	1	0	0	0	0	0

@@ -1,2 +1,7 @@
-ID	DefDialogGroupID	BackGroups
-int32	int32	char
+ID	CheckGroup	Dialog1	Actions1	Dialog2	Actions2	Dialog3	Actions3	Dialog4	Actions4	Dialog5	Actions5	Dialog6	Actions6	DialogAttrs	Aside
+int32	int32	int32	char	int32	char	int32	char	int32	char	int32	char	int32	char	int32	int32
+1001	-1	10000001		-10000002		10000003		10000004	Finish:10001					1	
+1002	-1	10000005	Finish:10002	10000006		10000007	Lua:0							1	
+1003	-1	10000006	Finish:10003											1	
+1004	-1	10000007		-10000008		10000009	Scene:1000							1	
+3001	-1	90000001												1	

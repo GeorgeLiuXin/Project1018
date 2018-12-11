@@ -1,5 +1,36 @@
 CurveID	CltPath	Up	Fly	Down
 int32	char	char	char	char
-0	AssetDatas/Config/MissileCurve/	up_001.curve	fly_001.curve	down_001.curve
-1	AssetDatas/Config/MissileCurve/	up_002.curve	fly_002.curve	down_002.curve
-2	AssetDatas/Config/MissileCurve/	L1.curve	F1.curve	A1.curve
+1	AssetDatas/Config/MissileCurve/		Miss1.bytes	
+2	AssetDatas/Config/MissileCurve/		Miss2.bytes	
+3	AssetDatas/Config/MissileCurve/		Miss3.bytes	
+4	AssetDatas/Config/MissileCurve/		Miss4.bytes	
+5	AssetDatas/Config/MissileCurve/		Miss5.bytes	
+6	AssetDatas/Config/MissileCurve/		Miss6.bytes	
+7	AssetDatas/Config/MissileCurve/		Miss7.bytes	
+8	AssetDatas/Config/MissileCurve/		Miss8.bytes	
+9	AssetDatas/Config/MissileCurve/		Miss9.bytes	
+10	AssetDatas/Config/MissileCurve/		Miss10.bytes	
+11	AssetDatas/Config/MissileCurve/		Miss11.bytes	
+12	AssetDatas/Config/MissileCurve/		Miss12.bytes	
+13	AssetDatas/Config/MissileCurve/		Miss13.bytes	
+14	AssetDatas/Config/MissileCurve/		Miss14.bytes	
+15	AssetDatas/Config/MissileCurve/		Miss15.bytes	
+16	AssetDatas/Config/MissileCurve/		Miss16.bytes	
+17	AssetDatas/Config/MissileCurve/			
+18	AssetDatas/Config/MissileCurve/			
+19	AssetDatas/Config/MissileCurve/			
+20	AssetDatas/Config/MissileCurve/		Miss20.bytes	
+21	AssetDatas/Config/MissileCurve/		Miss21.bytes	
+22	AssetDatas/Config/MissileCurve/		Miss22.bytes	
+23	AssetDatas/Config/MissileCurve/		Miss23.bytes	
+24	AssetDatas/Config/MissileCurve/		Miss1.bytes	
+25	AssetDatas/Config/MissileCurve/		Paowu_5_All.bytes	
+26	AssetDatas/Config/MissileCurve/		Paowu_5_Up.bytes	Paowu_5_Down.bytes
+27	AssetDatas/Config/MissileCurve/			
+28	AssetDatas/Config/MissileCurve/			
+29	AssetDatas/Config/MissileCurve/			
+30	AssetDatas/Config/MissileCurve/			
+31	AssetDatas/Config/MissileCurve/			
+32	AssetDatas/Config/MissileCurve/		1000Parabola.bytes	
+33	AssetDatas/Config/MissileCurve/		LowParabola.bytes	
+34	AssetDatas/Config/MissileCurve/		Miss_LowParabola.bytes	

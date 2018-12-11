@@ -1,0 +1,4 @@
+PostType	OperateDefault	OperateLimit	PostDictID
+int32	int32	int32	int32
+1	65503	0	0
+2	65535	0	0

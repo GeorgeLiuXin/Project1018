@@ -1,0 +1,573 @@
+ParamID	name	AValue	remark	type	defaultvalue	max	min	flag	MySqlFlag
+int32	char	int32	char	char	char	char	char	int32	int32
+0	avatardid	0	avatardid	int64		default	default	100663417	1
+0	title	0	??	Char64		255	0	100663353	0
+0	level	0	??	uint8		255	0	234881337	0
+0	vocation	0	??	uint8		255	0	100663353	0
+0	sex	0	??	int8			0	33554489	0
+0	camp	0	??	int8		100	-1	185	0
+0	tempcamp	0	????	int8		100	-1	281	0
+0	pkmode	0	PK??	uint8	0	4	0	313	0
+0	modid	0		int32		30000	0	25	0
+0	target_id	0		int32	0	default	default	25	0
+0	leveltimestamp	0	?????	uint32	0		0	33	0
+0	battlecardidset	0	出战卡牌集合	uint64	0	default	0	57	0
+0	viplevel	0	vip??	uint8	0	255	0	201326905	0
+0	guildid	0	??id	int64	0			57	0
+0	guildtitle	0	????	Char32		255	0	25	0
+0	guildbill	0	?????	int32		default	0	25	0
+0	currentexp	0	?????	int64	0	default	default	201326889	0
+0	binginggold	0	????	uint32		4294967294	0	201326633	0
+0	gold	0	??	uint32		4294967294	0	201326633	0
+0	yuanbao	0	??	uint32		100000000	0	201326633	0
+0	bindingyuanbao	0	????	uint32		100000000	0	201326633	0
+0	yuanbao_t	0	??????	int32	0	default	0	67108905	0
+0	yuanbao_c	0	??????	int32	0	default	0	67108905	0
+0	downcoordinatex	0		f32		2048	0	33	0
+0	downcoordinatey	0		f32		2048	0	33	0
+0	downcoordinatez	0		f32		2048	0	33	0
+0	onlinetime	0		uint32		4294967295	0	41	0
+0	lastlandtime	0		uint32				41	0
+0	lastdowntime	0		uint32				100663337	0
+0	lastvuptime	0		uint32				33	0
+0	create_time	0	??????	uint32	0	4294967294	0	33554529	0
+0	del_time	0	?????	uint32	0	4294967294	0	33554537	0
+0	dirx	0		f32		default	-1	17	0
+0	diry	0		f32		default	-1	17	0
+0	dirz	0		f32		default	-1	17	0
+0	sceneid	0		int32		default	default	33554473	0
+0	accountname	0		Char64		default	-1	33554537	0
+0	teamid	0	??ID	int64	0	default	default	169	0
+0	bagslotcount	0		int16		32767	-1	47	0
+0	evilvalue	0		uint32		default	0	201326905	0
+0	hairid	0		int32	-1	default	-1	33	0
+0	haircolor	0		int8	0	127	-1	33	0
+0	faceid	0		int32	-1	default	-1	33	0
+0	clothes	0		int32	-1	default	-1	33	0
+0	hp	0	?????	f32	2147483647	default	0	201326649	0
+0	hpmax	1	?????	f32		default	0	67108889	0
+0	vp	0	?????	f32	0	65535	0	218103849	0
+0	vpmax	1	?????	f32		65535	0	16777225	0
+0	fc	0	???	uint32	1	4294967294	0	16777257	0
+0	enh0	0	????0 ????	uint64	0			16777257	0
+0	enh1	0	????1 ????	uint64	0			16777257	0
+0	enh2	0	????2 ????	uint64	0			16777257	0
+0	webregister	0	weibo??	int32	0			41	0
+0	titleflag	0		Char64		255	0	41	0
+0	titlestr	0		Char32		255	0	57	0
+0	titleid	0		int32		65535	-1	57	0
+0	titleaid	0		int32		65535	-1	41	0
+0	titlepoint	0		int32		65535	-1	9	0
+0	activeval	0	???	int32	0			201326633	0
+0	actvalue	0	???	int32	0	100	0	41	0
+0	actaward	0	??????	int32	0	65535	0	41	0
+0	enrvalue	0	???	int32	0	100	0	201326633	0
+0	actweekvalue	0	????	int32	0	7	0	41	0
+0	dayupdatetime	0	?????	uint32	0	default	0	33	0
+0	weekupdatetime	0	?????	uint32	0	default	0	33	0
+0	TokenID	0	????	uint16	0			1	0
+0	atk_d	1	攻击力	f32	0			9	0
+0	atk_d_r	1	攻击精通效果	f32	0			9	0
+0	dm	1	附加伤害	f32	0			9	0
+0	dr	1	伤增	f32	0			9	0
+0	dhp	1	会心等级	f32	0			9	0
+0	dhr	1	会心加成	f32	0			9	0
+0	dhcr	1	会心效果	f32	0			9	0
+0	threat_r	1	仇恨加成	f32	0			9	0
+0	threat	1	仇恨值	f32	0			9	0
+0	d_ac	1	护甲	f32	0			9	0
+0	d_ac_r	1	护甲精通	f32	0			9	0
+0	da	1	伤害吸收	f32	0			9	0
+0	cdr	1	伤减	f32	0			9	0
+0	be_dhp	1	坚韧等级	f32	0			9	0
+0	be_dhr	1	坚韧加成	f32	0			9	0
+0	be_dhcr	1	会心伤害减免	f32	0			9	0
+0	hp_r	1	生命精通	f32	0			9	0
+0	hhp_r	1	治疗效果	f32	0			9	0
+0	be_hhp_r	1	承受治疗效果	f32	0			9	0
+0	spr	1	移动速度加成	f32	0	10	-1	281	0
+0	energypoint	1	能量值	f32	0			9	0
+0	shield	1	护盾值	f32	0			25	0
+0	ep1	1	EP1	f32		65535	0	25	0
+0	ep1max	1	EP1Max	f32		65535	0	25	0
+0	ep2	1	EP2	f32		65535	0	25	0
+0	ep2max	1	EP2Max	f32		65535	0	25	0
+0	counter	1	克制属性	int8		default	0	281	0
+0	tempcounter	1	临时克制属性	int8		default	0	281	0
+0	practicelevel	0	修炼等级	int32	0	default	0	234881337	0
+0	cardpresetgrp0	0	预设卡组0	uint64	0	default	0	57	0
+0	cardpresetgrp1	0	预设卡组1	uint64	0	default	0	57	0
+0	cardpresetgrp2	0	预设卡组2	uint64	0	default	0	57	0
+0	cardpresetgrp3	0	预设卡组3	uint64	0	default	0	57	0
+0	cardpresetgrp4	0	预设卡组4	uint64	0	default	0	57	0
+0	cardpresetgrp5	0	预设卡组5	uint64	0	default	0	57	0
+0	cardpresetname0	0	预设卡组名称0	Char32		default	0	57	0
+0	cardpresetname1	0	预设卡组名称1	Char32		default	0	57	0
+0	cardpresetname2	0	预设卡组名称2	Char32		default	0	57	0
+0	cardpresetname3	0	预设卡组名称3	Char32		default	0	57	0
+0	cardpresetname4	0	预设卡组名称4	Char32		default	0	57	0
+0	cardpresetname5	0	预设卡组名称5	Char32		default	0	57	0
+0	scene2presetpve	0	pve场景卡组	uint64	0	default	0	57	0
+0	scene2presettower	0	刷塔卡组	uint64	0	default	0	57	0
+0	scene2presetpvp	0	pvp场景卡组	uint64	0	default	0	57	0
+1	titleid	0		uint32		default	0	17	0
+1	level	0		uint8		255	0	17	0
+1	vocation	0		uint8		127	0	0	0
+1	camp	0		int8		100	-1	17	0
+1	sex	0		int8		0	0	0	0
+1	modid	0		int32		30000	0	17	0
+1	tempcamp	0		int8		100	-1	17	0
+1	part_enable_mask	0		int32		default	-1	17	0
+1	part_break_mask	0		int32		default	-1	17	0
+1	target_id	0		int32		default	default	25	0
+1	hp	0		f32		default	0	17	0
+1	hpmax	0		f32		default	default	17	0
+1	movespeed	0		f32		default	0	0	0
+1	counter	1	克制属性	int8		default	0	17	0
+1	tempcounter	1	临时克制属性	int8		default	0	17	0
+1	sceneuid	0		int32		default	-1	17	0
+1	masterid	0		int32	0	default		17	0
+1	npcexp	0		int32		default	0	0	0
+1	npcexpparam	0		f32		10000	0	0	0
+1	animtablename	0		int32		default	-1	0	0
+1	aialarmid	0		int32		default	-1	17	0
+1	aichaseid	0		int32		default	-1	0	0
+1	turnspeed	0		f32		default	-1	0	0
+1	relivetime	0		int32		default	-1	0	0
+1	collisiontype	0		int32		default	-1	0	0
+1	sceneid	0		int32		default	default	0	0
+1	removedelaytime	0		int32		default	0	0	0
+1	titleimage	0		int32		255	0	0	0
+1	hpperbar	0		int32		default	0	17	0
+1	npcflag	0		int32		512	0	17	0
+1	dialogid	0		int32		default	-1	0	0
+1	aidataid	0		int32		default	-1	0	0
+1	skillgroup	0		int32		default	-1	0	0
+1	starlevel	0		int8		10	0	0	0
+1	ownershiplogic	0		int32			0	0	0
+1	ownershipstate	0		int32			0	17	0
+1	ownershipavatar	0		int64	0	default	default	19	0
+1	ownershipteam	0		int64	0	default	default	19	0
+1	bubbleid	0		int32		default	-1	19	0
+1	droptemplateid	0		int32		default	-1	0	0
+1	dropworldid	0		int32		default	-1	0	0
+1	dropcustomid	0		int32		default	-1	0	0
+1	dropquestid	0		int32		default	-1	0	0
+1	dropradius	0		f32	0			0	0
+1	part_model_type_id_0	0		uint32		4294967295	0	0	0
+1	part_model_type_id_1	0		uint32		4294967295	0	0	0
+1	part_model_type_id_2	0		uint32		4294967295	0	0	0
+1	part_model_type_id_3	0		uint32		4294967295	0	0	0
+1	part_model_type_id_4	0		uint32		4294967295	0	0	0
+1	growid	0		int32		65535	-1	19	0
+1	growcount	0		int8		127	-1	17	0
+1	evil_value_dec	0		int32		65535	0	0	0
+1	spp	1		f32	1	10	0	273	0
+1	spr	0		f32	1	10	0	273	0
+1	triggereventflag	0		int8	1	1	0	0	0
+1	userdata1	0		int32		default	-1	0	0
+1	userdata2	0		int32		default	-1	0	0
+1	userdata3	0		int32		default	-1	0	0
+2	guidhigh	0		int64		default	default	105	1
+2	guidlow	0		int64		default	default	105	1
+2	skilllevel	0		uint8	1			47	0
+2	skillstar	0		int8	0			41	0
+2	skillexp	0		uint32	0			41	0
+3	guidhigh	0		int64		default	default	41	0
+3	guidlow	0		int64		default	default	41	0
+3	data1	0		int64	0			41	0
+3	data2	0		int64	0			41	0
+3	data3	0		int64	0			41	0
+3	data4	0		int64	0			41	0
+3	data5	0		int64	0			41	0
+3	data6	0		int64	0			41	0
+3	data7	0		int64	0			41	0
+3	data8	0		int64	0			41	0
+3	data9	0		int64	0			41	0
+3	data10	0		int64	0			41	0
+3	data11	0		int64	0			41	0
+3	data12	0		int64	0			41	0
+3	data13	0		int64	0			41	0
+3	data14	0		int64	0			41	0
+3	data15	0		int64	0			41	0
+3	data16	0		int64	0			41	0
+3	data17	0		int64	0			41	0
+3	data18	0		int64	0			41	0
+3	data19	0		int64	0			41	0
+3	data20	0		int64	0			41	0
+3	data21	0		int64	0			41	0
+3	data22	0		int64	0			41	0
+3	data23	0		int64	0			41	0
+3	data24	0		int64	0			41	0
+4	guidhigh	0		int64		default	default	97	1
+4	guidlow	0		int64		default	default	97	1
+4	coin_0	0		int64	0	default	0	41	0
+4	coin_1	0		int64	0	default	0	41	0
+4	coin_2	0		int64	0	default	0	41	0
+4	coin_3	0		int64	0	default	0	41	0
+4	coin_4	0		int64	0	default	0	41	0
+4	coin_5	0		int64	0	default	0	41	0
+4	coin_6	0		int64	0	default	0	41	0
+4	coin_7	0		int64	0	default	0	41	0
+4	coin_8	0		int64	0	default	0	41	0
+4	coin_9	0		int64	0	default	0	41	0
+4	coin_10	0		int64	0	default	0	41	0
+4	coin_11	0		int64	0	default	0	41	0
+4	coin_12	0		int64	0	default	0	41	0
+4	coin_13	0		int64	0	default	0	41	0
+4	coin_14	0		int64	0	default	0	41	0
+4	coin_15	0		int64	0	default	0	41	0
+4	coin_16	0		int64	0	default	0	41	0
+4	coin_17	0		int64	0	default	0	41	0
+4	coin_18	0		int64	0	default	0	41	0
+4	coin_19	0		int64	0	default	0	41	0
+6	activitytype	0	????	int16	3	32767	0	41	0
+6	intdata0	0	??????	int32	0	default	default	41	0
+6	intdata1	0	??????	int32	0	default	default	41	0
+6	intdata2	0	??????	int32	0	default	default	41	0
+6	intdata3	0	????????	int32		default	default	41	0
+6	floatdata0	0		f32		default	default	41	0
+6	floatdata1	0		f32		default	default	41	0
+6	lastoptime	0	????????	uint32		4294967294	0	41	0
+6	rewardgroup	0	??????????	int16		32767	0	41	0
+6	guidhigh	0		int64		default	default	33	1
+6	guidlow	0		int64		default	default	33	1
+7	gameid	0	??ID	uint16				41	0
+7	count	0	????	uint16				41	0
+7	guidhigh	0		int64				33	1
+7	guidlow	0		int64				33	1
+8	CreditID	0	??????	uint16				41	0
+8	CreditValue	0	???	int32				297	0
+8	CreditFlag	0	??????	uint8				297	0
+8	guidhigh	0		int64				97	1
+8	guidlow	0		int64				97	1
+9	carddefineid	0		int32			0	1065	0
+9	cardlevel	0		int32			0	1065	0
+9	guidhigh	0		int64		default	default	1065	1
+9	guidlow	0		int64		default	default	1065	1
+9	cardcount	0	????	int32	0			1065	0
+9	cwoncount	0	????	int32	0			1065	0
+9	cardtime	0	????	uint32	0			1065	0
+9	equip0	0		int64			0	1065	0
+9	equip1	0		int64			0	1065	0
+9	equip2	0		int64			0	1065	0
+9	equip3	0		int64			0	1065	0
+9	equip4	0		int64			0	1065	0
+9	equip5	0		int64			0	1065	0
+9	cap0level	0		int32			0	1065	0
+9	cap1level	0		int32			0	1065	0
+9	cap2level	0		int32			0	1065	0
+9	cap3level	0		int32			0	1065	0
+9	cap4level	0		int32			0	1065	0
+9	cap0index	0		int32			0	1065	0
+9	cap1index	0		int32			0	1065	0
+9	cap2index	0		int32			0	1065	0
+9	cap3index	0		int32			0	1065	0
+9	cap4index	0		int32			0	1065	0
+9	skill0level	0		int32			0	1065	0
+9	skill1level	0		int32			0	1065	0
+9	skill2level	0		int32			0	1065	0
+9	skill3level	0		int32			0	1065	0
+9	skill4level	0		int32			0	1065	0
+10	guidhigh	0		int64		default	default	105	1
+10	guidlow	0		int64		default	default	105	1
+10	exattr0	0		int64			0	1065	0
+10	exattr1	0		int64			0	1065	0
+10	exattr2	0		int64			0	1065	0
+10	exattr3	0		int64			0	1065	0
+10	exattr4	0		int64			0	1065	0
+10	exattr5	0		int64			0	1065	0
+10	exattr6	0		int64			0	1065	0
+10	exattr7	0		int64			0	1065	0
+10	exattr8	0		int64			0	1065	0
+10	exattr9	0		int64			0	1065	0
+10	exattr10	0		int64			0	1065	0
+10	exattr11	0		int64			0	1065	0
+10	exattr12	0		int64			0	1065	0
+10	exattr13	0		int64			0	1065	0
+10	exattr14	0		int64			0	1065	0
+10	exattr15	0		int64			0	1065	0
+10	exattr16	0		int64			0	1065	0
+10	exattr17	0		int64			0	1065	0
+10	exattr18	0		int64			0	1065	0
+10	exattr19	0		int64			0	1065	0
+12	buffid	0		int32		65536	0	63	0
+12	bufflevel	0		int8		100	0	63	0
+12	casterdid	0		int64		default	default	63	0
+12	totaltime	0		int32		default	0	63	0
+12	lasttime	0		int32		default	0	63	0
+12	curperiod	0		int32		100000	0	39	0
+12	layercnt	0		int8		10	0	63	0
+12	createtime	0		uint64		default	0	63	0
+12	guidhigh	0		int64		default	default	97	1
+12	guidlow	0		int64		default	default	97	1
+12	casterid	0		int32		default	default	25	0
+13	questid	0		int32		default	0	47	0
+13	eventid	0		uint32				41	0
+13	eventcount	0		int32				41	0
+13	queststate	0		int32		10	0	47	0
+13	accepttype	0		int32		65536	-1	47	0
+13	taravatardid	0		int64				47	0
+13	data2	0		int32		65536	-1	47	0
+13	data3	0		int32		65536	-1	47	0
+13	data4	0		int32		65536	-1	47	0
+13	data5	0		int32		65536	-1	47	0
+13	data6	0		int32		65536	-1	47	0
+13	data7	0		int32		65536	-1	47	0
+13	data8	0		int32		default	-1	47	0
+13	data9	0		int32		default	-1	41	0
+13	guidhigh	0		int64		default	default	105	1
+13	guidlow	0		int64		default	default	105	1
+14	guidhigh	0		int64		default	default	105	1
+14	guidlow	0		int64		default	default	105	1
+14	idx	0		int32		default	default	47	0
+14	data0	0		int32		default	default	47	0
+14	data1	0		int32		default	default	47	0
+14	data2	0		int32		default	default	47	0
+14	data3	0		int32		default	default	47	0
+14	data4	0		int32		default	default	47	0
+14	data5	0		int32		default	default	47	0
+14	data6	0		int32		default	default	47	0
+14	data7	0		int32		default	default	47	0
+14	data8	0		int32		default	default	47	0
+14	data9	0		int32		default	default	47	0
+14	data10	0		int32		default	default	47	0
+14	data11	0		int32		default	default	47	0
+14	data12	0		int32		default	default	47	0
+14	data13	0		int32		default	default	47	0
+14	data14	0		int32		default	default	47	0
+14	data15	0		int32		default	default	47	0
+14	data16	0		int32		default	default	47	0
+14	data17	0		int32		default	default	47	0
+14	data18	0		int32		default	default	47	0
+14	data19	0		int32		default	default	47	0
+14	data20	0		int32		default	default	47	0
+15	guildid	0	帮会DID	int64	0			49	1
+15	guildlevel	0	帮会等级	int32	1			49	0
+15	guildtitle	0	帮会名称	Char64				49	0
+15	guildnotice	0	????	Char128				49	0
+15	createtime	0	创建时间	uint32				49	0
+15	leaderdid	0	帮主DID	int64	0			49	0
+15	leadertitle	0	帮主名称	Char64				49	0
+15	warstate	0	战斗状态	int8	0			17	0
+15	tokenid	0	令牌ID	uint16	0			1	0
+15	updatetype	0	????	int32	0			33	0
+15	updatetime	0	????(??)	uint32	0			33	0
+15	resources	0	资源数量	int32	0			49	0
+15	resbuildtoken	0	????	int32	0			49	0
+15	answeractivies	0	??????	int32	0			49	0
+15	wartime	0	战斗时间	uint32	0			49	0
+15	localsceneid	0	场景id	int32	0			1	0
+15	guildflag	0	状态标记	uint32	0			49	0
+16	guildid	0	帮会DID	int64				49	0
+16	memberdid	0	AvatarDID	int64				49	1
+16	post	0	职位	int32				49	0
+16	jointime	0	加入时间	uint32				49	0
+16	worldflag	0	状态	uint8		255	0	1	0
+16	contributionweek	0	???	int32				49	0
+16	contributionall	0	???	int32				49	0
+17	teamid	0		int64				33	0
+17	leaderdid	0		int64				33	0
+17	teamtype	0		uint8		255	0	289	0
+17	allotrule	0		uint8		255	0	289	0
+17	tokenid	0		uint16	0			17	0
+17	levelmin	0	限制	uint8	0			17	0
+17	levelmax	0	限制	uint8	0			17	0
+17	target	0	目标	int32	0			17	0
+17	soltlock	0	槽锁	uint8	0			17	0
+17	publiclimit	0	公开限制	uint8	0			17	0
+17	outplatformtime	0	加入平台时间	int64	0			17	0
+17	platformtype	0	加入平台类型	uint8	0			17	0
+18	teamid	0	?DID	int64				17	0
+18	avatardid	0	??DID	int64				17	0
+18	name	0	????	Char64				17	0
+18	vocation	0	????	uint8		255	0	17	0
+18	worldflag	0	????	uint8		255	0	17	0
+18	avatarid	0	??ID	int32				17	0
+18	sceneid	0	??????	int32				17	0
+18	positionx	0	x??	f32	0			17	0
+18	positiony	0	y??	f32	0			17	0
+18	positionz	0	z??	f32	0			17	0
+18	level	0	????	uint8		100	0	17	0
+18	nodeflag	0	????????????	uint8		255	0	17	0
+18	teamslot	0	???????	int8	-1	127		17	0
+18	teampost	0	????	uint8		255		17	0
+18	tokenid	0	??????	uint16	0			17	0
+19	guildid	0	??ID	int64				17	1
+19	applicant	0	???DID	int64				17	0
+19	name	0	?????	Char32				17	0
+19	vocation	0	?????	uint8		255	0	17	0
+19	level	0	?????	uint8		255	0	17	0
+19	applytime	0	????	uint32				17	0
+19	viplevel	0	vip??	uint8		255	0	17	0
+21	guidhigh	0	guid	int64		default	default	33	1
+21	guidlow	0	guid	int64		default	default	33	1
+21	avatarname	0	????	Char32				41	0
+21	flag	0	"??,????"	uint8	0			9	0
+21	intparam0	0		int32	0			41	0
+21	intparam1	0		int32	0			41	0
+21	intparam2	0		int32	0			41	0
+21	intparam3	0		int32	0			41	0
+21	intparam4	0		int32	0			41	0
+21	int8param0	0		int8	0			41	0
+21	int8param1	0		int8	0			41	0
+21	char32param0	0		Char32				41	0
+22	guidhigh	0	guid	int64		default	default	33	1
+22	guidlow	0	guid	int64		default	default	33	1
+22	savetime	0	?????	int64	0	default	0	33	0
+22	groupid0	0	0?	int64	-1	default	-1	33	0
+22	groupid1	0	1?	int64	-1	default	-1	33	0
+22	groupid2	0	2	int64	-1	default	-1	33	0
+22	groupid3	0	3	int64	-1	default	-1	33	0
+22	groupid4	0	4	int64	-1	default	-1	33	0
+22	groupid5	0	5	int64	-1	default	-1	33	0
+22	groupid6	0	6	int64	-1	default	-1	33	0
+22	groupid7	0	7	int64	-1	default	-1	33	0
+22	groupid8	0	8	int64	-1	default	-1	33	0
+22	groupid9	0	9	int64	-1	default	-1	33	0
+22	groupid10	0	10	int64	-1	default	-1	33	0
+22	groupid11	0	11	int64	-1	default	-1	33	0
+22	groupid12	0	12	int64	-1	default	-1	33	0
+22	groupid13	0	13	int64	-1	default	-1	33	0
+22	groupid14	0	14	int64	-1	default	-1	33	0
+22	groupid15	0	15	int64	-1	default	-1	33	0
+32	masterid	0		int32	0	default		17	0
+33	guidhigh	0		int64		default	default	105	1
+33	guidlow	0		int64		default	default	105	1
+33	data0	0		int32		default	default	47	0
+33	data1	0		int32		default	default	47	0
+33	data2	0		int32		default	default	47	0
+33	data3	0		int32		default	default	47	0
+33	data4	0		int32		default	default	47	0
+33	data5	0		int32		default	default	47	0
+33	data6	0		int32		default	default	47	0
+33	data7	0		int32		default	default	47	0
+33	data8	0		int32		default	default	47	0
+33	data9	0		int32		default	default	47	0
+33	data10	0		int32		default	default	47	0
+33	data11	0		int32		default	default	47	0
+33	data12	0		int32		default	default	47	0
+33	data13	0		int32		default	default	47	0
+33	data14	0		int32		default	default	47	0
+33	data15	0		int32		default	default	47	0
+33	data16	0		int32		default	default	47	0
+33	data17	0		int32		default	default	47	0
+33	data18	0		int32		default	default	47	0
+33	data19	0		int32		default	default	47	0
+40	SceneProcessBits	0		int64	1			17	0
+40	SceneInstanceBits	0		int64	1			17	0
+40	ComState	0		int64	0			17	0
+40	Timer	0	???	int32	0			17	0
+40	TimerTipID	0	???Tip	int32	0			17	0
+40	CountDown	0	???????	int32	0			17	0
+40	CountDownTipID	0	???Tip	int32	0			17	0
+40	ParallelBits	0	????	uint32	0			17	0
+40	SceneCollisionBits	0	???????	int64	0			17	0
+40	DayTime	0	TOD??	f32	0			17	0
+40	TODSpeed	0	Tod Speed	f32	1			17	0
+40	UserData0	0		int32	0			17	0
+40	UserData1	0		int32	0			17	0
+40	UserData2	0		int32	0			17	0
+40	UserData3	0		int32	0			17	0
+40	UserData4	0		int32	0			17	0
+40	UserData5	0		int32	0			17	0
+40	UserData6	0		int32	0			17	0
+40	UserData7	0		int32	0			17	0
+40	UserData8	0		int32	0			17	0
+40	UserData9	0		int32	0			17	0
+40	UserDataStr0	0		Char64	0			17	0
+40	UserDataStr1	0		Char64	0			17	0
+46	guidhigh	0		int64		default	default	105	1
+46	guidlow	0		int64		default	default	105	1
+46	idx	0		int32		default	default	47	0
+46	data0	0		int32		default	default	47	0
+46	data1	0		int32		default	default	47	0
+46	data2	0		int32		default	default	47	0
+46	data3	0		int32		default	default	47	0
+46	data4	0		int32		default	default	47	0
+46	data5	0		int32		default	default	47	0
+46	data6	0		int32		default	default	47	0
+46	data7	0		int32		default	default	47	0
+46	data8	0		int32		default	default	47	0
+46	data9	0		int32		default	default	47	0
+46	data10	0		int32		default	default	47	0
+46	data11	0		int32		default	default	47	0
+46	data12	0		int32		default	default	47	0
+46	data13	0		int32		default	default	47	0
+46	data14	0		int32		default	default	47	0
+46	data15	0		int32		default	default	47	0
+46	data16	0		int32		default	default	47	0
+46	data17	0		int32		default	default	47	0
+46	data18	0		int32		default	default	47	0
+46	data19	0		int32		default	default	47	0
+63	titleid	0		int32		65535	0	41	0
+63	titlestr	0		Char32		default	0	41	0
+63	guidhigh	0		int64		default	default	41	1
+63	guidlow	0		int64		default	default	41	1
+65	level	0	??	int32	0	default	0	41	0
+65	vocation	0	??	int8		255	0	41	0
+65	lasttimes	0	???????	int32	0	default	0	41	0
+65	dayreword	0	??????	int32	0	default	0	41	0
+65	wintimes	0	??????	int32	0	default	0	41	0
+65	losetimes	0	??????	int32	0	default	0	41	0
+65	drawtimes	0	??????	int32	0	default	0	41	0
+65	ladderscore	0	????	int32	0	default	0	41	0
+65	daygametimes	0	????????	int32	0	default	0	41	0
+65	daywintimes	0	????????	int32	0	default	0	41	0
+65	daycombowin	0	????????	int32	0	default	0	41	0
+65	daycombowintmp	0	???????????	int32	0	default	0	41	0
+65	wintimes3	0	????????	int32	0	default	0	41	0
+65	losetimes3	0	????????	int32	0	default	0	41	0
+65	drawtimes3	0	????	int32	0	default	0	41	0
+65	ladderscore3	0	????????	int32	0	default	0	41	0
+65	daygametimes3	0	????	int32	0	default	0	41	0
+65	daywintimes3	0	????	int32	0	default	0	41	0
+65	daycombowin3	0	??????	int32	0	default	0	41	0
+65	daycombowintmp3	0	????	int32	0	default	0	41	0
+65	wintimes5	0	??id	int32	0	default	0	41	0
+65	losetimes5	0	?????	int32	0	default	0	41	0
+65	drawtimes5	0	??????	int32	0	default	0	41	0
+65	ladderscore5	0	???????	int32	0	default	0	41	0
+65	daygametimes5	0	???id	int32	0	default	0	41	0
+65	daywintimes5	0	????id	int32	0	default	0	41	0
+65	daycombowin5	0	????id	int32	0	default	0	41	0
+65	daycombowintmp5	0	????id	int32	0	default	0	41	0
+65	seasonid	0		int32	0	default	0	41	0
+65	lastseasonid	0		int32	0	default	0	41	0
+65	rewardseasonid	0		int32	0	default	0	41	0
+65	lastseasonladder	0	???1v1???	int32	0	default	0	41	0
+65	lastseasonladderscore3	0	???3v3???	int32	0	default	0	41	0
+65	lastseasonladderscore5	0	???5v5???	int32	0	default	0	41	0
+65	title	0	??	Char64		255	0	41	0
+65	ladder2v2lv	0	2V2??	int32	0	default	0	41	0
+65	ladder3v3lv	0	3V3??	int32	0	default	0	41	0
+65	ladder5v5lv	0	3V3??	int32	0	default	0	41	0
+65	guidhigh	0		int64		default	default	41	1
+65	guidlow	0		int64		default	default	41	1
+65	totalladderscore	0	????	int32	0	default	0	41	0
+65	lasttotalladderscore	0	???????	int32	0	default	0	41	0
+78	avatarid	0		int32	0			17	0
+78	threatvalue	0		int32	0			17	0
+78	threatstate	0		int32	0			17	0
+81	guidhigh	0		int64		default	default	97	1
+81	guidlow	0		int64		default	default	97	1
+81	random_0	0		int64	0	default	0	33	0
+81	random_1	0		int64	0	default	0	33	0
+81	random_2	0		int64	0	default	0	33	0
+81	random_3	0		int64	0	default	0	33	0
+81	random_4	0		int64	0	default	0	33	0
+81	random_5	0		int64	0	default	0	33	0
+81	random_6	0		int64	0	default	0	33	0
+81	random_7	0		int64	0	default	0	33	0
+81	random_8	0		int64	0	default	0	33	0
+81	random_9	0		int64	0	default	0	33	0
+81	random_10	0		int64	0	default	0	33	0
+81	random_11	0		int64	0	default	0	33	0
+81	random_12	0		int64	0	default	0	33	0
+81	random_13	0		int64	0	default	0	33	0
+81	random_14	0		int64	0	default	0	33	0
+81	random_15	0		int64	0	default	0	33	0
+81	random_16	0		int64	0	default	0	33	0
+81	random_17	0		int64	0	default	0	33	0
+81	random_18	0		int64	0	default	0	33	0
+81	random_19	0		int64	0	default	0	33	0

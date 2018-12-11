@@ -1,20 +1,52 @@
-﻿ID	Des	ShowName	LevelName	NextSceneID	BornData	MapType	CopyChallTempID	NpcAutoLevelStep	TOD	CDResetCount	CDResetMode	CDResetHour	ParallelCnt	LoadValue	PlayerMax	CloseTime	KeepTime	SceneAttributes	SizeX	SizeY	BlockSize	WorldSceneClass	NodeSceneClass	ReliveTime	ReliveFlags	DeadFlags	GameFuncMask	EnterQuestFollowState	FinishMask	Name	secondsToSyncDB	ActivityInfo	TeamRule	ForceEnter	KeepOnVehicle	TipsInType	TipsInTxt	Save	TokenType	TokenAttr	TokenTime	TokenName	TokenDes	TokenCltCond	TokenNodeCond	TokenWorldCond	XmlLoader
-int32	char	int32	char	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	char	char	int32	int32	int32	int32	int32	int32	char	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	char
-1	??????_???	80000001	select	0	0	0	0	0	0	0	1	0	0	4	10	1	600	1075150848		1000	1000	GWorldScene	GNodeScene	126	4	0	96	1	25	F_M_QFS	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-2	?????_?????	8000201	F_M_XYG	0	200	0	0	0	0	1	0	0	4	200	1000	600	7200	1073741824	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_XYG	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-3	????_?????	8000301	F_M_SDC	0	300	0	0	0	0	1	0	0	4	200	1000	600	7200	1073741824	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_SDC	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-4	????	8000401	F_M_QFS	0	400	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_QFS	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-5	????	8000501	F_M_YHS	0	500	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_YHS	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-6	??????	8000601	F_M_JYDY	0	600	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_JYDY	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-7	??????	8000701	F_M_LD	0	700	0	0	0	0	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_LD	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-8	????	8000801	F_M_TZJ	0	800	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_TZJ	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-9	??????	8000901	F_M_YHPY	0	900	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_YHPY	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-10	???????	8001001	F_M_YLSM	0	1000	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_YLSM	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-11	??????	8001101	F_M_LD	0	1100	0	0	0	0	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_LD	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-12	???????	8001201	F_M_ZTSM	0	1200	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_ZTSM	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-13	??????	8001301	F_M_QFS	0	1300	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_JNXY	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-14	15?????????	80000170	F_M_QFS	0	200010	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	2	0	0	0	0	0	F_M_QFS	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-16	15?????????	80000170	F_M_QFS	0	200010	0	0	0	1	1	0	0	4	200	1000	600	7200	32768	2000	2000	50	GWorldScene	GNodeScene	2	0	0	0	0	0	F_M_QFS	0	30	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-1000	1????????	80000170	world	0	200020	0	0	0	0	1	0	0	4	200	1000	600	7200	1073774592	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	world	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-1001	2????????	80000170	word4	0	200020	0	0	0	0	1	0	0	4	200	1000	600	7200	1073774592	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	word4	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	-1
-17	??????_???	8001101	F_M_ZTSM	0	200	0	0	0	0	1	0	0	4	200	1000	600	7200	1073741824	2000	2000	50	GWorldScene	GNodeScene	126	0	0	0	0	0	F_M_ZTSM	0	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	AssetDatas/Config/MapConfig/F_M_ZTSM.json
+ID	ShowName	LevelName	NextSceneID	BornData	MapType	CopyType	CopyScore	CopyPreID	CopyLevel	TOD	ParallelCnt	LoadValue	PlayerMax	CloseTime	KeepTime	SceneAttributes	SizeX	SizeY	BlockSize	ReliveTime	ReliveFlags	Name	secondsToSyncDB	TipsInType	TipsInTxt	TokenCountMin	TokenCountMax	TokenCondition	TokenAttribute	SoundID	MainUiMould	XmlLoader
+int32	int32	char	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	char	int32	int32	int32	int32	int32	int32	int32	int32	int32	char
+1	110000	select	0	0	0	0	0	0	0	0	4	10	1	600	7200	0	300	300	50	4	0	F_M_QFS	0	0	0	0	0	0	0	3002	0	-1
+2	110001	plot_shandong_0_0	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_0_0	0	0	0	0	0	0	0	3002	0	-1
+3	110002	plot_shandong_1_0	5	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_0	0	0	0	0	0	0	0	3002	0	Config/MapConfig/plot_shandong_1_0.bytes
+4	110003	xinshou_yewai_01	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	xinshou_yewai_01	0	0	0	0	0	0	0	3002	0	-1
+5	110004	chengshi_zhucheng	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	chengshi_zhucheng	0	0	0	0	0	0	0	3002	0	-1
+6	110005	pvp_shandong_0	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	pvp_shandong_0	0	0	0	1	8	0	0	3002	0	Config/MapConfig/pvp_shandong_0.bytes
+15	110006	F_M_SM	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3002	0	-1
+17	110007	F_M_ZTSM	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_ZTSM	0	0	0	0	0	0	0	3002	0	Config/MapConfig/F_M_ZTSM.bytes
+18	110008	Test_ani	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	Test_ani	0	0	0	0	0	0	0	3002	0	-1
+100	110009	jq_shandong_1_0	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	jq_shandong_1_0	0	0	0	0	0	0	0	3002	0	Config/MapConfig/jq_shandong_1_0.bytes
+101	110010	F_M_SM	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3002	0	-1
+102	110011	xinshou_yewai_01	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	xinshou_yewai_01	0	0	0	0	0	0	0	3002	0	-1
+103	110012	F_M_SN	0	200	0	0	0	0	0	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SN	0	0	0	0	0	0	0	3002	0	-1
+104	110013	shinei_xinshou_02	5	200	2	1000	1	0	1	0	4	200	1000	600	7200	0	600	600	50	126	0	shinei_xinshou_02	0	0	0	1	1	0	1	3002	0	-1
+1000	110014	shinei_xinshou_02	5	200	2	1000	1	0	1	0	4	200	1000	600	7200	0	500	500	50	126	0	shinei_xinshou_02	0	0	0	1	1	0	1	3001	0	-1
+1001	110015	plot_shandong_1_1	5	200	2	1001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_1	0	0	0	1	1	0	1	3001	0	Config/MapConfig/plot_shandong_1_1.bytes
+1002	110016	plot_shandong_1_2	5	200	2	1001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_2	0	0	0	1	1	0	1	3001	0	Config/MapConfig/plot_shandong_1_2.bytes
+1003	110017	plot_shandong_1_3	5	200	2	1001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_3	0	0	0	1	1	0	1	3001	0	Config/MapConfig/plot_shandong_1_3.bytes
+1004	110018	plot_shandong_1_4	5	200	2	1001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_4	0	0	0	1	1	0	1	3001	0	Config/MapConfig/plot_shandong_1_4.bytes
+1005	110019	plot_shandong_1_5	5	200	2	1001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_5	0	0	0	1	1	0	1	3001	0	Config/MapConfig/plot_shandong_1_5.bytes
+1006	110020	plot_shandong_1_6	5	200	2	1001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	plot_shandong_1_6	0	0	0	1	1	0	1	3001	0	Config/MapConfig/plot_shandong_1_6.bytes
+1007	110021	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+1008	110022	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+1009	110023	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+1010	110024	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+1011	110025	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+1012	110026	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+1013	110027	F_M_SM	0	200	0	0	0	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	F_M_SM	0	0	0	0	0	0	0	3001	0	-1
+2000	110028	Test_ani	5	200	2	2000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	Test_ani	0	0	0	1	8	0	1	3001	0	-1
+2001	110029	challenge_team_shandong_0	5	200	2	2001	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	challenge_team_shandong_0	0	0	0	1	4	0	1	3001	0	Config/MapConfig/challenge_team_shandong_0.bytes
+4000	110030	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4001	110031	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4002	110032	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4003	110033	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4004	110034	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4005	110035	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4006	110036	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4007	110037	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4008	110038	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4009	110039	raw_shandong_0	5	200	2	4000	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4500	110040	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4501	110041	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4502	110042	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4503	110043	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4504	110044	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4505	110045	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4506	110046	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4507	110047	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4508	110048	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes
+4509	110049	raw_shandong_0	5	200	2	4500	1	0	1	0	4	200	1000	600	7200	0	300	300	50	126	0	raw_shandong_0	0	0	0	1	8	0	1	3001	0	Config/MapConfig/raw_shandong_0.bytes

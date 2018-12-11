@@ -1,0 +1,5 @@
+NPCIndexID	DefDialogGroupID	BackGroups
+int32	int32	char
+1	3001	
+2	3001	
+3	3001	

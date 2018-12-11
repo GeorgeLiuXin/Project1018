@@ -1,3 +1,0 @@
-﻿GroupID	SkillID0	SkillID1	SkillID2	SkillID3	SkillID4
-int32	int32	int32	int32	int32	int32
-0	5002	5003	5004	-1	-1

@@ -1,0 +1,5 @@
+BubbleID	Event	Param1	Param2	PlayType	ContentID0	DelayTime0	WaitTime0	Probability0	ContentID1	DelayTime1	WaitTime1	Probability1	ContentID2	DelayTime2	WaitTime2	Probability2	ContentID3	DelayTime3	WaitTime3	Probability3	ContentID4	DelayTime4	WaitTime4	Probability4
+int32	int32	int32	int32	int32	int32	f32	f32	int32	int32	f32	f32	int32	int32	f32	f32	int32	int32	f32	f32	int32	int32	f32	f32	int32
+101	-1			1	10000001	5	5	100	10000002	5	5	100	10000003	5	5	100	10000004	5	5	100	10000005	5	5	100
+102	1	101		2	10000002	4	4	20	10000003	4	4	20	10000004	4	4	20	10000005	4	4	20	10000006	4	4	20
+103	-1			1	10000003	3	3	-1	10000003	3	3	-1	10000003	3	3	-1	10000003	3	3	-1	10000003	3	3	-1

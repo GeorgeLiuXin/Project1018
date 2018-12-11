@@ -1,0 +1,5 @@
+GuideID	GroupID	NextGuideID	GuideType	Param1	Param2	Char1	Char2	GuideTitleID	GuideDescID	Force
+int32	int32	int32	char	int32	int32	char	char	int32	int32	int32
+1001	1	1002	GuideBehaviorMask	1		UI_TAG_EQUIP_MANAGER		-1	-1	1
+1002	1	1003	GuideBehaviorMask	2		UI_TAG_EQUIP_MANAGER		-1	-1	1
+1003	1	-1	GuideBehaviorMask					-1	-1	1

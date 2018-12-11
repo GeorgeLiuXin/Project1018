@@ -1,9 +1,0 @@
-﻿typeid	typename	defaultlevel	playertype	pktype	IgnoreAmityDamage	ShowNameID
-int16	char	int16	int32	int32	int32	int32
-1	玩家标准	2	1	1	0	70016109
-2	玩家PvP阵营1	1	1	1	0	70016109
-3	玩家PvP阵营2	2	0	0	0	70016109
-4	玩家PvP阵营3	2	0	0	0	70016109
-5	玩家PvP阵营4	1	2	2	0	70016109
-11	怪物	1	0	0	0	70016109
-12	中立	3	0	0	0	70016109

@@ -1,0 +1,5 @@
+GroupID	StrBubbles
+int32	char
+1	1002,1003
+2	
+3	
