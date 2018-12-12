@@ -101,7 +101,7 @@ namespace XWorld
                 return;
             }
 
-            m_TableDefine = 
+            m_TableDefine = new Dictionary<string, ConfigData>();
             for (int i = 2; i < values.Length; i++)
             {
                 string[] subValues = values[i].TrimStart('\n').Split('\t');
@@ -112,13 +112,12 @@ namespace XWorld
                 {
                     data.AddValue(types[j], lables[j], subValues[j]);
                 }
-                m_TableDefine[i - 2] = data;
+                m_TableDefine.Add(data.GetString("tableName"), data);
                 relativePathToNameDict.Add(data.GetString("tablePath"), data.GetString("tableName"));
             }
         }
 
-
-        public void LoadAllTable()
+        private void LoadAllTable()
         {
             if (m_TableDefine == null || relativePathToNameDict == null || relativePathToNameDict.Count == 0)
             {
@@ -127,16 +126,14 @@ namespace XWorld
             }
             foreach (string path in relativePathToNameDict.Keys)
             {
-                string tableName = data.GetString("tableName");
-                string tablePath = data.GetString("tablePath");
-                string tablePK2 = data.GetString("extKey");
-
-                string content = LoadTxtContentFromPath(tablePath);
-                ConfigDataTable table = LoadTable(tableName, content, tablePK2);
-                m_TableMap.Add(tableName, table);
-                
                 ResourcesProxy.LoadAsset(path, OnLoadTableComplete);
             }
+        }
+        public void LoadTable(string name)
+        {
+            ConfigData data = m_TableDefine[name];
+            string path = data.GetString("tablePath");
+            ResourcesProxy.LoadAsset(path, OnLoadTableComplete);
         }
 
         private void OnLoadTableComplete(LoadResult result)
@@ -144,6 +141,7 @@ namespace XWorld
             if (result.isSuccess)
             {
                 bool isSuccess = true;
+                string content = "";
                 string relativePath = result.assetNames[0];
                 try
                 {
@@ -154,7 +152,7 @@ namespace XWorld
                         return;
                     }
 
-                    string content = asset.text;
+                    content = asset.text;
                     if (string.IsNullOrEmpty(content))
                     {
                         GameLogger.Error(LOG_CHANNEL.ASSET, relativePath + " ERROR! load table content is NULL or empty,暂时跳过");
@@ -172,7 +170,13 @@ namespace XWorld
                 {
                     if (isSuccess)
                     {
-                        ConfigDataTableManager.Instance.LoadTable();
+                        string name = relativePathToNameDict[relativePath];
+                        ConfigData data = m_TableDefine[name];
+                        string tableName = data.GetString("tableName");
+                        string tablePath = data.GetString("tablePath");
+                        string tablePK2 = data.GetString("extKey");
+                        
+                        ConfigDataTableManager.Instance.LoadTable(tableName, content, tablePK2);
                     }
                     else
                     {

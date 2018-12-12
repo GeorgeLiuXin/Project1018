@@ -17,6 +17,13 @@ namespace XWorld
 			float result = (a - b) * c;
 			Debug.Log("GMCommand_Test: the result is " + result);
 		}
-	}
+
+        private void GMCommand_ReloadTable(params object[] values)
+        {
+            string name = Convert.ToString(values[0]);
+            GameDataProxy.ReloadTable(name);
+            Debug.Log("GMCommand_ReloadTable is called!");
+        }
+    }
 
 }

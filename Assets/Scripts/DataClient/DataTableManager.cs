@@ -37,7 +37,7 @@ namespace XWorld.GameData
         {
 
         }
-        public ConfigDataTable LoadTable(string tableName, string sContent, string pk2 = default(string))
+        public void LoadTable(string tableName, string sContent, string pk2 = default(string))
         {
             int pk2Index = -1;
             string[] values = sContent.Split('\r');
@@ -56,7 +56,7 @@ namespace XWorld.GameData
                 if (pk2Index == -1)
                 {
                     GameLogger.Error(LOG_CHANNEL.ERROR, "当前表中原注册的第二主键丢失");
-                    return null;
+                    return;
                 }
             }
 
@@ -78,14 +78,34 @@ namespace XWorld.GameData
                     data.AddValue(types[j], lables[j], subValues[j]);
                 }
 
-                table.AddData(Convert.ToInt32(subValues[0]), pk2Index, data);
+                if (m_LoadOberserver.ContainsKey(tableName))
+                {
+                    m_LoadOberserver[tableName](data);
+                    data = null;
+                }
+                else
+                {
+                    table.AddData(Convert.ToInt32(subValues[0]), pk2Index, data);
+                }
             }
-            return table;
+
+            if (m_LoadAllOberserver.ContainsKey(tableName))
+            {
+                ConfigData[] datas = table.GetAllData();
+                m_LoadAllOberserver[tableName](ref datas);
+                table.Dispose();
+                table = null;
+            }
+            else
+            {
+                m_TableMap.Add(tableName, table);
+            }
+            GameLogger.DebugLog(LOG_CHANNEL.ASSET, tableName + "表格已加载完毕!");
         }
         
         public void ReloadTable(string tableName)
         {
-
+            m_Loader.LoadTable(tableName);
         }
 
         private ConfigDataTable GetTable(string tableName)
@@ -146,6 +166,33 @@ namespace XWorld.GameData
 			m_TableMap = null;
 		}
 
-	}
+        #region 数据托管给对应自编写管理类
+
+        public delegate void LoadOberserver(ConfigData data);
+        public delegate void LoadAllOberserver(ref ConfigData[] data);
+        private Dictionary<string, LoadOberserver> m_LoadOberserver = new Dictionary<string, LoadOberserver>();
+        private Dictionary<string, LoadAllOberserver> m_LoadAllOberserver = new Dictionary<string, LoadAllOberserver>();
+
+        public void AddLoadOberserver(string tableName, LoadOberserver ob)
+        {
+            if (ob != null)
+            {
+                if (m_LoadOberserver.ContainsKey(tableName))
+                    m_LoadOberserver[tableName] += ob;
+                else
+                    m_LoadOberserver[tableName] = ob;
+            }
+        }
+        public void AddLoadAllOberserver(string tableName, LoadAllOberserver ob)
+        {
+            if (ob != null)
+            {
+                m_LoadAllOberserver[tableName] = ob;
+            }
+        }
+
+        #endregion
+
+    }
 
 }
