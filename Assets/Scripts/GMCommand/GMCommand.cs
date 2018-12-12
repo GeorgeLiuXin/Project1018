@@ -23,6 +23,7 @@ namespace XWorld
 				return;
 
 			AddGMCommand("test", GMCommand_Test);
+            AddGMCommand("ReloadTable", GMCommand_ReloadTable);
         }
 
 		private void AddGMCommand(string gm, GMCommandFunction func)

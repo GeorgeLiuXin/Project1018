@@ -1,0 +1,8 @@
+CopyType	CopyCount	CopyCountAll	CopyCoinID	CopyRecorder	SaveProgress	SyncRecord	combatmode
+int32	int32	int32	int32	int32	int32	int32	int32
+1000	10	100	200	1	1	0	0
+1001	3	100	200	1	1	0	0
+2000	100	100	200	2	1	0	2
+2001	100	100	200	1	1	0	1
+4000	10	200	200	1	1	0	0
+4500	10	100	200	1	1	0	0

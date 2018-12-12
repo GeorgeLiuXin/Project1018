@@ -1,0 +1,13 @@
+ID	Des	AttachPath
+int32	char	char
+1	左手	weapon_bone_l
+2	右手	weapon_bone_r
+3	右肩高	Point001
+4	左肩高	Point002
+5	腰后	Point003
+6	左肩	Point004
+7	右肩	Point005
+8	左腰	SM_Wep_Pistol_Slide_l
+9	右腰	SM_Wep_Pistol_Slide_R
+10	背后	Point008
+11	脚底	point_foot

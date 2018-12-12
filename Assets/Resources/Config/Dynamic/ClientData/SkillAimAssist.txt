@@ -1,0 +1,3 @@
+﻿Idx	Des	AimAssistType	AimAssistRule	AimAssistEffect
+int32	char	int32	int32	int32
+5203		1	1	

@@ -1,0 +1,7 @@
+ID	avatardid	title	level	vocation	sex	camp	modid	sceneid	clothes	faceid	hairid	haircolor	ev	evmax
+int32	int64	char	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	f32	f32
+0	0	Haha	1	0	1	1	101	131072	1001	1101	1201	0	1000	1000
+1	0	make	1	0	2	1	201	131072	2001	2101	2201	0	1000	1000
+2	0	3B	1	1	1	1	101	131072	1001	1101	1201	0	1000	1000
+3	0	LILI	1	1	1	1	101	131072	1001	1101	1201	0	1000	1000
+100	0	BONE	1	1	1	1	101	131072	1001	1101	1201	0	1000	1000

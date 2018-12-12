@@ -1,0 +1,7 @@
+Des	PoolID	RewardID	Weight	Probability
+char	int32	int32	int32	int32
+测试1	1	10001	10	0
+测试2	1	10002	10	0
+测试3	1	10003	10	0
+测试4	1	10004	10	0
+测试5	1	10005	10	0

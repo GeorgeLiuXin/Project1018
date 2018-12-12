@@ -1,0 +1,6 @@
+EventID	FinishNpc	FinishDlg	EventType	Param1	Param2	Param3	EventCount	EventFollowID	EventTitleID	SubmitCheck	EventDesID	GiftID
+int32	int32	int32	char	int32	int32	int32	int32	int32	int32	int32	int32	int32
+10001	-1	-1	Dialog	401	1001		1	3010001	2010001	-1	10000001	1
+10002	-1	-1	Dialog	402	1002		1	3010002	2010002	-1	10000002	1
+10003	-1	-1	Dialog	403	1003		1	3010003	2010003	-1	10000003	1
+10004	-1	-1	CopyWin	1000	0	0	1	3010004	2010004	-1	10000004	1

@@ -1,0 +1,5 @@
+Donate	DeductGold	Resources
+int32	int32	int32
+1	100	10000
+2	200	20000
+3	500	30000

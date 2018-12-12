@@ -1,3 +1,0 @@
-ID	Content
-int32	char
-40000	PRJ520

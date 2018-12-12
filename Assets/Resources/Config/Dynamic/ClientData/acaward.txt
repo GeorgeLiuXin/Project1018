@@ -1,0 +1,4 @@
+AwardId	ExpNum	GoldNum	DiamondNum	CoinType1	CoinNum1	CoinType2	CoinNum2	Item1	ItemCount1	Item2	ItemCount2	Item3	ItemCount3	Item4	ItemCount4
+int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32	int32
+1	10	30	2	45	1			2414	2						
+2	100	40	5	46	1			30012	12	10005	1				

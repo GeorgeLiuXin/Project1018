@@ -1,0 +1,2 @@
+id	type	opencondition	rewardgroup
+int32	int32	int32	int32

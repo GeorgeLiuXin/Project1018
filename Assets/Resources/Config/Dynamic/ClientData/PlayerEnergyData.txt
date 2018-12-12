@@ -1,0 +1,4 @@
+EnergyID	EnergyNameID	EnergyName	EnergyBarNum	EnergyMaxVal	EnergyRecoveryType	EnergyRecoverySpeed	EnergyDefaultStatus	EnergyValue1	EnergySwitchOn	EnergyValue2
+int32	int32	char	int32	int32	int32	int32	int32	int32	int32	int32
+104	100104	飞刀	1	3	6	1	4	1	3	0
+5	100005	5号能量	1	3	1	1	4	1	3	0

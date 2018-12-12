@@ -1,0 +1,3 @@
+SceneID	DataIndex	GrowID	Radius	PosX	PosY	PosZ	DirX	DirY	DirZ
+int32	int32	int32	f32	f32	f32	f32	f32	f32	f32
+2	0	790000	2	94.78	29.068	134.7008	0	0	0

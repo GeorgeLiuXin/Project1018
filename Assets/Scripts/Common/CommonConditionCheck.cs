@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using XWorld.DataConfig;
 
 namespace XWorld
 {
@@ -133,49 +132,49 @@ namespace XWorld
 
         void LoadConditionFile()
         {
-            TableClientCheckCondition t_tableConfig = ClientConfigManager.GetTableByName("TableClientCheckCondition") as TableClientCheckCondition;
-            if (t_tableConfig == null)
-                return;
+            //TableClientCheckCondition t_tableConfig = ClientConfigManager.GetTableByName("TableClientCheckCondition") as TableClientCheckCondition;
+            //if (t_tableConfig == null)
+            //    return;
 
-            if (m_vConditionGroup == null)
-                m_vConditionGroup = new Dictionary<int, GCommonConditionGroup>();
+            //if (m_vConditionGroup == null)
+            //    m_vConditionGroup = new Dictionary<int, GCommonConditionGroup>();
 
-            string[] vConditionName = FillConditionVarName("ConditionName");
-            string[] vParamString = FillConditionVarName("ParamString");
-            string[] vCmpType = FillConditionVarName("CmpType");
-            string[] vErrorCode = FillConditionVarName("ErrorCode");
-            string[] vFailTips = FillConditionVarName("FailTips");
+            //string[] vConditionName = FillConditionVarName("ConditionName");
+            //string[] vParamString = FillConditionVarName("ParamString");
+            //string[] vCmpType = FillConditionVarName("CmpType");
+            //string[] vErrorCode = FillConditionVarName("ErrorCode");
+            //string[] vFailTips = FillConditionVarName("FailTips");
 
-            foreach (ClientCheckCondition def in t_tableConfig.m_configList)
-            {
-                int nGroupID = def.GroupID;
-                int nLogicType = 0;// def.LogicType; 
+            //foreach (ClientCheckCondition def in t_tableConfig.m_configList)
+            //{
+            //    int nGroupID = def.GroupID;
+            //    int nLogicType = 0;// def.LogicType; 
 
-                for(int i = 0; i < CommonConditionSize; ++i)
-                {
-                    string sConditionName = def.GetType().GetField(vConditionName[i]).GetValue(def).ToString();
-                    if (string.IsNullOrEmpty(sConditionName))
-                        break;
+            //    for(int i = 0; i < CommonConditionSize; ++i)
+            //    {
+            //        string sConditionName = def.GetType().GetField(vConditionName[i]).GetValue(def).ToString();
+            //        if (string.IsNullOrEmpty(sConditionName))
+            //            break;
 
-                    Assembly ass = Assembly.GetExecutingAssembly();
-                    GCommonCondition condition = (GCommonCondition)ass.CreateInstance("XWorld." + sConditionName);
-                    if (condition == null)
-                        continue;
+            //        Assembly ass = Assembly.GetExecutingAssembly();
+            //        GCommonCondition condition = (GCommonCondition)ass.CreateInstance("XWorld." + sConditionName);
+            //        if (condition == null)
+            //            continue;
 
-                    condition.manager = this;
-                    condition.m_nLogicType = (GCommonConditionType)nLogicType; 
-                    condition.m_nCmpType = (GCommonConditionCmp)Convert.ToInt32(def.GetType().GetField(vCmpType[i]).GetValue(def).ToString());
-                    condition.m_nErrorCode = Convert.ToInt32(def.GetType().GetField(vErrorCode[i]).GetValue(def).ToString());
-                    condition.m_nFailTips = Convert.ToInt32(def.GetType().GetField(vFailTips[i]).GetValue(def).ToString());
-                    condition.Init(def.GetType().GetField(vParamString[i]).GetValue(def).ToString());
+            //        condition.manager = this;
+            //        condition.m_nLogicType = (GCommonConditionType)nLogicType; 
+            //        condition.m_nCmpType = (GCommonConditionCmp)Convert.ToInt32(def.GetType().GetField(vCmpType[i]).GetValue(def).ToString());
+            //        condition.m_nErrorCode = Convert.ToInt32(def.GetType().GetField(vErrorCode[i]).GetValue(def).ToString());
+            //        condition.m_nFailTips = Convert.ToInt32(def.GetType().GetField(vFailTips[i]).GetValue(def).ToString());
+            //        condition.Init(def.GetType().GetField(vParamString[i]).GetValue(def).ToString());
            
-                    if (m_vConditionGroup[nGroupID] == null)
-                        m_vConditionGroup[nGroupID] = new GCommonConditionGroup();
+            //        if (m_vConditionGroup[nGroupID] == null)
+            //            m_vConditionGroup[nGroupID] = new GCommonConditionGroup();
 
-                    m_vConditionGroup[nGroupID].Add(condition);
-                }
-            }
-            t_tableConfig.m_configList.Clear();
+            //        m_vConditionGroup[nGroupID].Add(condition);
+            //    }
+            //}
+            //t_tableConfig.m_configList.Clear();
         }
 
         string[] FillConditionVarName(string strName)

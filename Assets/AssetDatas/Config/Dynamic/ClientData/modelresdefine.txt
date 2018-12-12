@@ -1,7 +1,0 @@
-ModelID	ModelName	AnimationSetName	BillboardHight
-int32	char	char	f32
-20000	Prefabs/cike	Misc/misc_wupingbao_001_anm	0.4
-20001	Prefabs/Hero/0_main/hero_main.prefab	SkillEffect/SkillEffcet01.xml	0.4
-20002	Prefabs/Monster/Boss/2_skill_3_npc.prefab	Misc/misc_wupingbao_001_anm	0.4
-20003	Prefabs/Monster/Boss/2_skill_3_npc.prefab	Misc/misc_wupingbao_001_anm	0.4
-30000	Prefabs/Hero/0_main/hero_main_new.prefab	SkillEffect/SkillEffcet01.xml	0.4
