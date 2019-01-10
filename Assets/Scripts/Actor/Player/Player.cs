@@ -4,20 +4,24 @@ using UnityEngine;
 
 namespace XWorld
 {
-    public class Player : MonoBehaviour
+    public class Player : ActorObj
     {
-
-        // Use this for initialization
-        void Start()
+        
+        public override void AfterCreateEngineObj()
         {
-
+            base.AfterCreateEngineObj();
         }
 
-        // Update is called once per frame
-        void Update()
+        public override bool IsPlayer()
         {
-
+            return true;
         }
+   
+        public override void BeforeDestroy()
+        {
+            base.BeforeDestroy();
+        }
+        
     }
 
 }
