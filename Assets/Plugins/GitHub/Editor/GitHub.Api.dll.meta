@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: c743ae24ee231884887054d20ccdd0ae
-timeCreated: 1539798094
-licenseType: Pro
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -18,7 +16,7 @@ PluginImporter:
   - first:
       Editor: Editor
     second:
-      enabled: 1
+      enabled: 0
       settings:
         DefaultValueInitialized: true
   - first:
