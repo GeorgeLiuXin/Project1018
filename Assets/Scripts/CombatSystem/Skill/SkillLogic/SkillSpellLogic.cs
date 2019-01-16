@@ -8,7 +8,7 @@ namespace XWorld
     /// <summary>
     /// 技能基础逻辑
     /// </summary>
-    public class SkillSpell : MonoBehaviour
+    public class SkillSpellLogic : MonoBehaviour
     {
 
         // Use this for initialization

@@ -7,7 +7,12 @@ namespace XWorld
 
     public class SkillComponent : ComponentBase
     {
-        public Dictionary<int, ConfigData> m_SkillDataDict;
+        public Dictionary<int, List<SkillProjectile>> m_ProjectileDict;
+        public List<TriggerNotify> m_TriggerNotifyList;
+        
+        public Dictionary<int, SkillSpellLogic> m_SkillLogicDict;
+        public List<SkillSpellLogic> m_PassiveList;
+        public SkillSpellLogic[] m_TriggerSkillList;
 
 
         protected override void InitComponent()
@@ -19,15 +24,8 @@ namespace XWorld
         {
 
         }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
+        
+        public void Update()
         {
 
         }
