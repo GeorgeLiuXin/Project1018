@@ -8,7 +8,7 @@ namespace XWorld
     {
         //数据读取
         public static readonly string CONFIG_DEFINE_NAME = "client_config_define";
-        public static readonly string CONFIG_DEFINE_PATH = "Config/Static/client_config_define";
+        public static readonly string CONFIG_DEFINE_PATH = "Config/client_config_define";
 
         //tag
         public static readonly string MAIN_CAMERA_TAG = "MainCamera";
