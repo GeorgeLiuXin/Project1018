@@ -1,7 +1,0 @@
-Des	PoolID	RewardType	RewardID	RewardMin	RewardMax	Weight	Probability
-char	int32	int32	int32	int32	int32	int32	int32
-测试1	10001	1	10001	1	2	0	1000
-测试2	10002	1	10002	1	2	0	1000
-测试3	10003	1	10003	1	2	0	1000
-测试4	10004	1	10004	1	2	0	1000
-测试5	10005	1	10005	1	2	0	1000

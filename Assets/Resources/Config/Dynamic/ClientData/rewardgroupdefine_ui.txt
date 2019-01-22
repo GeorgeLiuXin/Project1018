@@ -1,2 +1,0 @@
-groupid	rewardtype	rewardid
-int32	int32	int32

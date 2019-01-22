@@ -1,8 +1,0 @@
-PackageID	FreeLine	AddGrid	AddTimes	AddCostType	AddCostNum
-int32	int32	int32	int32	int32	int32
-0	100	8	5	241	300
-1	100	8	5	241	300
-2	100	8	5	241	300
-3	100	8	5	241	300
-4	100	8	5	241	300
-5	100				

@@ -1,9 +1,0 @@
-NPCFlagID	MapIcon	NameShow	MapShow	NpcBelongType	InterType	EffectID	Trigger	KeyIcon	OutLine	BossLv	canselect
-int32	char	int32	int32	int32	int32	char	int32	char	int32	int32	int32
-1	IconPuTongNpc	15	7	0	0	0	0	dialog	1	0	0
-2	IconPuTongNpc	15	7	0	0	0	0	dialog	1	1	0
-3	IconPuTongNpc	15	7	0	0	0	0	dialog	1	2	0
-61	IconPuTongNpc	15	7	0	0	0	0	dialog	1	1	0
-99	IconPuTongNpc	15	7	0	0	0	0	dialog	0	0	1
-101	IconPuTongNpc	15	7	0	0	0	0	dialog	1	1	0
-102	IconPuTongNpc	15	7	0	0	0	1	dialog	1	1	0
