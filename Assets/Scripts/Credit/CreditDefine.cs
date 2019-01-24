@@ -4,35 +4,31 @@ using UnityEngine;
 
 namespace XWorld
 {
+	public enum TargetType
+	{
+		ToEnemy = CreditLevelId.Credit_Hostile,
+		ToNeutral = CreditLevelId.Credit_Neutrality,
+		ToFriend = CreditLevelId.Credit_Friendly | CreditLevelId.Credit_Worship,
+		ToEnemy_Neutral = ToEnemy | ToNeutral,
+		ToFriend_Neutral = ToFriend | ToNeutral,
+		ToAll = ToEnemy | ToNeutral | ToFriend,
+	};
+	public enum CreditLevelId
+	{
+		Credit_Safe = 0,			// 安全
+		Credit_Hostile = 1,			// 敌方
+		Credit_Neutrality = 2,		// 中立
+		Credit_Friendly = 3,		// 友方
+		Credit_Worship = 4,			// 崇拜
+	};
 
-    public enum TargetType
-    {
-        ToEnemy = 1 << 0,
-        ToNeutral = 1 << 1,
-        ToFriend = 1 << 2,
-        ToEnemy_Neutral = ToEnemy | ToNeutral,
-        ToFriend_Neutral = ToFriend | ToNeutral,
-        ToAll = ToEnemy | ToNeutral | ToFriend,
-    };
-    public enum CreditLevelId
-    {
-        Credit_Safe = 0, // 安全
-        Credit_Hostile = 1, // 敌方
-        Credit_Neutrality = 2, // 冷漠
-        Credit_Friendly = 3, // 中立
-        Credit_Friendly1 = 4, // 友方
-        Credit_Friendly2 = 5, // 敬重
-        Credit_Friendly3 = 6, // 尊敬
-        Credit_Friendly4 = 7, // 崇敬
-        Credit_Worship = 8, // 崇拜
-    };
-
-    public enum CampType
-    {
-        Default,
-        Player,
-        Enemy,
-        Neutrality,
-    }
+	public enum CampType
+	{
+		Default,                    //默认
+		Player,                     //玩家标准
+		Enemy = 11,                 //怪物
+		Neutrality = 12,            //中立
+		AbsolutelyFriendly = 20,    //绝对友好
+	}
 
 }

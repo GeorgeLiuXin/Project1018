@@ -8,32 +8,32 @@ namespace XWorld
     public class CreditType
     {
         private Dictionary<int, CreditLevelId> CreditRelationMap = new Dictionary<int, CreditLevelId>();
-        public CreditLevelId GetCredit(int creditType)
+        public CreditLevelId GetCredit(int campType)
         {
-            if (!CreditRelationMap.ContainsKey(creditType))
+            if (!CreditRelationMap.ContainsKey(campType))
             {
                 return m_Default;
             }
             CreditLevelId res;
-            if (!CreditRelationMap.TryGetValue(creditType, out res))
+            if (!CreditRelationMap.TryGetValue(campType, out res))
             {
                 return m_Default;
             }
             return res;
         }
-        public void Add(int creditType, CreditLevelId lvID)
+        public void Add(int campType, CreditLevelId lvID)
         {
-            CreditRelationMap.Add(creditType, lvID);
+            CreditRelationMap.Add(campType, lvID);
         }
 
         public CreditLevelId m_Default;
     }
 
-    public class CreditManager //: GameDataManager
-    {
-        public readonly static CreditManager Instance = new CreditManager();
+	public class CreditManager : Singleton<CreditManager>
+	{
+		private Dictionary<int, CreditType> CreditMap = new Dictionary<int, CreditType>();
 
-        public CreditManager()
+		public CreditManager()
         {
             Init();
         }
@@ -66,20 +66,10 @@ namespace XWorld
                 return true;
             return false;
         }
-        public CreditType GetCreditType(int typeID)
-        {
-            CreditType res;
-            if (!CreditMap.TryGetValue(typeID, out res))
-            {
-                res = new CreditType();
-                CreditMap.Add(typeID, res);
-            }
-            return res;
-        }
 
         public bool IsEnemy(CreditLevelId nLevelId)
         {
-            return (bool)(nLevelId == CreditLevelId.Credit_Hostile);
+            return nLevelId == CreditLevelId.Credit_Hostile;
         }
 
         public bool IsFriend(CreditLevelId nLevelId)
@@ -89,38 +79,45 @@ namespace XWorld
 
         public bool IsNeutral(CreditLevelId nLevelId)
         {
-            return (bool)(nLevelId == CreditLevelId.Credit_Neutrality);
+            return nLevelId == CreditLevelId.Credit_Neutrality;
         }
 
-        private void Init()
-        {
+		public CreditType GetCreditType(int typeID)
+		{
+			CreditType res;
+			if (!CreditMap.TryGetValue(typeID, out res))
+			{
+				res = new CreditType();
+				CreditMap.Add(typeID, res);
+			}
+			return res;
+		}
 
-            ConfigData configData = ClientConfigManager.GetTableByName("CreditRelation") as TableCreditRelation;
-            if (t_ConfigList == null)
-                return;
-            foreach (DataConfig.CreditRelation item in t_ConfigList.m_configList)
-            {
-                if (item == null)
-                    continue;
+		private void Init()
+		{
+			ConfigData[] configDataList1 = GameDataProxy.GetAllData("CreditRelation");
+			if (configDataList1 == null)
+				return;
+			foreach (ConfigData item in configDataList1)
+			{
+				if (item == null)
+					continue;
 
-                CreditType cr = GetCreditType(item.typeid);
-                cr.Add(item.relationid, (CreditLevelId)item.relationlevel);
-            }
+				CreditType cr = GetCreditType(item.GetInt("typeid"));
+				cr.Add(item.GetInt("relationid"), (CreditLevelId) item.GetInt("relationlevel"));
+			}
 
-            TableCreditType t_List = ClientConfigManager.GetTableByName("TableCreditType") as TableCreditType;
-            if (t_List == null)
-                return;
-            foreach (DataConfig.CreditType item in t_List.m_configList)
-            {
-                if (item == null)
-                    continue;
+			ConfigData[] configDataList2 = GameDataProxy.GetAllData("CreditType");
+			if (configDataList2 == null)
+				return;
+			foreach (ConfigData item in configDataList2)
+			{
+				if (item == null)
+					continue;
 
-                CreditType cr = GetCreditType(item.typeid);
-                cr.m_Default = (CreditLevelId)item.defaultlevel;
-            }
-
-        }
-
-        private Dictionary<int, CreditType> CreditMap = new Dictionary<int, CreditType>();
-    }
+				CreditType cr = GetCreditType(item.GetInt("typeid"));
+				cr.m_Default = (CreditLevelId) item.GetInt("defaultlevel");
+			}
+		}
+	}
 }
