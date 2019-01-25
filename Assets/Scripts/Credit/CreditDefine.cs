@@ -25,7 +25,7 @@ namespace XWorld
 	public enum CampType
 	{
 		Default,                    //默认
-		Player,                     //玩家标准
+		Player = 1,                 //玩家标准
 		Enemy = 11,                 //怪物
 		Neutrality = 12,            //中立
 		AbsolutelyFriendly = 20,    //绝对友好

@@ -25,9 +25,12 @@ namespace XWorld
         public bool IsFight()
         {
             return m_bFight;
-        }
-
-        public void LeaveCombat()
+		}
+		public void EnterCombat()
+		{
+			m_bFight = true;
+		}
+		public void LeaveCombat()
         {
             m_bFight = false;
         }

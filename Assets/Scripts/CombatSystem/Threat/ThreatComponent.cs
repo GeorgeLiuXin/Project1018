@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace XWorld
 {
-    public struct Threat
+    public class Threat
     {
         public int nAvatarID;
         public int nThreat;
@@ -52,14 +52,14 @@ namespace XWorld
             foreach (KeyValuePair<int, Threat> item in m_ThreatDict)
             {
                 Threat pThreat = item.Value;
-                if (pThreat.fValidTime > 0)
-                {
-                    pThreat.fValidTime -= fTime;
-                    if (pThreat.fValidTime <= 0)
-                    {
-                        if (pThreat.nAvatarID == m_nTargetID)
-                        {
-                            ResetTarget();
+				if (pThreat != null && pThreat.fValidTime > 0)
+				{
+					pThreat.fValidTime -= fTime;
+					if (pThreat.fValidTime <= 0)
+					{
+						if (pThreat.nAvatarID == m_nTargetID)
+						{
+							ResetTarget();
                         }
                         m_RemoveList.Add(item.Key);
                         continue;
@@ -85,10 +85,10 @@ namespace XWorld
         {
             foreach (KeyValuePair<int, Threat> item in m_ThreatDict)
             {
-                Threat threat = item.Value;
-                if (threat.nThreat >= m_nTargetThreat * 1.1f)
-                {
-                    SetTarget(threat.nAvatarID, threat.nThreat);
+                Threat pThreat = item.Value;
+				if (CompareThreat(pThreat))
+				{
+					SetTarget(pThreat.nAvatarID, pThreat.nThreat);
                 }
             }
             //当前没有目标, 清空仇恨, 脱战
@@ -97,8 +97,17 @@ namespace XWorld
                 ResetTarget();
             }
         }
+		private bool CompareThreat(Threat pThreat)
+		{
+			if (m_nTargetID == 0)
+				return true;
+			if (pThreat != null && pThreat.nThreat >= m_nTargetThreat * 1.1f)
+				return true;
+			return false;
+		}
 
-        public void SetTarget(int nAvatarID, int nThreat)
+
+		public void SetTarget(int nAvatarID, int nThreat)
         {
             m_nTargetID = nAvatarID;
             m_nTargetThreat = nThreat;
@@ -131,47 +140,81 @@ namespace XWorld
         {
             m_nTargetID = 0;
             m_nTargetThreat = 0;
-        }
+		}
 
-        public void AddThreat(ActorObj pAvatar)
-        {
-            if (Owner == null || pAvatar == null)
-                return;
+		public void OnHurt(ActorObj pAvatar, int nValue)
+		{
+			if (Owner)
+			{
+				AddThreat(pAvatar, nValue);
+			}
+		}
+
+		public void OnHeal(ActorObj pAvatar, int nValue)
+		{
+			if (!Owner)
+				return;
+
+			foreach (KeyValuePair<int, Threat> item in m_ThreatDict)
+			{
+				Threat pThreat = item.Value;
+				if (pThreat == null)
+					continue;
+				//TODO		当人物管理完成后添加，当治疗时对当前攻击治疗目标的所有人产生仇恨
+				//ActorObj pTAvatar = Owner->GetSceneAvatar(pThreat.nAvatarID);
+				//if (pTAvatar)
+				//{
+				//	pTAvatar->AddThreat(pAvatar, nValue, true);
+				//}
+			}
+		}
+
+		public void OnTaunt(ActorObj pAvatar, int nValue)
+		{
+			if (!Owner)
+				return;
+
+			//受到嘲讽时，将第一名的加上去
+			Threat pThreat = GetThreat(pAvatar.GetAvatarID(), true);
+			pThreat.nThreat += nValue;
+			if (!CompareThreat(pThreat))
+			{
+				int nMaxThreat = Mathf.Max(m_nTargetThreat, pThreat.nThreat);
+				//嘲讽是否存在可能越界的情况
+				pThreat.nThreat += nMaxThreat;
+			}
+
+			if (pThreat != null)
+			{
+				SetTarget(pAvatar.GetAvatarID(), pThreat.nThreat);
+			}
+		}
+
+		public void AddThreat(ActorObj pAvatar, int nValue)
+		{
+			if (Owner == null || pAvatar == null)
+				return;
             if (Owner == pAvatar)
                 return;
-            
-            GThreat* pThreat = GetThreat(pAvatar->GetAvatarID(), true);
-            if (!pThreat)
-                return;
 
-            //当前有仇恨值(>=0)时,可以成为目标,仇恨值只能增加
-            if (nValue >= 0 || pThreat->m_nThreat <= 0)
+			Threat pThreat = GetThreat(pAvatar.GetAvatarID(), true);
+			if (pThreat == null)
+				return;
+			
+            if (nValue >= 0 || pThreat.nThreat <= 0)
             {
-                pThreat->m_nThreat += nValue;
+                pThreat.nThreat += nValue;
             }
-            pThreat->m_nThreat = MAX(-1, pThreat->m_nThreat);
-            if (m_nTargetID == 0 || (!m_bTauntState && pThreat->m_nThreat >= m_nTargetThreat * 1.1f))
+            pThreat.nThreat = Mathf.Max(-1, pThreat.nThreat);
+            if (CompareThreat(pThreat))
             {
-                SetTarget(pThreat->m_nAvatarID, pThreat->m_nThreat);
+                SetTarget(pThreat.nAvatarID, pThreat.nThreat);
             }
 
             //设置战斗状态
-            if (!m_pOwnerNode->IsFight())
+            if (!Owner.IsFight())
             {
-                m_pOwnerNode->EnterCombat();
-            }
-
-            //仇恨链接
-            if (bLink)
-            {
-                if (m_pOwnerNode->CheckRelation(pAvatar, ToEnemy))
-                {
-                    pAvatar->AddThreat(m_pOwnerNode, 0, false);
-                }
-                else
-                {
-                    pAvatar->AddThreat(m_pOwnerNode, -1, false);
-                }
+				Owner.EnterCombat();
             }
         }
 
@@ -188,20 +231,22 @@ namespace XWorld
             }
         }
 
-        public void GetThreat()
-        {
-
-        }
-
-        public void OnHurt()
-        {
-
-        }
-
-        public void OnHeal()
-        {
-
-        }
+        public Threat GetThreat(int nAvatarID, bool bCreate)
+		{
+			Threat pThreat = null;
+			if (m_ThreatDict.ContainsKey(nAvatarID))
+			{
+				pThreat = m_ThreatDict[nAvatarID];
+			}
+			else if (bCreate)
+			{
+				pThreat = new Threat();
+				pThreat.nAvatarID = nAvatarID;
+				pThreat.nThreat = 0;
+				m_ThreatDict.Add(nAvatarID, pThreat);
+			}
+			return pThreat;
+		}
 
         public bool IsInThreatList(int nAvatarID)
         {
@@ -220,78 +265,3 @@ namespace XWorld
     }
 
 }
-
-
-//    //伤害
-//    void GNodeThreatComponent::OnHurt(GNodeAvatar* pAvatar, int32 nValue)
-//    {
-//        if (m_pOwnerNode)
-//        {
-//            m_pOwnerNode->AddThreat(pAvatar, nValue, true);
-//        }
-//    }
-//    //治疗
-//    void GNodeThreatComponent::OnHeal(GNodeAvatar* pAvatar, int32 nValue)
-//    {
-//        if (!m_pOwnerNode)
-//            return;
-
-//        m_vThreatList.Begin();
-//        while (!m_vThreatList.IsEnd())
-//        {
-//            GThreat* pThreat = m_vThreatList.Get();
-//            if (pThreat)
-//            {
-//                GNodeAvatar* pTAvatar = m_pOwnerNode->GetSceneAvatar(pThreat->m_nAvatarID);
-//                if (pTAvatar)
-//                {
-//                    pTAvatar->AddThreat(pAvatar, nValue, true);
-//                }
-//            }
-//            m_vThreatList.Next();
-//        }
-//    }
-//    //受到嘲讽
-//    void GNodeThreatComponent::OnTaunt(GNodeAvatar* pAvatar)
-//    {
-//        if (!pAvatar)
-//            return;
-
-//        GThreat* pThreat = GetThreat(pAvatar->GetAvatarID());
-//        if (pThreat)
-//        {
-//            pThreat->m_nThreat = MAX(m_nTargetThreat, pThreat->m_nThreat);
-//        }
-//        else
-//        {
-//            OnHurt(pAvatar, m_nTargetThreat);
-//            pThreat = GetThreat(pAvatar->GetAvatarID());
-//        }
-
-//        m_bTauntState = true; // 受到了嘲讽		
-//        if (pThreat)
-//        {
-//            SetTarget(pAvatar->GetAvatarID(), pThreat->m_nThreat, true);
-//        }
-//    }
-
-//    //获取仇恨
-//    GThreat* GNodeThreatComponent::GetThreat(int32 nAvatarID, bool bCreate)
-//    {
-//        GThreat* pThreat = NULL;
-//        if (m_vThreatList.Find(nAvatarID))
-//        {
-//            pThreat = m_vThreatList.Get();
-//        }
-//        else if (bCreate)
-//        {
-//            pThreat = FACTORY_NEWOBJ(GThreat);
-//            if (pThreat)
-//            {
-//                pThreat->m_nAvatarID = nAvatarID;
-//                pThreat->m_nThreat = 0;
-//                m_vThreatList[nAvatarID] = pThreat;
-//            }
-//        }
-//        return pThreat;
-//    }

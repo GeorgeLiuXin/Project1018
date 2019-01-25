@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace XWorld
 {
-	public struct sCDInfo
+	public class sCDInfo
 	{
 		public float fCurTime;
 		public float fTotalTime;
@@ -120,7 +120,7 @@ namespace XWorld
 			}
 			else
 			{
-				AddCDToDict(nSkillID, info.fCurTime);
+				AddCDToDict(nSkillID, info);
 			}
 		}
 		public void StartCD(int nGroupID)
@@ -181,6 +181,10 @@ namespace XWorld
 			return false;
 		}
 
+		private void AddCDToDict(int nCDindex, sCDInfo info)
+		{
+			m_CDDict.Add(nCDindex, info);
+		}
 		private void AddCDToDict(int nCDindex, float fCDtime)
 		{
 			sCDInfo info = new sCDInfo();
