@@ -190,7 +190,7 @@ namespace XWorld.AssetPipeline
 
         public void Collect()
         {
-            //GalaxyGameModule.GetGameManager<BundleManager>().Collect();
+            //XWorldGameModule.GetGameManager<BundleManager>().Collect();
             System.GC.Collect();
         }
 
