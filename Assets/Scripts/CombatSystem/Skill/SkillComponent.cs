@@ -26,11 +26,15 @@ namespace XWorld
         }
         
         public void Update()
-        {
+		{
+			//    // 刷新加速时间
+			//    TickProjectile(nFrameTime);
+			//    TickPassiveSkill(nFrameTime);
+			//    TickSkill(nFrameTime);
+			//    ProcessTriggerNotify();
+		}
 
-        }
-
-        public bool AddSkill(int nSkillID)
+		public bool AddSkill(int nSkillID)
         {
             return false;
         }
@@ -45,34 +49,18 @@ namespace XWorld
             return false;
         }
 
+		public SkillSpellLogic GetSkill(int nSkillID)
+		{
+			if (m_SkillLogicDict.ContainsKey(nSkillID))
+			{
+				return m_SkillLogicDict[nSkillID];
+			}
+			return null;
+		}
+
     }
 
 }
-//#include "PreComp.h"
-//#include "GNodeSkillComponent.h"
-//#include "GNodeSkillLogic.h"
-//#include "GNodeSkillSpell.h"
-//#include "GNodeSkillTarget.h"
-//#include "GNodeSkillProjectile.h"
-//#include "GNodeSkillArea.h"
-//#include "GNodeSkillEffect.h"
-//#include "GNodeSkillCalculation.h"
-//#include "GSkillData.h"
-//#include "GNodeTriggerNotify.h"
-//#include "NodeBuff/GBuffComponent.h"
-//#include "GBuffData.h"
-//#include "GCDComponent.h"
-//#include "CDManager.h"
-//#include "NodeAvatar/NodeAvatar.h"
-//#include "NodeItem/GItemComponent.h"
-//#include "GTimer.h"
-//#include "GSkillDisDefine.h"
-//#include "NodeAI/GAIComponent.h"
-//#include "NodeScene/NodeScene.h"
-//#include "NodeScene/NodeSceneNotifyDefine.h"
-//#include "FSMStateInstance.h"
-//#include <algorithm>
-
 //namespace Galaxy
 //{
 //    class SkillPriorityCompare
@@ -92,13 +80,9 @@ namespace XWorld
 //    FINISH_FACTORY_Arg0(GNodeSkillComponent);
 //GNodeSkillComponent::GNodeSkillComponent()
 //		: m_pSpellLogic(NULL)
-//		, m_nSpeedUpTime(0)
-//		, m_nTimeStamp(0)
 //		, m_nTriggerNotifyCache(0)
 //		, m_nProjectileID(0)
 //		, m_nProjectileCount(0)
-//		, m_nComboTime(0)
-//		, m_nComboCount(0)
 //{
 
 //}
@@ -117,78 +101,6 @@ namespace XWorld
 //    }
 //}
 
-//void GNodeSkillComponent::AddupAValues(AValueStruct &value, AValueMask* pMask)
-//{
-//    FuncPerformance(SkillComponent_AddupAttr)
-
-//        if (!m_pOwnerNode || m_pOwnerNode->CheckAValueAddupMask(AValueMask_Skill))
-//        return;
-
-//    m_SkillLogicMap.Begin();
-//    while (!m_SkillLogicMap.IsEnd())
-//    {
-//        GSkillSpellLogic* pSpellLogic = m_SkillLogicMap.Get();
-//        m_SkillLogicMap.Next();
-
-//        if (!pSpellLogic || !pSpellLogic->m_pSkillData)
-//            return;
-
-//        if (pSpellLogic->m_pSkillData->GetIntValue(MSV_SpellLogic) != SkillSpell_AValue)
-//            return;
-
-//        AValueStruct av;
-//        AValueStruct* pInfo = SkillLevelAValueManager::Instance().GetAValue(pSpellLogic->GetSkillID(), 1);
-//        if (pInfo)
-//        {
-//            av.Combine(pInfo, NULL);
-//        }
-
-//        int32 nSlots = pSpellLogic->m_pSkillData->m_nSlots;
-//        int32 nSlotsMask = pSpellLogic->m_pSkillData->m_nSlotsMask;
-//        if ((nSlotsMask & nSlots) > 0)
-//        {
-//            for (int32 i = 0; i < 32; ++i)
-//            {
-//                if ((nSlots & (1 << i)) <= 0)
-//                    continue;
-
-//                AValueStruct* pInfo = SkillStarAValueManager::Instance().GetAValue(pSpellLogic->GetSkillID(), i);
-//                if (pInfo)
-//                {
-//                    av.Combine(pInfo, NULL);
-//                }
-//            }
-//        }
-//        value.Combine(av, pMask);
-//    }
-//}
-
-//void GNodeSkillComponent::TryCalculateAttribute(GSkillSpellLogic* pSpellLogic)
-//{
-//    if (!pSpellLogic || !pSpellLogic->m_pSkillData)
-//        return;
-
-//    if (pSpellLogic->m_pSkillData->GetIntValue(MSV_SpellLogic) != SkillSpell_AValue)
-//        return;
-
-//    AValueMask valueMask;
-//    {
-//        AValueMask* pMask = SkillLevelAValueManager::Instance().GetAValueMask(pSpellLogic->GetSkillID());
-//        if (pMask)
-//        {
-//            valueMask.Combine(*pMask);
-//        }
-//    }
-//    {
-//        AValueMask* pMask = SkillStarAValueManager::Instance().GetAValueMask(pSpellLogic->GetSkillID());
-//        if (pMask)
-//        {
-//            valueMask.Combine(*pMask);
-//        }
-//    }
-//    ReCalculate(false, &valueMask);
-//}
-
 //void GNodeSkillComponent::BeforeExitScene()
 //{
 //    ClearSkillProjectile();
@@ -197,27 +109,6 @@ namespace XWorld
 //        GPacketClearProjectile pkt;
 //        m_pOwner->BroadcastPacket(&pkt);
 //    }
-//}
-
-//void GNodeSkillComponent::Tick(int32 nFrameTime)
-//{
-//    FuncPerformance(TickSkill);
-
-//    // 刷新加速时间
-//    TickSpeedUp(nFrameTime);
-//    TickProjectile(nFrameTime);
-//    TickPassiveSkill(nFrameTime);
-//    TickSkill(nFrameTime);
-//    TickCombo(nFrameTime);
-//    ProcessTriggerNotify();
-//}
-
-//void GNodeSkillComponent::TickSpeedUp(int32 nFrameTime)
-//{
-//    if (m_nSpeedUpTime > nFrameTime)
-//        m_nSpeedUpTime -= nFrameTime;
-//    else
-//        m_nSpeedUpTime = 0;
 //}
 
 //void GNodeSkillComponent::TickSkill(int32 nFrameTime)
@@ -310,18 +201,6 @@ namespace XWorld
 //        }
 
 //        (vList.empty()) ? m_vProjectileMap.Remove() : m_vProjectileMap.Next();
-//    }
-//}
-
-//void GNodeSkillComponent::TickCombo(int32 nFrameTime)
-//{
-//    if (m_nComboCount > 0)
-//    {
-//        m_nComboTime -= nFrameTime;
-//        if (m_nComboTime <= 0)
-//        {
-//            m_nComboCount = 0;
-//        }
 //    }
 //}
 
@@ -527,26 +406,6 @@ namespace XWorld
 //        return;
 
 //    m_pSpellLogic->Cast(chargeLevel);
-//}
-
-//void GNodeSkillComponent::SpeedUpSpell(int32 nTimeStamp)
-//{
-//    int32 nIntervalTime = MIN(0, m_nTimeStamp - nTimeStamp); //施法间隔
-//    m_nTimeStamp = nTimeStamp;
-
-//    if (!m_pSpellLogic)
-//        return;
-
-//    if (m_nSpeedUpTime >= MAX_SKILL_NETWORK_DELAY)
-//        return;
-
-//    int32 nLockTime = m_pSpellLogic->GetLockTime();
-//    int32 nSpeedUpTime = MIN(nLockTime, nIntervalTime);
-//    if (nSpeedUpTime > 0)
-//    {
-//        m_nSpeedUpTime += nSpeedUpTime;
-//        TickSkill(nSpeedUpTime);
-//    }
 //}
 
 ////是否拥有技能
@@ -1620,3 +1479,80 @@ namespace XWorld
 //    }
 //}
 //}
+#region 之后添加
+
+
+//void GNodeSkillComponent::AddupAValues(AValueStruct &value, AValueMask* pMask)
+//{
+//    FuncPerformance(SkillComponent_AddupAttr)
+
+//        if (!m_pOwnerNode || m_pOwnerNode->CheckAValueAddupMask(AValueMask_Skill))
+//        return;
+
+//    m_SkillLogicMap.Begin();
+//    while (!m_SkillLogicMap.IsEnd())
+//    {
+//        GSkillSpellLogic* pSpellLogic = m_SkillLogicMap.Get();
+//        m_SkillLogicMap.Next();
+
+//        if (!pSpellLogic || !pSpellLogic->m_pSkillData)
+//            return;
+
+//        if (pSpellLogic->m_pSkillData->GetIntValue(MSV_SpellLogic) != SkillSpell_AValue)
+//            return;
+
+//        AValueStruct av;
+//        AValueStruct* pInfo = SkillLevelAValueManager::Instance().GetAValue(pSpellLogic->GetSkillID(), 1);
+//        if (pInfo)
+//        {
+//            av.Combine(pInfo, NULL);
+//        }
+
+//        int32 nSlots = pSpellLogic->m_pSkillData->m_nSlots;
+//        int32 nSlotsMask = pSpellLogic->m_pSkillData->m_nSlotsMask;
+//        if ((nSlotsMask & nSlots) > 0)
+//        {
+//            for (int32 i = 0; i < 32; ++i)
+//            {
+//                if ((nSlots & (1 << i)) <= 0)
+//                    continue;
+
+//                AValueStruct* pInfo = SkillStarAValueManager::Instance().GetAValue(pSpellLogic->GetSkillID(), i);
+//                if (pInfo)
+//                {
+//                    av.Combine(pInfo, NULL);
+//                }
+//            }
+//        }
+//        value.Combine(av, pMask);
+//    }
+//}
+
+//void GNodeSkillComponent::TryCalculateAttribute(GSkillSpellLogic* pSpellLogic)
+//{
+//    if (!pSpellLogic || !pSpellLogic->m_pSkillData)
+//        return;
+
+//    if (pSpellLogic->m_pSkillData->GetIntValue(MSV_SpellLogic) != SkillSpell_AValue)
+//        return;
+
+//    AValueMask valueMask;
+//    {
+//        AValueMask* pMask = SkillLevelAValueManager::Instance().GetAValueMask(pSpellLogic->GetSkillID());
+//        if (pMask)
+//        {
+//            valueMask.Combine(*pMask);
+//        }
+//    }
+//    {
+//        AValueMask* pMask = SkillStarAValueManager::Instance().GetAValueMask(pSpellLogic->GetSkillID());
+//        if (pMask)
+//        {
+//            valueMask.Combine(*pMask);
+//        }
+//    }
+//    ReCalculate(false, &valueMask);
+//}
+
+
+#endregion
