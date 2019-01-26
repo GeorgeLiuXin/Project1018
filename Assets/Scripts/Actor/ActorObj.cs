@@ -9,6 +9,7 @@ namespace XWorld
 	{
         protected bool m_bFight;
         public int m_nAvatarID;
+        protected Vector3 m_vPos;
 
 		// Use this for initialization
 		void Start()
@@ -48,6 +49,16 @@ namespace XWorld
         public int GetAvatarID()
         {
             return m_nAvatarID;
+        }
+
+        public void SetPos(Vector3 vPos)
+        {
+            m_vPos = vPos;
+        }
+
+        public Vector3 GetPos()
+        {
+            return m_vPos;
         }
 
     }

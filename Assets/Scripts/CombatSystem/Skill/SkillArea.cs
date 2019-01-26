@@ -8,283 +8,275 @@ namespace XWorld
     /// 技能范围
     /// </summary>
     public class SkillAreaLogic
-	{
+    {
+        #region 相关Manager
 
-		public virtual List<ActorObj> GetTargetList(SkillData pSkillData, ActorObj pCaster, GTargetInfo sTarInfo, List<int> vExcludeList)
-		{
-			return null;
-		}
+        protected ActorManager m_actorMgr;
+        public ActorManager ActorMgr
+        {
+            get
+            {
+                if (m_actorMgr == null)
+                {
+                    m_actorMgr = XWorldGameModule.GetGameManager<ActorManager>();
+                }
+                return m_actorMgr;
+            }
+        }
 
-		public bool TryAddTarget(SkillData pSkillData, ActorObj pCaster, ActorObj pTarget, List<ActorObj> vTargetList, List<int> vExcludeList, Vector3 vSrcPos)
-		{
-			if (pSkillData == null || !pCaster || !pTarget)
-				return false;
+        #endregion
 
-			if (vExcludeList.Contains(pTarget.GetAvatarID()))
-				return false;
+        protected ActorObj m_pLocalPlayer;
 
-			//int nTarCheck = pSkillData->GetValue(MSV_AreaTarCheck);
-			//if (nTarCheck > 0)
-			//{
-			//	SDConditionParamAvatar sParam;
-			//	sParam.ParamAvatar = pCaster;
-			//	if (!GSKillConditionCheckManager::Instance().Check(nTarCheck, pTarget, &sParam))
-			//		return false;
-			//}
-			
-			//if (pSkillData->IsAreaAddExclude())
-			//{
-			//	vExcludeList.insert(pTarget.GetAvatarID());
-			//}
-			return true;
-		}
+        public SkillAreaLogic()
+        {
+            m_pLocalPlayer = XWorldGameModule.GetGameManager<ActorManager>().GetLocalPlayer();
+        }
+        public virtual List<ActorObj> GetTargetList(SkillData pSkillData, ActorObj pCaster, GTargetInfo sTarInfo, List<int> vExcludeList)
+        {
+            return null;
+        }
 
-	}
+        public bool TryAddTarget(SkillData pSkillData, ActorObj pCaster, ActorObj pTarget, List<ActorObj> vTargetList, List<int> vExcludeList, Vector3 vSrcPos)
+        {
+            if (pSkillData == null || !pCaster || !pTarget)
+                return false;
 
-	//    public class SkillAreaLogic
-	//    {
-	//        #region 相关Manager
+            if (vExcludeList.Contains(pTarget.GetAvatarID()))
+                return false;
 
-	//        protected GalaxyActorManager m_actorMgr;
-	//        public GalaxyActorManager ActorMgr
-	//        {
-	//            get
-	//            {
-	//                if (m_actorMgr == null)
-	//                {
-	//                    m_actorMgr = XWorldGameModule.GetGameManager<GalaxyActorManager>();
-	//                }
-	//                return m_actorMgr;
-	//            }
-	//        }
+            //int nTarCheck = pSkillData->GetValue(MSV_AreaTarCheck);
+            //if (nTarCheck > 0)
+            //{
+            //	SDConditionParamAvatar sParam;
+            //	sParam.ParamAvatar = pCaster;
+            //	if (!GSKillConditionCheckManager::Instance().Check(nTarCheck, pTarget, &sParam))
+            //		return false;
+            //}
 
-	//        #endregion
-
-	//        protected ActorObj m_pLocalPlayer;
-
-	//        public SkillAreaLogic()
-	//        {
-	//            m_pLocalPlayer = XWorldGameModule.GetGameManager<GalaxyActorManager>().GetLocalPlayer();
-	//        }
-
-	//        public virtual List<GalaxyActor> CalculationHit(GSkillData skilldata, GTargetInfo targetInfo)
-	//        {
-	//            return null;
-	//        }
-	//    }
+            //if (pSkillData->IsAreaAddExclude())
+            //{
+            //	vExcludeList.insert(pTarget.GetAvatarID());
+            //}
+            return true;
+        }
+        
+        public virtual List<ActorObj> CalculationHit(SkillData skilldata, GTargetInfo targetInfo)
+        {
+            return null;
+        }
+    }
 
 
-	//    public class SkillAreaSingelton : SkillAreaLogic
-	//    {
-	//        public override List<GalaxyActor> CalculationHit(GSkillData skilldata, GTargetInfo targetInfo)
-	//        {
+    public class SkillAreaSingelton : SkillAreaLogic
+    {
+        public override List<ActorObj> CalculationHit(SkillData skilldata, GTargetInfo targetInfo)
+        {
+            ActorObj act = ActorMgr.GetByServerID(targetInfo.m_nTargetID) as ActorObj;
+            if (act == null)
+            {
+                return null;
+            }
+            float dis = Vector3.Distance(targetInfo.m_vSrcPos, act.GetPos());
+            if (dis > skilldata.MSV_Range)
+            {
+                return null;
+            }
+            if (!GCollider.SingletonCollideCheck())
+            {
+                return null;
+            }
+            List<ActorObj> list = new List<ActorObj>();
+            list.Add(act);
+            return list;
+        }
+    }
 
-	//            ActorObj act = ActorMgr.GetByServerID(targetInfo.m_nTargetID) as ActorObj;
-	//            if (act == null)
-	//            {
-	//                return null;
-	//            }
-	//            float dis = Vector3.Distance(targetInfo.m_vSrcPos, act.GetPos());
-	//            if (dis > skilldata.MSV_Range)
-	//            {
-	//                return null;
-	//            }
-	//            if (!GCollider.SingletonCollideCheck())
-	//            {
-	//                return null;
-	//            }
-	//            List<GalaxyActor> list = new List<GalaxyActor>();
-	//            list.Add(act);
-	//            return list;
-	//        }
-	//    }
+    public class SkillAreaSphere : SkillAreaLogic
+    {
+        public override List<ActorObj> CalculationHit(SkillData skilldata, GTargetInfo targetInfo)
+        {
+            float r = skilldata.MSV_AreaParam1 / 10.0f;
+            float dis = skilldata.MSV_AreaParam2 / 10.0f;
 
-	//    public class SkillAreaSphere : SkillAreaLogic
-	//    {
-	//        public override List<GalaxyActor> CalculationHit(GSkillData skilldata, GTargetInfo targetInfo)
-	//        {
-	//            float r = skilldata.MSV_AreaParam1 / 10.0f;
-	//            float dis = skilldata.MSV_AreaParam2 / 10.0f;
+            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
+            Vector3 dir = targetInfo.m_vAimDir;
 
-	//            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
-	//            Vector3 dir = targetInfo.m_vAimDir;
+            Vector3 spPos = pos + dir * dis;
+            SSphere sSphere = new SSphere(spPos, r);
 
-	//            Vector3 spPos = pos + dir * dis;
-	//            SSphere sSphere = new SSphere(spPos, r);
+            List<ActorObj> pActorList = ActorMgr.GetAllActor();
+            if (pActorList.Count <= 0)
+            {
+                return null;
+            }
+            List<ActorObj> list = new List<ActorObj>();
+            foreach (ActorObj actor in pActorList)
+            {
+                if (actor == m_pLocalPlayer)
+                    continue;
+                if (actor.CollisionCom == null)
+                {
+                    continue;
+                }
+                for (int i = 0; i < actor.CollisionCom.GetShapeCount(); i++)
+                {
+                    SShapeData shp = actor.CollisionCom.GetShape(i);
+                    if (shp != null)
+                    {
+                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
+                        if (GCollider.SphereCollideCheck(sSphere, sTarSphere, dir))
+                        {
+                            list.Add(actor);
+                            break;
+                        }
+                    }
+                }
 
-	//            List<GalaxyActor> pActorList = ActorMgr.GetAllActor();
-	//            if (pActorList.Count<=0)
-	//            {
-	//                return null;
-	//            }
-	//            List<GalaxyActor> list = new List<GalaxyActor>();
-	//            foreach (GalaxyActor actor in pActorList)
-	//            {
-	//                if (actor == m_pLocalPlayer)
-	//                    continue;
-	//                ActorObj obj = (ActorObj)actor;
-	//                if (obj.CollisionCom == null)
-	//                {
-	//                    continue;
-	//                }
-	//                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
-	//                {
-	//                    SShapeData shp = obj.CollisionCom.GetShape(i);
-	//                    if (shp != null)
-	//                    {
-	//                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
-	//                        if (GCollider.SphereCollideCheck(sSphere, sTarSphere, dir))
-	//                        {
-	//                            list.Add(actor);
-	//                            break;
-	//                        }
-	//                    }
-	//                }
+            }
+            return list;
+        }
+    }
 
-	//            }
-	//            return list;
-	//        }
-	//    }
+    public class GSkillAreaSector : SkillAreaLogic
+    {
+        public override List<ActorObj> CalculationHit(SkillData skilldata, GTargetInfo targetInfo)
+        {
+            float minDis = skilldata.MSV_AreaParam1 / 10.0f;
+            float maxDis = skilldata.MSV_AreaParam2 / 10.0f;
+            int angle = skilldata.MSV_AreaParam3;
 
-	//    public class GSkillAreaSector : SkillAreaLogic
-	//    {
-	//        public override List<GalaxyActor> CalculationHit(GSkillData skilldata, GTargetInfo targetInfo)
-	//        {
-	//            float minDis = skilldata.MSV_AreaParam1 / 10.0f;
-	//            float maxDis = skilldata.MSV_AreaParam2 / 10.0f;
-	//            int angle = skilldata.MSV_AreaParam3;
+            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
+            Vector3 dir = targetInfo.m_vAimDir;
 
-	//            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
-	//            Vector3 dir = targetInfo.m_vAimDir;
+            SSector sSector = new SSector(pos, dir, maxDis, minDis, angle);
 
-	//            SSector sSector = new SSector(pos, dir, maxDis, minDis, angle);
+            List<ActorObj> pActorList = ActorMgr.GetAllActor();
+            if (pActorList.Count <= 0)
+            {
+                return null;
+            }
+            List<ActorObj> list = new List<ActorObj>();
+            foreach (ActorObj actor in pActorList)
+            {
+                if (actor == m_pLocalPlayer)
+                    continue;
+                ActorObj obj = (ActorObj)actor;
+                if (obj.CollisionCom == null)
+                {
+                    continue;
+                }
+                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
+                {
+                    SShapeData shp = obj.CollisionCom.GetShape(i);
+                    if (shp != null)
+                    {
+                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
+                        if (GCollider.SectorCollideCheck(sSector, sTarSphere, dir))
+                        {
+                            list.Add(actor);
+                            break;
+                        }
+                    }
+                }
 
-	//            List<GalaxyActor> pActorList = ActorMgr.GetAllActor();
-	//            if (pActorList.Count <= 0)
-	//            {
-	//                return null;
-	//            }
-	//            List<GalaxyActor> list = new List<GalaxyActor>();
-	//            foreach (GalaxyActor actor in pActorList)
-	//            {
-	//                if (actor == m_pLocalPlayer)
-	//                    continue;
-	//                ActorObj obj = (ActorObj)actor;
-	//                if (obj.CollisionCom == null)
-	//                {
-	//                    continue;
-	//                }
-	//                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
-	//                {
-	//                    SShapeData shp = obj.CollisionCom.GetShape(i);
-	//                    if (shp != null)
-	//                    {
-	//                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
-	//                        if (GCollider.SectorCollideCheck(sSector, sTarSphere, dir))
-	//                        {
-	//                            list.Add(actor);
-	//                            break;
-	//                        }
-	//                    }
-	//                }
+            }
+            return list;
+        }
+    }
 
-	//            }
-	//            return list;
-	//        }
-	//    }
+    public class GSkillAreaRing : SkillAreaLogic
+    {
+        public override List<ActorObj> CalculationHit(SkillData skilldata, GTargetInfo targetInfo)
+        {
+            float rMin = skilldata.MSV_AreaParam1 / 10.0f;
+            float rMax = skilldata.MSV_AreaParam2 / 10.0f;
+            float dis = skilldata.MSV_AreaParam3 / 10.0f;
 
-	//    public class GSkillAreaRing : SkillAreaLogic
-	//    {
-	//        public override List<GalaxyActor> CalculationHit(GSkillData skilldata, GTargetInfo targetInfo)
-	//        {
-	//            float rMin = skilldata.MSV_AreaParam1 / 10.0f;
-	//            float rMax = skilldata.MSV_AreaParam2 / 10.0f;
-	//            float dis = skilldata.MSV_AreaParam3 / 10.0f;
+            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
+            Vector3 dir = targetInfo.m_vAimDir;
 
-	//            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
-	//            Vector3 dir = targetInfo.m_vAimDir;
+            SRing sRing = new SRing(pos, rMax, rMin);
 
-	//            SRing sRing = new SRing(pos, rMax, rMin);
+            List<ActorObj> pActorList = ActorMgr.GetAllActor();
+            if (pActorList.Count <= 0)
+            {
+                return null;
+            }
+            List<ActorObj> list = new List<ActorObj>();
+            foreach (ActorObj actor in pActorList)
+            {
+                if (actor == m_pLocalPlayer)
+                    continue;
+                ActorObj obj = (ActorObj)actor;
+                if (obj.CollisionCom == null)
+                {
+                    continue;
+                }
+                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
+                {
+                    SShapeData shp = obj.CollisionCom.GetShape(i);
+                    if (shp != null)
+                    {
+                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
+                        if (GCollider.RingCollideCheck(sRing, sTarSphere, dir))
+                        {
+                            list.Add(actor);
+                            break;
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+    }
 
-	//            List<GalaxyActor> pActorList = ActorMgr.GetAllActor();
-	//            if (pActorList.Count <= 0)
-	//            {
-	//                return null;
-	//            }
-	//            List<GalaxyActor> list = new List<GalaxyActor>();
-	//            foreach (GalaxyActor actor in pActorList)
-	//            {
-	//                if (actor == m_pLocalPlayer)
-	//                    continue;
-	//                ActorObj obj = (ActorObj)actor;
-	//                if (obj.CollisionCom == null)
-	//                {
-	//                    continue;
-	//                }
-	//                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
-	//                {
-	//                    SShapeData shp = obj.CollisionCom.GetShape(i);
-	//                    if (shp != null)
-	//                    {
-	//                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
-	//                        if (GCollider.RingCollideCheck(sRing, sTarSphere, dir))
-	//                        {
-	//                            list.Add(actor);
-	//                            break;
-	//                        }
-	//                    }
-	//                }
-	//            }
-	//            return list;
-	//        }
-	//    }
+    public class GSkillAreaRect : SkillAreaLogic
+    {
+        public override List<ActorObj> CalculationHit(SkillData skilldata, GTargetInfo targetInfo)
+        {
+            float minDis = skilldata.MSV_AreaParam1 / 10.0f;
+            float maxDis = skilldata.MSV_AreaParam2 / 10.0f;
+            float w = skilldata.MSV_AreaParam3 / 10.0f;
 
-	//    public class GSkillAreaRect : SkillAreaLogic
-	//    {
-	//        public override List<GalaxyActor> CalculationHit(GSkillData skilldata, GTargetInfo targetInfo)
-	//        {
-	//            float minDis = skilldata.MSV_AreaParam1 / 10.0f;
-	//            float maxDis = skilldata.MSV_AreaParam2 / 10.0f;
-	//            float w = skilldata.MSV_AreaParam3 / 10.0f;
+            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
+            Vector3 dir = targetInfo.m_vAimDir;
+            Vector3 center = pos + dir * ((minDis + maxDis) / 2);
 
-	//            Vector3 pos = skilldata.IsAreaUseTarPos() ? targetInfo.m_vTarPos : targetInfo.m_vSrcPos;
-	//            Vector3 dir = targetInfo.m_vAimDir;
-	//            Vector3 center = pos + dir * ((minDis + maxDis) / 2);
+            SRect sRect = new SRect(center, maxDis - minDis, w);
 
-	//            SRect sRect = new SRect(center, maxDis - minDis, w);
-
-	//            List<GalaxyActor> pActorList = ActorMgr.GetAllActor();
-	//            if (pActorList.Count <= 0)
-	//            {
-	//                return null;
-	//            }
-	//            List<GalaxyActor> list = new List<GalaxyActor>();
-	//            foreach (GalaxyActor actor in pActorList)
-	//            {
-	//                if (actor == m_pLocalPlayer)
-	//                    continue;
-	//                ActorObj obj = (ActorObj)actor;
-	//                if (obj.CollisionCom == null)
-	//                {
-	//                    continue;
-	//                }
-	//                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
-	//                {
-	//                    SShapeData shp = obj.CollisionCom.GetShape(i);
-	//                    if (shp != null)
-	//                    {
-	//                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
-	//                        if (GCollider.RectCollideCheck(sRect, sTarSphere, dir))
-	//                        {
-	//                            list.Add(actor);
-	//                            break;
-	//                        }
-	//                    }
-	//                }
-	//            }
-	//            return list;
-	//        }
-	//    }
+            List<ActorObj> pActorList = ActorMgr.GetAllActor();
+            if (pActorList.Count <= 0)
+            {
+                return null;
+            }
+            List<ActorObj> list = new List<ActorObj>();
+            foreach (ActorObj actor in pActorList)
+            {
+                if (actor == m_pLocalPlayer)
+                    continue;
+                ActorObj obj = (ActorObj)actor;
+                if (obj.CollisionCom == null)
+                {
+                    continue;
+                }
+                for (int i = 0; i < obj.CollisionCom.GetShapeCount(); i++)
+                {
+                    SShapeData shp = obj.CollisionCom.GetShape(i);
+                    if (shp != null)
+                    {
+                        SSphere sTarSphere = new SSphere(shp.Pos, shp.r);
+                        if (GCollider.RectCollideCheck(sRect, sTarSphere, dir))
+                        {
+                            list.Add(actor);
+                            break;
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+    }
 
 }
 //namespace Galaxy
