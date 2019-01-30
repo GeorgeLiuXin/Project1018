@@ -5,20 +5,22 @@ using UnityEngine;
 namespace XWorld
 {
 	//所有游戏物体的基本单位
-	public class ActorObj : MonoBehaviour
+	public class ActorObj
 	{
         protected bool m_bFight;
         public int m_nAvatarID;
         protected Vector3 m_vPos;
+		public int m_AvatarID;
+		public int m_InstanceID;
+		protected GameObject m_EngineObj;
 
-		// Use this for initialization
-		void Start()
+		public void Init()
 		{
             m_bFight = true;
-        }
+			m_InstanceID = m_EngineObj.gameObject.GetInstanceID();
+		}
 
-		// Update is called once per frame
-		void Update()
+		public void Tick(float fElapseTimes)
 		{
 
 		}
