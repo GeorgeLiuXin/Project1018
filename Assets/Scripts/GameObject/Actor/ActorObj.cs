@@ -10,14 +10,14 @@ namespace XWorld
         protected bool m_bFight;
         public int m_nAvatarID;
         protected Vector3 m_vPos;
-		public int m_AvatarID;
-		public int m_InstanceID;
+		public int AvatarID;
+		public int InstanceID;
 		protected GameObject m_EngineObj;
 
 		public void Init()
 		{
             m_bFight = true;
-			m_InstanceID = m_EngineObj.gameObject.GetInstanceID();
+			InstanceID = m_EngineObj.gameObject.GetInstanceID();
 		}
 
 		public void Tick(float fElapseTimes)

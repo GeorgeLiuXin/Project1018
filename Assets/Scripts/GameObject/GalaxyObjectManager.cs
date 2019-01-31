@@ -6,14 +6,20 @@ using Random = UnityEngine.Random;
 
 namespace XWorld
 {
-    public class ActorManager : XWorldGameManagerBase
+	public enum AvatarType
+	{
+		NPC_Player,
+		NPC_Enemy,
+	}
+
+	public class ActorManager : XWorldGameManagerBase
     {
 		private Dictionary<int, ActorObj> ActorDict;
 		private Dictionary<int, ActorObj> ActorInstanceIDDict;
 		private Dictionary<int, float> DelayRemoveList;
 		private List<int> RemoveAvatarList = new List<int>();
 		
-		public int LocalPlayerDID { get; set; }
+		public int LocalPlayerID { get; set; }
 		private LocalPlayer m_LocalPlayer;
 		
 		public override void InitManager()
@@ -71,170 +77,102 @@ namespace XWorld
 		
 		private void OnInitAvatarRes(object[] values)
 		{
-			GPacketBase pkt = values[0] as GPacketBase;
-			if (pkt == null)
-				return;
-
-			InitAvatarData(pkt);
+			//int avatarID = (int)values[0];
+			//int avatarType = (int) values[1];
+			//ActorObj actor = GetActorByID(avatarID);
+			//if (actor == null)
+			//{
+			//	actor = CreateAvatar(avatarType);
+			//	actor.AvatarID = avatarID;
+			//	AddActor(actor);
+			//}
+			
+			//actor.UpdataFromPacketBuffer(buffer, bFinish, true);
 		}
 
 		private void OnUpdateAvatarRes(object[] values)
 		{
-			GPacketBase pkt = values[0] as GPacketBase;
-			if (pkt == null)
-				return;
+			//int avatarID = pkt.GetInt32("SrcAvatarID");
+			//int paramType = pkt.GetInt32("paramType");
+			//GalaxyActor actor = GetByServerID(avatarID);
+			//if (actor == null)
+			//{
+			//	actor = CreateAvatar(paramType);
+			//	actor.ServerID = avatarID;
+			//	AddActor(actor);
+			//	return;
+			//}
 
-			UpdateAvatarData(pkt);
+			//actor.UpdataFromPacketBuffer(buffer, bFinish, false);
 		}
 
 		private void OnRemoveAvatarRes(object[] values)
 		{
-			GPacketBase pkt = values[0] as GPacketBase;
-			if (pkt == null)
-				return;
 
-			PlayerUserData(pkt);
 		}
-
-		public void InitAvatarData(GPacketBase pkt)
+		
+		public ActorObj CreateAvatar(int avatarType)
 		{
-			int avatarID = pkt.GetInt32("SrcAvatarID");
-			int paramType = pkt.GetInt32("paramType");
-			GalaxyActor actor = GetByServerID(avatarID);
-			if (actor == null)
+			ActorObj actor = null;
+			AvatarType type = (AvatarType) avatarType;
+			switch (type)
 			{
-				actor = CreateAvatar(paramType);
-				actor.ServerID = avatarID;
-				AddActor(actor);
-			}
-
-			byte[] buffer = new byte[pkt.mBuffSize];
-			pkt.ReadBuffer(buffer, pkt.mBuffSize);
-			bool bFinish = false;
-			byte paramFlag = pkt.GetByte("m_ParamFlag");
-			if ((paramFlag & (byte) eParamPool.LastPacket) == (byte) eParamPool.LastPacket)
-			{
-				bFinish = true;
-			}
-			actor.UpdataFromPacketBuffer(buffer, bFinish, true);
-		}
-
-		public void UpdateAvatarData(GPacketBase pkt)
-		{
-			int avatarID = pkt.GetInt32("SrcAvatarID");
-			int paramType = pkt.GetInt32("paramType");
-			GalaxyActor actor = GetByServerID(avatarID);
-			if (actor == null)
-			{
-				//actor = CreateAvatar(paramType);
-				//actor.ServerID = avatarID;
-				//AddActor(actor);
-				return;
-			}
-
-			byte[] buffer = new byte[pkt.mBuffSize];
-			pkt.ReadBuffer(buffer, pkt.mBuffSize);
-			bool bFinish = false;
-			byte paramFlag = pkt.GetByte("m_ParamFlag");
-			if ((paramFlag & (byte) eParamPool.LastPacket) == (byte) eParamPool.LastPacket)
-			{
-				bFinish = true;
-			}
-			actor.UpdataFromPacketBuffer(buffer, bFinish, false);
-		}
-
-		public GalaxyActor CreateAvatar(int paramType)
-		{
-			ParamType paramId = ParamPool.GetParamType(paramType);
-			GalaxyActor actor = null;
-			if (paramId == ParamType.Param_avatar)
-			{
-				actor = new NetPlayer();
-			}
-			else if (paramId == ParamType.Param_monster)
-			{
-				actor = new NetNPC();
-			}
-			if (paramType != -1)
-			{
-				ParamPool pool = ParamPoolDefine.CreateParamPool(paramType);
-				actor.SetParamPool(pool);
+				case AvatarType.NPC_Player:
+					actor = new NPCPlayer();
+					break;
+				case AvatarType.NPC_Enemy:
+					actor = new NPCEnemy();
+					break;
+				default:
+					break;
 			}
 			return actor;
 		}
 
 		public bool IsLocalPlayer(int avatarID)
 		{
-			return (m_LocalPlayer.m_AvatarID == avatarID) ? true : false;
+			return (m_LocalPlayer.AvatarID == avatarID) ? true : false;
 		}
 		public LocalPlayer GetLocalPlayer()
 		{
 			return m_LocalPlayer as LocalPlayer;
 		}
-		public ActorObj GetActorByID(int clientID)
-		{
-			if (!ActorDict.ContainsKey(clientID))
-				return null;
-
-			return ActorDict[clientID];
-		}
-		public ActorObj GetByInstanceID(int avatarDID)
-		{
-			if (!ActorInstanceIDDict.ContainsKey(avatarDID))
-				return null;
-
-			return ActorInstanceIDDict[avatarDID];
-		}
-
-		public void UpdateClientID(int serverID, int clientID)
-		{
-			if (ActorDict.ContainsKey(clientID))
-				return;
-			ActorObj actor = GetActorByID(serverID);
-			if (actor == null)
-				return;
-			if (ActorDict.ContainsKey(actor.ClientID))
-			{
-				ActorDict.Remove(actor.ClientID);
-			}
-			actor.ClientID = clientID;
-			ActorDict[clientID] = actor;
-		}
-
+		
 		public void AddActor(ActorObj actor)
 		{
-			if (actor.m_AvatarID == -1)
+			if (actor.AvatarID == -1)
 				return;
-			if (ActorDict.ContainsKey(actor.m_AvatarID))
+			if (ActorDict.ContainsKey(actor.AvatarID))
 				return;
-			ActorDict[actor.m_AvatarID] = actor;
+			ActorDict[actor.AvatarID] = actor;
 		}
 
 		public void RemoveActor(ActorObj actor)
 		{
-			if (actor.m_AvatarID == -1)
+			if (actor.AvatarID == -1)
 				return;
-			if (!ActorDict.ContainsKey(actor.m_AvatarID))
+			if (!ActorDict.ContainsKey(actor.AvatarID))
 				return;
 
-			actor.UnloadRes();
-			if (!ActorDict.ContainsKey(actor.m_AvatarID))
+			//XTODO 丢弃资源
+			//actor.UnloadRes();
+			if (!ActorDict.ContainsKey(actor.AvatarID))
 				return;
-			ActorDict.Remove(actor.m_AvatarID);
+			ActorDict.Remove(actor.AvatarID);
 		}
 
-		public void RemoveActorWithDelay(int nServerID, float fDelayTime)
+		public void RemoveActorWithDelay(int nAvatarID, float fDelayTime)
 		{
 			float fTime;
-			if (!DelayRemoveList.TryGetValue(nServerID, out fTime))
+			if (!DelayRemoveList.TryGetValue(nAvatarID, out fTime))
 			{
-				DelayRemoveList.Add(nServerID, fDelayTime);
+				DelayRemoveList.Add(nAvatarID, fDelayTime);
 			}
 		}
 
-		public void RemoveByServerID(int ServerID, bool bForceRemove)
+		public void RemoveByServerID(int nAvatarID, bool bForceRemove)
 		{
-			ActorObj act = GetByServerID(ServerID);
+			ActorObj act = GetActorByID(nAvatarID);
 			if (act != null)
 			{
 				if (bForceRemove)
@@ -246,178 +184,59 @@ namespace XWorld
 					ActorObj actObj = act as ActorObj;
 					if (null != actObj)
 					{
-						if (actObj.CheckState((int) eState.State_Dead) == false)
-						{
-							RemoveActor(act);
-						}
-						else
-						{
-							RemoveActorWithDelay(ServerID, actObj.GetRemoveDelayTime());
-						}
+						//XTODO 死亡移除
+						//if (actObj.CheckState((int) eState.State_Dead) == false)
+						//{
+						//	RemoveActor(act);
+						//}
+						//else
+						//{
+						//	RemoveActorWithDelay(nAvatarID, actObj.GetRemoveDelayTime());
+						//}
 					}
 				}
 			}
 		}
 		public void RemoveAll(bool bExceptLocalPlayer)
 		{
-			List<ActorObj> actorList = new List<ActorObj>(ServerIDActorManager.Values);
+			List<ActorObj> actorList = new List<ActorObj>(ActorDict.Values);
 			for (int i = 0; i < actorList.Count; i++)
 			{
 				if (actorList[i] != null)
 				{
-					if (bExceptLocalPlayer && IsLocalPlayer(actorList[i].ServerID))
+					if (bExceptLocalPlayer && IsLocalPlayer(actorList[i].AvatarID))
 					{
 						continue;
 					}
-					RemoveByServerID(actorList[i].ServerID, true);
+					RemoveByServerID(actorList[i].AvatarID, true);
 				}
 			}
 			DelayRemoveList.Clear();
 		}
 
-		public void UpdateAOIObjView(int AvatarID, bool bInView)
+		public ActorObj GetActorByID(int clientID)
 		{
-			if (AvatarID == m_LocalPlayer.ServerID)
-				return;
+			if (!ActorDict.ContainsKey(clientID))
+				return null;
 
-			if (bInView)
-			{
-				ActorObj act = GetByServerID(AvatarID);
-				if (act == null)
-				{
-					//向服务器拽玩家数据
-					GPacketBase pkt = m_packetDefineMgr.CreatePacket("GPacketClientAvatarDataRequest");
-					if (pkt == null)
-						return;
-					pkt.SetInt32("TarAvatarID", AvatarID);
-					GalaxyNetManager.Instance.SendPacket(pkt);
-				}
-			}
-			else
-			{
-				RemoveAvatarList.Add(AvatarID);
-			}
-		}
-		
-		public void PlayerUserData(GPacketBase pkt)
-		{
-			int idx = pkt.GetInt32("index");
-			int paramtype = pkt.GetInt32("m_ParamType");
-			LocalPlayer player = null;
-			if (LocalPlayerList.ContainsKey(idx))
-			{
-				player = LocalPlayerList[idx];
-			}
-			else
-			{
-				if (idx != GetFirstEmptyIndex())
-					return;
-				player = new LocalPlayer();
-				if (player == null)
-					return;
-				ParamPool pool = ParamPoolDefine.CreateParamPool((int) ParamType.Param_avatar, ParamPool.GetParamDataID(paramtype));
-				player.SetParamPool(pool);
-				player.ServerID = LocalPlayerServerID;
-				LocalPlayerList.Add(idx, player);
-			}
-			byte flag = pkt.GetByte("m_ParamFlag");
-			int size = pkt.mBuffSize;
-			byte[] buff = new byte[size];
-			pkt.ReadBuffer(buff, size);
-			player.Pool.Read(buff);
-		}
-		
-		public bool ContainsAvatar(int id)
-		{
-			if (LocalPlayerList.ContainsKey(id))
-				return true;
-			else
-				return false;
+			return ActorDict[clientID];
 		}
 
-		public void SelectAvatar(int id)
+		public ActorObj GetByInstanceID(int avatarDID)
 		{
-			if (ContainsAvatar(id))
-			{
-				m_LocalPlayer = LocalPlayerList[id];
-				AddActor(m_LocalPlayer);
-				LocalPlayerList.Clear();
-			}
-		}
-		
-		public void ClearActorObjSelected()
-		{
-			List<ActorObj> actorList = new List<ActorObj>(ServerIDActorManager.Values);
+			if (!ActorInstanceIDDict.ContainsKey(avatarDID))
+				return null;
 
-			for (int i = 0; i < actorList.Count; i++)
-			{
-				if (actorList[i] == null)
-				{
-					continue;
-				}
-				ActorObj act = actorList[i] as ActorObj;
-				act.m_bSelected = false;
-			}
+			return ActorInstanceIDDict[avatarDID];
 		}
 
 		public List<ActorObj> GetAllActor()
 		{
-			if (ServerIDActorManager.Values != null)
+			if (ActorDict.Values != null)
 			{
-				return new List<ActorObj>(ServerIDActorManager.Values);
+				return new List<ActorObj>(ActorDict.Values);
 			}
 			return null;
-		}
-
-		public void UpdateAOIAdd(ref List<int> list)
-		{
-			for (int i = 0; i < list.Count; ++i)
-			{
-				int id = list[i];
-				if (IsLocalPlayer(id))
-				{
-					continue;
-				}
-				if (!ServerIDActorManager.ContainsKey(id))
-				{
-					//GameLogger.Warning(LOG_CHANNEL.NETWORK, "Aoi Add : " + id);
-					UpdateAOIObjView(id, true);
-				}
-			}
-
-		}
-		public void UpdateAOIRemove(ref List<int> list)
-		{
-			if (ServerIDActorManager.Count == 0)
-			{
-				return;
-			}
-			Dictionary<int, ActorObj>.KeyCollection key = ServerIDActorManager.Keys;
-			Dictionary<int, ActorObj>.KeyCollection.Enumerator en = key.GetEnumerator();
-			while (en.MoveNext())
-			{
-				int id = en.Current;
-				if (IsLocalPlayer(id))
-				{
-					continue;
-				}
-				if (!list.Contains(id))
-				{
-					//GameLogger.Warning(LOG_CHANNEL.NETWORK, "Aoi Remove : " + id);
-					UpdateAOIObjView(id, false);
-				}
-			}
-
-			if (RemoveAvatarList.Count > 0)
-			{
-				foreach (int avatarId in RemoveAvatarList)
-				{
-					RemoveByServerID(avatarId, false);
-					//ServerIDActorManager.ForceRemove(avatarId);
-
-				}
-				RemoveAvatarList.Clear();
-			}
 		}
 		
 	}
