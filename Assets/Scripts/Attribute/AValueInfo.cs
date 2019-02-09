@@ -1,11 +1,4 @@
-/********************************************************************
-	created:	2018/9/27
-	author: wuyang
-	
-	purpose:	AValueInfo
-*********************************************************************/
-
-namespace Galaxy
+namespace XWorld
 {
     public class AValueInfo
     {

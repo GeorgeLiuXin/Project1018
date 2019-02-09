@@ -391,7 +391,7 @@ namespace XWorld
             float fScoreAttr = 0;
             for (int i = 0; i < (int)AValueType.Count; ++i)
             {
-                AValueInfo info = GalaxyGameModule.GetGameManager<AValueDefine>().Infos[i];
+                AValueInfo info = XWorldGameModule.GetGameManager<AValueDefine>().Infos[i];
                 if (bUseBalanceValue)
                 {
                     if (bPlayer)

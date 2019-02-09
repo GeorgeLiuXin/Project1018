@@ -53,7 +53,7 @@ namespace XWorld
 
 		public void Update()
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 			foreach (KeyValuePair<int,sCDInfo> item in m_CDDict)
 			{
@@ -97,7 +97,7 @@ namespace XWorld
 
 		public void StartCD(int nSkillID, float fCDtime)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 
 			ConfigData pCDData = GameDataProxy.GetData(m_TableName, nSkillID);
@@ -125,7 +125,7 @@ namespace XWorld
 		}
 		public void StartCD(int nGroupID)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 			ConfigData pCDData = GameDataProxy.GetData(m_TableName, nGroupID);
 			if (pCDData == null)
@@ -154,7 +154,7 @@ namespace XWorld
 
 		private bool StartCountCD(int nGroupID, ConfigData pCDData)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return false;
 			//充能计数
 			int nCDCount = 0;
@@ -195,7 +195,7 @@ namespace XWorld
 
 		public void StartCommonCD(int nCommonCD)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 			ConfigData pCommonCDData = GameDataProxy.GetData(m_TableName, nCommonCD);
 			if (pCommonCDData == null)
@@ -209,7 +209,7 @@ namespace XWorld
 
 		public void StopCD(int nCDindex)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 
 			m_CDDict.Remove(nCDindex);
@@ -234,7 +234,7 @@ namespace XWorld
 
 		public void AddCD(int nCDindex, float fCDTime)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 
 			if (m_CDDict.ContainsKey(nCDindex))
@@ -250,7 +250,7 @@ namespace XWorld
 
 		public void ReduceCD(int nCDindex, float fCDTime)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return;
 
 			if (!m_CDDict.ContainsKey(nCDindex))
@@ -288,7 +288,7 @@ namespace XWorld
 		/// </summary>
 		public bool CheckCD(int nCDindex)
 		{
-			if (!Owner)
+			if (Owner == null)
 				return false;
 
 			ConfigData pCDData = GameDataProxy.GetData(m_TableName, nCDindex);

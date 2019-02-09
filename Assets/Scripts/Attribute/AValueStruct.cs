@@ -1,7 +1,4 @@
 /********************************************************************
-	created:2018/9/27
-	author:wuyang
-	
 	purpose:AValueStruct 属性数值存储结构
 *********************************************************************/
 using XWorld.AValue;
@@ -251,7 +248,7 @@ namespace XWorld
         public void OnLoadConfig(ConfigData data)
         {
             int dataID = data.GetInt("DataID");
-            m_vConfigDatas.ForceListAdd(dataID, data);
+            m_vConfigDatas.ForceAddList(dataID, data);
 
             AValueStruct pStruct = GetAValue(dataID, 0, true);
             if (null == pStruct)
