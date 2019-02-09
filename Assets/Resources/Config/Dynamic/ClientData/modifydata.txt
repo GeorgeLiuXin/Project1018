@@ -1,3 +1,0 @@
-Type	DataID	ModifyID	ValueName	IValue	FValue	Precent
-int32	int32	int32	char	int32	f32	f32
-1	10001	2	MSV_Range	0	10	0

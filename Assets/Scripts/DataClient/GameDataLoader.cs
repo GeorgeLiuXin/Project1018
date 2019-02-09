@@ -23,7 +23,7 @@ namespace XWorld
 
         public void StartLoadDefineTableList()
         {
-            string path = StaticParam.CONFIG_DEFINE_PATH;
+            string path = StaticParam.Config_Define_Path;
             ResourcesProxy.LoadAsset(path, OnLoadDefineTableComplete);
         }
 

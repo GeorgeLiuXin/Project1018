@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+//using System.Data.Common;
+using System.Collections;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace XWorld
 {
@@ -10,11 +15,11 @@ namespace XWorld
     }
 
     public enum GCommonConditionType
-	{
-		ConditionCheck_AND = 0,
-		ConditionCheck_OR,
-		ConditionCheck_Equal,
-	};
+    {
+        ConditionCheck_AND = 0,
+        ConditionCheck_OR,
+        ConditionCheck_Equal,
+    };
 
     public enum GCommonConditionCmp
     {
@@ -52,7 +57,7 @@ namespace XWorld
             }
             return false;
         }
-   
+
         public virtual void OnCheckFail(ActorObj obj, GCommonConditionParam param)
         {
             if (manager == null)
@@ -103,78 +108,60 @@ namespace XWorld
         Dictionary<int, GCommonCondition> ConditionList;
         public int ErrorCode { get; set; }
 
-//         public string TableName{get;set;}
-//         public string ConTableName{get;set;}
+        //         public string TableName{get;set;}
+        //         public string ConTableName{get;set;}
 
-        private bool bInit = false;
 
         public bool Check(int nGroupID, ActorObj obj, GCommonConditionParam param)
         {
-            if (!bInit)
-            {
-                Load();
-                bInit = true;
-            }
-
             ErrorCode = 0;
-            if (m_vConditionGroup == null || m_vConditionGroup[nGroupID] == null)
+            if (m_vConditionGroup == null || !m_vConditionGroup.ContainsKey(nGroupID))
                 return false;
 
             return m_vConditionGroup[nGroupID].Check(obj, param);
         }
-        public void Load()
+
+        public void OnLoadALLConfig(ref ConfigData[] list)
         {
-            if (bInit)
-                return;
 
-            LoadConditionFile();
-        }
+            if (m_vConditionGroup == null)
+                m_vConditionGroup = new Dictionary<int, GCommonConditionGroup>();
 
-        void LoadConditionFile()
-        {
-            //TableClientCheckCondition t_tableConfig = ClientConfigManager.GetTableByName("TableClientCheckCondition") as TableClientCheckCondition;
-            //if (t_tableConfig == null)
-            //    return;
+            string[] vConditionName = FillConditionVarName("ConditionName");
+            string[] vParamString = FillConditionVarName("ParamString");
+            string[] vCmpType = FillConditionVarName("CmpType");
+            string[] vErrorCode = FillConditionVarName("ErrorCode");
+            string[] vFailTips = FillConditionVarName("FailTips");
 
-            //if (m_vConditionGroup == null)
-            //    m_vConditionGroup = new Dictionary<int, GCommonConditionGroup>();
+            for (int x = 0; x < list.Length; ++x)
+            {
+                int nGroupID = list[x].GetInt("GroupID");
+                int nLogicType = 0;// def.LogicType; 
 
-            //string[] vConditionName = FillConditionVarName("ConditionName");
-            //string[] vParamString = FillConditionVarName("ParamString");
-            //string[] vCmpType = FillConditionVarName("CmpType");
-            //string[] vErrorCode = FillConditionVarName("ErrorCode");
-            //string[] vFailTips = FillConditionVarName("FailTips");
+                for (int i = 0; i < CommonConditionSize; ++i)
+                {
+                    string sConditionName = list[x].GetString(vConditionName[i]);
+                    if (string.IsNullOrEmpty(sConditionName))
+                        break;
 
-            //foreach (ClientCheckCondition def in t_tableConfig.m_configList)
-            //{
-            //    int nGroupID = def.GroupID;
-            //    int nLogicType = 0;// def.LogicType; 
+                    Assembly ass = Assembly.GetExecutingAssembly();
+                    GCommonCondition condition = (GCommonCondition)ass.CreateInstance("Galaxy." + sConditionName);
+                    if (condition == null)
+                        continue;
 
-            //    for(int i = 0; i < CommonConditionSize; ++i)
-            //    {
-            //        string sConditionName = def.GetType().GetField(vConditionName[i]).GetValue(def).ToString();
-            //        if (string.IsNullOrEmpty(sConditionName))
-            //            break;
+                    condition.manager = this;
+                    condition.m_nLogicType = (GCommonConditionType)nLogicType;
+                    condition.m_nCmpType = (GCommonConditionCmp)list[x].GetInt(vCmpType[i]);// Convert.ToInt32(def.GetType().GetField(vCmpType[i]).GetValue(def).ToString());
+                    condition.m_nErrorCode = list[x].GetInt(vErrorCode[i]);//Convert.ToInt32(def.GetType().GetField(vErrorCode[i]).GetValue(def).ToString());
+                    condition.m_nFailTips = list[x].GetInt(vFailTips[i]);//Convert.ToInt32(def.GetType().GetField(vFailTips[i]).GetValue(def).ToString());
+                    condition.Init(list[x].GetString(vParamString[i]));
 
-            //        Assembly ass = Assembly.GetExecutingAssembly();
-            //        GCommonCondition condition = (GCommonCondition)ass.CreateInstance("XWorld." + sConditionName);
-            //        if (condition == null)
-            //            continue;
+                    if (!m_vConditionGroup.ContainsKey(nGroupID))
+                        m_vConditionGroup.Add(nGroupID, new GCommonConditionGroup());
 
-            //        condition.manager = this;
-            //        condition.m_nLogicType = (GCommonConditionType)nLogicType; 
-            //        condition.m_nCmpType = (GCommonConditionCmp)Convert.ToInt32(def.GetType().GetField(vCmpType[i]).GetValue(def).ToString());
-            //        condition.m_nErrorCode = Convert.ToInt32(def.GetType().GetField(vErrorCode[i]).GetValue(def).ToString());
-            //        condition.m_nFailTips = Convert.ToInt32(def.GetType().GetField(vFailTips[i]).GetValue(def).ToString());
-            //        condition.Init(def.GetType().GetField(vParamString[i]).GetValue(def).ToString());
-           
-            //        if (m_vConditionGroup[nGroupID] == null)
-            //            m_vConditionGroup[nGroupID] = new GCommonConditionGroup();
-
-            //        m_vConditionGroup[nGroupID].Add(condition);
-            //    }
-            //}
-            //t_tableConfig.m_configList.Clear();
+                    m_vConditionGroup[nGroupID].Add(condition);
+                }
+            }
         }
 
         string[] FillConditionVarName(string strName)
@@ -182,9 +169,41 @@ namespace XWorld
             string[] strList = new string[CommonConditionSize];
             for (int i = 0; i < CommonConditionSize; ++i)
             {
-                strList[i] = strName + i.ToString();
+                strList[i] = strName + (i + 1).ToString();
             }
             return strList;
         }
     }
+
+    enum eWeekDay
+    {
+        Sunday = 0,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+    }
+    
+    public class SDCheckProjectile : GCommonCondition
+    {
+        public override void Init(string initStr)
+        {
+            nSkillID = Convert.ToInt32(initStr);
+        }
+
+        public override bool Check(ActorObj obj, GCommonConditionParam param)
+        {
+            List<ProjectileClient> projectileList = XWorldGameModule.GetGameManager<ProjectileManager>().GetProjectileByAvatarSkill(obj.ServerID, nSkillID);
+            if (null == projectileList || 0 == projectileList.Count)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private int nSkillID;
+    }
+
 }

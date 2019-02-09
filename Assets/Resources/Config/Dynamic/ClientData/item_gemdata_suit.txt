@@ -1,4 +1,0 @@
-gemnum	gemlevel	attributegroup_id
-int32	uint8	int32
-10	4	1
-20	8	2

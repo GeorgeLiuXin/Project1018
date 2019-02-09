@@ -1,4 +1,0 @@
-ID	Key	Pos	navPos	rotPos	scalePos
-int32	char	char	char	char	char
-0	monster(Clone)_0	0;1;-14.33		0;0;0;1	1;1;1
-0	monster(Clone)_1	1.054058;3.177921;-8.17		0;0;0;1	1;1;1

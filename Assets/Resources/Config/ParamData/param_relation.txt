@@ -1,7 +1,0 @@
-ID	avatarname
-int32	char
-0	好友
-1	黑名单
-2	仇人
-3	师傅
-4	徒弟

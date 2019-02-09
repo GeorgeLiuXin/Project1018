@@ -1,7 +1,0 @@
-gearid	attrsrenum	attrssum	sumweight								
-int32	int32	int32	f32								
-1	1	5	5								
-2	1	6	5								
-3	2	10	5								
-4	2	11	15								
-5	2	12	15								
