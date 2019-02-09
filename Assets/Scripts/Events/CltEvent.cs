@@ -21,6 +21,13 @@ namespace XWorld
             public static readonly string UI_BLOOD = "UI_BLOOD";
 
         }
-		
-    }
+
+		public class Actor
+		{
+			public static readonly string INIT_AVATAR_RES = "INIT_AVATAR_RES";
+			public static readonly string UPDATE_AVATAR_RES = "UPDATE_AVATAR_RES";
+			public static readonly string REMOVE_AVATAR_RES = "REMOVE_AVATAR_RES";
+		}
+
+	}
 }

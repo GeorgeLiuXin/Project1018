@@ -1,0 +1,4 @@
+CDGroup	CDTime	CDCount	CDCommon
+int32	f32	int32	int32
+1	5	0	0
+2	2.5	0	0

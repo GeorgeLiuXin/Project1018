@@ -1,9 +1,0 @@
-gearid	suitid	suittype	suitattrs	suitskillid
-int32	int32	int32	int32	int32
-1	1001	2	3	0
-2	1001	4	4	0
-3	1001	6	5	0
-4	1002	3	6	0
-5	1002	6	7	0
-6	1003	4	8	244
-7	1003	6	9	245

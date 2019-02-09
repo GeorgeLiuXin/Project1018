@@ -10,7 +10,22 @@ namespace XWorld
     /// </summary>
     public class GameDataProxy
     {
-        
+        private static GameDataLoader m_Loader;
+        public static GameDataLoader DataLoader
+        {
+            get
+            {
+                if (m_Loader == null)
+                {
+                    m_Loader = new GameDataLoader();
+                }
+                return m_Loader;
+            }
+        }
+
+
+        #region 数据获取
+
         /// <summary>
         /// 获取对应表格的对应数据
         /// </summary>
@@ -56,14 +71,16 @@ namespace XWorld
             ConfigDataTableManager.Instance.Clear();
         }
 
-        //以下为数据层加载方法
+        #endregion
+        
+        #region 数据层加载方法
 
         /// <summary>
         /// 加载总表格及相关表格  ConfigData整体加载
         /// </summary>
         public static void LoadDefineTableList()
         {
-            ConfigDataTableManager.Instance.LoadDefineTableList();
+            DataLoader.StartLoadDefineTableList();
         }
 
         /// <summary>
@@ -72,8 +89,16 @@ namespace XWorld
         /// <param name="tableName">表格名称</param>
         public static void ReloadTable(string tableName)
         {
-            ConfigDataTableManager.Instance.ReloadTable(tableName);
+            DataLoader.LoadTable(tableName);
         }
+
+        #endregion
+        
+        #region 玩家数据保存方法
+
+
+
+        #endregion
 
     }
 

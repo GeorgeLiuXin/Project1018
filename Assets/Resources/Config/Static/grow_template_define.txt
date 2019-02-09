@@ -1,3 +1,0 @@
-GrowID	NameID	ModelResID	EffectID
-int32	int32	int32	int32
-790000	790000	3	5004

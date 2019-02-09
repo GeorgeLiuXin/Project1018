@@ -1,9 +1,0 @@
-GuildLevel	MaxMember	MaxResources	UpLevelResources	MaxDeputyAssistant
-int32	int32	int32	int32	int32
-1	30	10000	500	3
-2	40	20000	1000	4
-3	50	30000	1500	5
-4	60	40000	2000	6
-5	70	50000	2500	7
-6	80	60000	3000	8
-7	90	70000	-1	9

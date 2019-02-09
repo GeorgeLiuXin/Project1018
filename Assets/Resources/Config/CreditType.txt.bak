@@ -1,0 +1,7 @@
+typeid	typename	defaultlevel
+int16	char	int32
+0	默认	0
+1	玩家标准	1
+11	怪物	1
+12	中立	2
+20	绝对友好	4
