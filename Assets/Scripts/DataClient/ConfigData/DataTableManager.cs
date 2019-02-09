@@ -9,28 +9,13 @@ using XWorld.GameData;
 
 namespace XWorld.GameData
 {
-	/// <summary>
-	/// 修改读表方式
-	/// 修改之前的生成
-    /// 将表格在当前位置读取出来
-	/// 
-	/// 添加表格的重读方法，提升改表效率
-	/// </summary>
 	public class ConfigDataTableManager : Singleton<ConfigDataTableManager>
     {
         private Dictionary<string, ConfigDataTable> m_TableMap;
 
-        public GameDataLoader m_Loader;
-
 		public ConfigDataTableManager()
 		{
 			m_TableMap = new Dictionary<string, ConfigDataTable>();
-            m_Loader = new GameDataLoader();
-        }
-
-		public void LoadDefineTableList()
-        {
-            m_Loader.StartLoadDefineTableList();
         }
         
         public void OnLoadTableComplete(string tableName, string sContent)
@@ -101,11 +86,6 @@ namespace XWorld.GameData
                 m_TableMap.Add(tableName, table);
             }
             GameLogger.DebugLog(LOG_CHANNEL.ASSET, tableName + "表格已加载完毕!");
-        }
-        
-        public void ReloadTable(string tableName)
-        {
-            m_Loader.LoadTable(tableName);
         }
 
         private ConfigDataTable GetTable(string tableName)
