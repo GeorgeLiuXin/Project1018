@@ -71,14 +71,60 @@ namespace XWorld
             ConfigDataTableManager.Instance.Clear();
         }
 
-        #endregion
-        
-        #region 数据层加载方法
+		#endregion
 
-        /// <summary>
-        /// 加载总表格及相关表格  ConfigData整体加载
-        /// </summary>
-        public static void LoadDefineTableList()
+		#region 玩家实例数据相关方法
+
+
+
+		#endregion
+
+		#region 玩家配置数据/通用数据相关方法
+
+		public static void SavePlayerConfigData(string key,int value)
+		{
+			PlayerPrefs.SetInt(key, value);
+		}
+		public static void SavePlayerConfigData(string key, float value)
+		{
+			PlayerPrefs.SetFloat(key, value);
+		}
+		public static void SavePlayerConfigData(string key, string value)
+		{
+			PlayerPrefs.SetString(key, value);
+		}
+
+		public static void GetPlayerConfigData(string key,ref int value)
+		{
+			value = PlayerPrefs.GetInt(key, 0);
+		}
+		public static void GetPlayerConfigData(string key, ref float value)
+		{
+			value = PlayerPrefs.GetFloat(key, 0);
+		}
+		public static void GetPlayerConfigData(string key, ref string value)
+		{
+			value = PlayerPrefs.GetString(key, default(string));
+		}
+
+		public static bool HasThisPlayerConfigData(string key)
+		{
+			return PlayerPrefs.HasKey(key);
+		}
+
+		public static void DeletePlayerConfigData(string key)
+		{
+			PlayerPrefs.DeleteKey(key);
+		}
+
+		#endregion
+
+		#region 数据层加载方法
+
+		/// <summary>
+		/// 加载总表格及相关表格  ConfigData整体加载
+		/// </summary>
+		public static void LoadDefineTableList()
         {
             DataLoader.StartLoadDefineTableList();
         }
@@ -94,12 +140,6 @@ namespace XWorld
 
         #endregion
         
-        #region 玩家数据保存方法
-
-
-
-        #endregion
-
     }
 
 }

@@ -5,7 +5,6 @@ using System;
 using System.IO;
 using System.Linq;
 using XWorld.AssetPipeline;
-using XWorld.GameData;
 
 namespace XWorld.GameData
 {

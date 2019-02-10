@@ -8,8 +8,11 @@ namespace XWorld
     {
         public static readonly float Threat_Last_Time = 1f;
 
-        //数据读取
-        public static readonly string Config_Define_Name = "client_config_define";
+		//XML统一路径
+		public static readonly string PATH_XML_FILES = "XML";
+
+		//数据读取
+		public static readonly string Config_Define_Name = "client_config_define";
         public static readonly string Config_Define_Path = "Config/client_config_define";
 
         //tag

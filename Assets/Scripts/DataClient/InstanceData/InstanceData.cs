@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace XWorld
 {
-    public class SavaData : IDisposable
+    public class InstanceData : IDisposable
     {
 
         //一行数据
         public Dictionary<string, IConfigData> RowDataMap;
 
-        public SavaData()
+        public InstanceData()
         {
             RowDataMap = new Dictionary<string, IConfigData>();
         }
