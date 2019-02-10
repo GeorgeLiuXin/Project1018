@@ -6,7 +6,7 @@ using UnityEngine;
 namespace XWorld
 {
 	//所有游戏物体的基本单位
-	public class ActorObj : ActorComponent
+	public class ActorObj_Learn : ActorComponent
     {
         string m_strName;
         public string ModelName
@@ -25,7 +25,7 @@ namespace XWorld
 
         public bool m_bIsControllByLocal = false;
         
-        public ActorObj()
+        public ActorObj_Learn()
         {
             RegEngineObjEvent();
         }
