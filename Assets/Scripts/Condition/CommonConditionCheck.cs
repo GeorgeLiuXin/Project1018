@@ -195,11 +195,11 @@ namespace XWorld
 
         public override bool Check(ActorObj obj, GCommonConditionParam param)
         {
-            List<ProjectileClient> projectileList = XWorldGameModule.GetGameManager<ProjectileManager>().GetProjectileByAvatarSkill(obj.ServerID, nSkillID);
-            if (null == projectileList || 0 == projectileList.Count)
-            {
-                return false;
-            }
+            //List<ProjectileClient> projectileList = XWorldGameModule.GetGameManager<ProjectileManager>().GetProjectileByAvatarSkill(obj.ServerID, nSkillID);
+            //if (null == projectileList || 0 == projectileList.Count)
+            //{
+            //    return false;
+            //}
             return true;
         }
 

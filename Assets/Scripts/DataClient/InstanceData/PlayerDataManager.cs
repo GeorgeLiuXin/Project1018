@@ -13,6 +13,13 @@ namespace XWorld.GameData
 
 	}
 
+//ParamID name    AValue des type defaultvalue    max min flag
+//int32   char int32   char char char char char int32
+//0	TotalTime	0	总计游戏时长 uint32  0	4294967294	0	0
+//1	gold	0	金币 uint32  0	4294967294	0	0
+//2	accountname	0	玩家用户名 Char64      default	default	0
+//3	PlayerHeroList	0	玩家英雄队列 List        default	default	0
+//4	CurHeroList	0	当前出战英雄队列 List        default	default	0
 
 	public class PlayerDataXml : XmlOperation
 	{

@@ -153,7 +153,7 @@ namespace XWorld
 
             ClientID = m_EngineObj.gameObject.GetInstanceID();
             AfterCreateEngineObj();
-            SetOwner(this);
+            //SetOwner(this);
         }
 
         public override void Tick(float fFrameTime)

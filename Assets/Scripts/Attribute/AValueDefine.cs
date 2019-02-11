@@ -124,8 +124,8 @@ namespace XWorld
 
                 int idxkey1 = -1;
                 string[] values = sContent.Split("\r"[0]);
-                string[] lables = values[0].TrimStart('\n').Split(ClientConfigManager.CMD_STRING, StringSplitOptions.None);
-                string[] types = values[1].TrimStart('\n').Split(ClientConfigManager.CMD_STRING, StringSplitOptions.None);
+                string[] lables = values[0].TrimStart('\n').Split('\t');
+                string[] types = values[1].TrimStart('\n').Split('\t');
 
                 Dictionary<string, int> ColumnNameMap = new Dictionary<string, int>();
                 for (int i = 0; i < lables.Length; ++i)
@@ -140,7 +140,7 @@ namespace XWorld
                 List<ConfigData> dataList = new List<ConfigData>();
                 for (int i = 2; (i < values.Length); i = (i + 1))
                 {
-                    string[] subValues = values[i].TrimStart('\n').Split(ClientConfigManager.CMD_STRING, StringSplitOptions.None);
+                    string[] subValues = values[i].TrimStart('\n').Split('\t');
                     if (subValues.Length != lables.Length)
                         continue;
                     ConfigData data = new ConfigData();
