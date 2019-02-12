@@ -23,17 +23,30 @@ namespace XWorld
             }
         }
 
+		#region 数据托管
 
-        #region 数据获取
+		public void AddLoadOberserver(string tableName, ConfigDataTableManager.LoadOberserver ob)
+		{
+			ConfigDataTableManager.Instance.AddLoadOberserver(tableName, ob);
+		}
 
-        /// <summary>
-        /// 获取对应表格的对应数据
-        /// </summary>
-        /// <param name="tableName">表格名称</param>
-        /// <param name="pk1">主键值</param>
-        /// <param name="pk2">第二主键</param>
-        /// <returns></returns>
-        public static ConfigData GetData(string tableName, int pk1, int pk2 = -1)
+		public void AddLoadAllOberserver(string tableName, ConfigDataTableManager.LoadAllOberserver ob)
+		{
+			ConfigDataTableManager.Instance.AddLoadAllOberserver(tableName, ob);
+		}
+
+		#endregion
+
+		#region 数据获取
+
+		/// <summary>
+		/// 获取对应表格的对应数据
+		/// </summary>
+		/// <param name="tableName">表格名称</param>
+		/// <param name="pk1">主键值</param>
+		/// <param name="pk2">第二主键</param>
+		/// <returns></returns>
+		public static ConfigData GetData(string tableName, int pk1, int pk2 = -1)
         {
             if (pk2 == -1)
             {

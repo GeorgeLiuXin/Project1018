@@ -2,6 +2,7 @@
 using System.Xml;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 namespace XWorld
 {
@@ -12,6 +13,7 @@ namespace XWorld
 			get;
 			set;
 		}
+		
 		public XmlOperation(string filePath)
 		{
 			if (filePath.IsNE())
@@ -22,6 +24,7 @@ namespace XWorld
 
 			m_XmlFilePath = filePath;
 			CheckXml();
+			m_xmlLayout = new Dictionary<string, ConfigData>();
 		}
 
 		public void CheckXml()
@@ -33,12 +36,41 @@ namespace XWorld
 			}
 		}
 
-		public virtual void AddXml()
+		//ParamID name    AValue des type defaultvalue    max min flag
+		//int32   char int32   char char char char char int32
+		//0	TotalTime	0	总计游戏时长 uint32  0	4294967294	0	0
+		//1	gold	0	金币 uint32  0	4294967294	0	0
+		//2	accountname	0	玩家用户名 Char64      default	default	0
+		//3	PlayerHeroList	0	玩家英雄队列 List        default	default	0
+		//4	CurHeroList	0	当前出战英雄队列 List        default	default	0
+
+		//ParamID name	AValue	des	 type defaultvalue  max	  min   flag
+		//int32   char	int32   char char char			char  char	int32
+		protected Dictionary<string, ConfigData> m_xmlLayout;
+		public void InitXmlLayout(ref ConfigData[] datas)
+		{
+			foreach (ConfigData data in datas)
+			{
+				m_xmlLayout.Add(data.GetString("name"), data);
+			}
+		}
+
+		public void XmlElementSetDefaultValue(ConfigData layout, ref XmlElement elmXml)
+		{
+			// 设置节点默认属性
+			elmXml.SetAttribute("type", layout.GetString("type"));
+			elmXml.SetAttribute("max", layout.GetString("max"));
+			elmXml.SetAttribute("min", layout.GetString("min"));
+			elmXml.SetAttribute("flag", layout.GetInt("flag").ToString());
+			elmXml.InnerText = layout.GetString("defaultvalue");
+		}
+
+		public virtual void CreateXml()
 		{
 
 		}
 
-		public virtual void CreateXml()
+		public virtual void AddXml()
 		{
 
 		}
@@ -67,6 +99,11 @@ namespace XWorld
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// 初始化Xml的格式
+		/// </summary>
+		void InitXmlLayout(ref ConfigData[] datas);
 
 		/// <summary>
 		/// 检查xml

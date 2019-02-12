@@ -6,20 +6,23 @@ using System.Xml;
 
 namespace XWorld.GameData
 {
-	public class PlayerDataManager : Singleton<PlayerDataManager>
+	public class PlayerDataManager : Singleton<PlayerDataManager>, IInstanceDataManager
 	{
-		
 
+		private PlayerDataXml m_dataXml;
+
+		public PlayerDataManager()
+		{
+			m_dataXml = new PlayerDataXml();
+		}
+
+		//XTODO	添加数据托管
+		public void OnLoadPlayerData(ref ConfigData[] datas)
+		{
+			m_dataXml.InitXmlLayout(ref datas);
+		}
 
 	}
-
-//ParamID name    AValue des type defaultvalue    max min flag
-//int32   char int32   char char char char char int32
-//0	TotalTime	0	总计游戏时长 uint32  0	4294967294	0	0
-//1	gold	0	金币 uint32  0	4294967294	0	0
-//2	accountname	0	玩家用户名 Char64      default	default	0
-//3	PlayerHeroList	0	玩家英雄队列 List        default	default	0
-//4	CurHeroList	0	当前出战英雄队列 List        default	default	0
 
 	public class PlayerDataXml : XmlOperation
 	{
@@ -28,7 +31,7 @@ namespace XWorld.GameData
 		{
 
 		}
-
+		
 		/// <summary>
 		/// 根据路径来创建xml文件
 		/// </summary>
@@ -39,25 +42,21 @@ namespace XWorld.GameData
 				// 创建xml文档实例
 				XmlDocument xmlDoc = new XmlDocument();
 				// 创建根节点
-				XmlElement root = xmlDoc.CreateElement("transforms");
-				// 创建第一个子节点
-				XmlElement elmXml = xmlDoc.CreateElement("rotation");
-				// 设置节点属性
-				elmXml.SetAttribute("id", "0");
-				elmXml.SetAttribute("name", "first");
-				// 创建第一子节点的子节点
-				XmlElement rotation_x = xmlDoc.CreateElement("x");
-				rotation_x.InnerText = "0";
-				XmlElement rotation_y = xmlDoc.CreateElement("y");
-				rotation_y.InnerText = "1";
-				XmlElement rotation_z = xmlDoc.CreateElement("z");
-				rotation_z.InnerText = "2";
+				XmlElement root = xmlDoc.CreateElement("root");
+				root.SetAttribute("curid", "1");
 
-				// 排序
-				elmXml.AppendChild(rotation_x);
-				elmXml.AppendChild(rotation_y);
-				elmXml.AppendChild(rotation_z);
-				root.AppendChild(elmXml);
+				//创建单个实例数据节点
+				XmlElement defaultElm = xmlDoc.CreateElement("defaultElm");
+				defaultElm.SetAttribute("instanceid", StaticParam.XMLPre_PlayerData + "0");
+				foreach (ConfigData layout in m_xmlLayout.Values)
+				{
+					//创建子节点
+					XmlElement elmXml = xmlDoc.CreateElement(layout.GetString("name"));
+					// 设置节点属性
+					XmlElementSetDefaultValue(layout, ref elmXml);
+					defaultElm.AppendChild(elmXml);
+				}
+				root.AppendChild(defaultElm);
 				xmlDoc.AppendChild(root);
 
 				xmlDoc.Save(m_XmlFilePath);
@@ -67,7 +66,6 @@ namespace XWorld.GameData
 		/// <summary>
 		/// 更新指定id的xml数据
 		/// </summary>
-		/// <param name="path"></param>
 		/// <param name="id"></param>
 		public override void UpdateXml(string id)
 		{
@@ -100,7 +98,6 @@ namespace XWorld.GameData
 		/// <summary>
 		/// 添加一条数据
 		/// </summary>
-		/// <param name="path"></param>
 		public override void AddXml()
 		{
 			if (File.Exists(m_XmlFilePath))
@@ -131,7 +128,6 @@ namespace XWorld.GameData
 		/// <summary>
 		/// 删除数据
 		/// </summary>
-		/// <param name="path"></param>
 		/// <param name="id"></param>
 		public override void DeleteXml(string id)
 		{

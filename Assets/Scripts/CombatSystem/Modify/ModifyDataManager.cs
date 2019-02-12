@@ -24,6 +24,7 @@ namespace XWorld
         {
 
         }
+		//XTODO	添加数据托管
         public void OnLoadSkillData(ConfigData data)
         {
             m_SkillDataManager.OnLoadSkillData(data);
