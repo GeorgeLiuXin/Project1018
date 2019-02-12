@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace XWorld
 {
-    public class InstanceData : IDisposable
+    public class InstanceItem : IDisposable
     {
 
         //一行数据
         public Dictionary<string, IConfigData> RowDataMap;
 
-        public InstanceData()
+        public InstanceItem()
         {
             RowDataMap = new Dictionary<string, IConfigData>();
         }
@@ -20,7 +21,7 @@ namespace XWorld
         {
             RowDataMap.Clear();
             RowDataMap = null;
-        }
+		}
 
         public bool GetBool(string sName)
         {
@@ -179,6 +180,62 @@ namespace XWorld
                 RowDataMap.Add(sName, boolData);
             }
         }
-    }
+	}
+
+	public class InstanceData : IDisposable
+	{
+		public string dataName;
+		public Dictionary<int, InstanceItem> DataMap;
+		public bool bDirty;
+
+		public InstanceData()
+		{
+			dataName = "";
+			DataMap = new Dictionary<int, InstanceItem>();
+			Reset();
+		}
+
+		public void Dispose()
+		{
+			foreach (KeyValuePair<int, InstanceItem> data in DataMap)
+			{
+				data.Value.Dispose();
+			}
+			DataMap.Clear();
+			DataMap = null;
+			Reset();
+		}
+
+		public InstanceItem GetData()
+		{
+			if (!DataMap.ContainsKey(0))
+				return null;
+			return DataMap[0];
+		}
+		public InstanceItem GetData(int pk)
+		{
+			if (!DataMap.ContainsKey(pk))
+				return null;
+			return DataMap[pk];
+		}
+
+		public InstanceItem[] GetAllData()
+		{
+			return DataMap.Values.ToArray();
+		}
+
+		public void AddData(int paramid, InstanceItem data)
+		{
+			if (DataMap.ContainsKey(paramid))
+			{
+				GameLogger.Error(LOG_CHANNEL.ERROR, "InstanceData:" + dataName + ",Has Key:" + paramid);
+			}
+			DataMap.Add(paramid, data);
+		}
+
+		public bool IsDirty(int valueID) { return bDirty; }
+		public void SetDirty() { bDirty = true; }
+		public void Reset() { bDirty = false; }
+	}
 
 }

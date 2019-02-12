@@ -36,16 +36,6 @@ namespace XWorld
 			}
 		}
 
-		//ParamID name    AValue des type defaultvalue    max min flag
-		//int32   char int32   char char char char char int32
-		//0	TotalTime	0	总计游戏时长 uint32  0	4294967294	0	0
-		//1	gold	0	金币 uint32  0	4294967294	0	0
-		//2	accountname	0	玩家用户名 Char64      default	default	0
-		//3	PlayerHeroList	0	玩家英雄队列 List        default	default	0
-		//4	CurHeroList	0	当前出战英雄队列 List        default	default	0
-
-		//ParamID name	AValue	des	 type defaultvalue  max	  min   flag
-		//int32   char	int32   char char char			char  char	int32
 		protected Dictionary<string, ConfigData> m_xmlLayout;
 		public void InitXmlLayout(ref ConfigData[] datas)
 		{
@@ -55,36 +45,50 @@ namespace XWorld
 			}
 		}
 
-		public void XmlElementSetDefaultValue(ConfigData layout, ref XmlElement elmXml)
-		{
-			// 设置节点默认属性
-			elmXml.SetAttribute("type", layout.GetString("type"));
-			elmXml.SetAttribute("max", layout.GetString("max"));
-			elmXml.SetAttribute("min", layout.GetString("min"));
-			elmXml.SetAttribute("flag", layout.GetInt("flag").ToString());
-			elmXml.InnerText = layout.GetString("defaultvalue");
-		}
-
+		/// <summary>
+		/// 根据路径来创建xml文件
+		/// </summary>
 		public virtual void CreateXml()
 		{
 
 		}
 
-		public virtual void AddXml()
-		{
-
-		}
-
+		/// <summary>
+		/// 删除数据
+		/// </summary>
+		/// <param name="id"></param>
 		public virtual void DeleteXml(string id)
 		{
 
 		}
-
-		public virtual void UpdateXml(string id)
+		/// <summary>
+		/// 删除所有数据
+		/// </summary>
+		public virtual void DeleteAllXml()
 		{
 
 		}
 
+		/// <summary>
+		/// 更新整个xml数据
+		/// </summary>
+		public virtual void UpdateXml()
+		{
+
+		}
+
+		/// <summary>
+		/// 根据系统数据更新整个xml数据，保存当前游戏的系统数据
+		/// </summary>
+		/// <param name="dict">系统数据</param>
+		public virtual void UpdateXml(Dictionary<string, InstanceData> dict)
+		{
+
+		}
+
+		/// <summary>
+		/// 读取xml
+		/// </summary>
 		public virtual void ReadXml()
 		{
 
@@ -114,19 +118,23 @@ namespace XWorld
 		/// </summary>
 		void CreateXml();
 		/// <summary>
-		/// 更新指定id的xml数据
+		/// 根据配表更新整个xml数据，填充当前没有的配表节点
 		/// </summary>
-		/// <param name="id">对应ID</param>
-		void UpdateXml(string id);
+		void UpdateXml();
 		/// <summary>
-		/// 添加一条数据
+		/// 根据系统数据更新整个xml数据，保存当前游戏的系统数据
 		/// </summary>
-		void AddXml();
+		/// <param name="dict">系统数据</param>
+		void UpdateXml(Dictionary<string, InstanceData> dict);
 		/// <summary>
 		/// 删除数据
 		/// </summary>
 		/// <param name="id"></param>
 		void DeleteXml(string id);
+		/// <summary>
+		/// 删除所有数据
+		/// </summary>
+		void DeleteAllXml();
 		/// <summary>
 		/// 读取xml
 		/// </summary>

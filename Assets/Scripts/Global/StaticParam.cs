@@ -11,7 +11,7 @@ namespace XWorld
 		//XML统一路径
 		public static readonly string PATH_XML_FILES = "XML";
 		//XML子文件索引前缀
-		public static readonly string XMLPre_PlayerData = "PlayerData";
+		public static readonly string XMLPre_PlayerData = "PlayerData_";
 
 		//数据读取
 		public static readonly string Config_Define_Name = "client_config_define";

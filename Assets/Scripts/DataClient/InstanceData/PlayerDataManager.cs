@@ -3,159 +3,175 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Xml;
+using System;
 
 namespace XWorld.GameData
 {
+	/// <summary>
+	/// 1、数据标脏	XTODO
+	/// 2、根据标脏数据动态更新xml
+	/// 3、根据xml更新数据
+	/// </summary>
 	public class PlayerDataManager : Singleton<PlayerDataManager>, IInstanceDataManager
 	{
+		public ParamXmlBase m_dataXml
+		{
+			get;
+			set;
+		}
+		public Dictionary<string, InstanceData> m_instanceDataDict
+		{
+			get;
+			set;
+		}
 
-		private PlayerDataXml m_dataXml;
 
 		public PlayerDataManager()
 		{
 			m_dataXml = new PlayerDataXml();
+			m_instanceDataDict = new Dictionary<string, InstanceData>();
+		}
+
+		/// <summary>
+		/// 根据xml读取数据
+		/// </summary>
+		public void OnLoadInstanceDatas(ref InstanceData[] datas)
+		{
+
+		}
+
+		public void OnSaveInstanceDatas()
+		{
+			m_dataXml.UpdateXml(m_instanceDataDict);
 		}
 
 		//XTODO	添加数据托管
-		public void OnLoadPlayerData(ref ConfigData[] datas)
+		public void OnLoadInstanceLayout(ref ConfigData[] datas)
 		{
 			m_dataXml.InitXmlLayout(ref datas);
 		}
-
 	}
 
-	public class PlayerDataXml : XmlOperation
+	//ParamID name    AValue des type defaultvalue    max min flag
+	//int32   char int32   char char char char char int32
+	//0	TotalTime	0	总计游戏时长 uint32  0	4294967294	0	0
+	//1	gold	0	金币 uint32  0	4294967294	0	0
+	//2	accountname	0	玩家用户名 Char64      default	default	0
+	//3	PlayerHeroList	0	玩家英雄队列 List        default	default	0
+	//4	CurHeroList	0	当前出战英雄队列 List        default	default	0
+
+	//ParamID name	AValue	des	 type defaultvalue  max	  min   flag
+	//int32   char	int32   char char char			char  char	int32
+	public class PlayerDataXml : ParamXmlBase
 	{
 		private static string path = StaticParam.PATH_XML_FILES + "/PlayerDataXml/test.xml";
-		public PlayerDataXml() : base(path)
+		public PlayerDataXml() : base(path, StaticParam.XMLPre_PlayerData)
 		{
 
 		}
-		
-		/// <summary>
-		/// 根据路径来创建xml文件
-		/// </summary>
+
 		public override void CreateXml()
+		{
+			base.CreateXml();
+		}
+
+		public override void DeleteXml(string id)
+		{
+			base.DeleteXml(id);
+		}
+		public override void DeleteAllXml()
+		{
+			base.DeleteAllXml();
+		}
+
+		public override void UpdateXml()
 		{
 			if (!File.Exists(m_XmlFilePath))
 			{
-				// 创建xml文档实例
-				XmlDocument xmlDoc = new XmlDocument();
-				// 创建根节点
-				XmlElement root = xmlDoc.CreateElement("root");
-				root.SetAttribute("curid", "1");
+				GameLogger.DebugLog(LOG_CHANNEL.ASSET, "当前路径下XML不存在!");
+				return;
+			}
 
-				//创建单个实例数据节点
-				XmlElement defaultElm = xmlDoc.CreateElement("defaultElm");
-				defaultElm.SetAttribute("instanceid", StaticParam.XMLPre_PlayerData + "0");
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.Load(m_XmlFilePath);
+
+			List<XmlElement> removeList = new List<XmlElement>();
+
+			XmlNode rootNode = xmlDoc.SelectSingleNode("root");
+			XmlNodeList nodes = rootNode.ChildNodes;
+			foreach (XmlElement node in nodes)
+			{
+				if (!node.HasChildNodes)
+				{
+					removeList.Add(node);
+					continue;
+				}
+
+				XmlNode preChildNode = node.FirstChild;
 				foreach (ConfigData layout in m_xmlLayout.Values)
 				{
-					//创建子节点
-					XmlElement elmXml = xmlDoc.CreateElement(layout.GetString("name"));
-					// 设置节点属性
-					XmlElementSetDefaultValue(layout, ref elmXml);
-					defaultElm.AppendChild(elmXml);
-				}
-				root.AppendChild(defaultElm);
-				xmlDoc.AppendChild(root);
-
-				xmlDoc.Save(m_XmlFilePath);
-			}
-		}
-
-		/// <summary>
-		/// 更新指定id的xml数据
-		/// </summary>
-		/// <param name="id"></param>
-		public override void UpdateXml(string id)
-		{
-			if (File.Exists(m_XmlFilePath))
-			{
-				XmlDocument xmlDoc = new XmlDocument();
-				xmlDoc.Load(m_XmlFilePath);
-
-				XmlNodeList nodes = xmlDoc.SelectSingleNode("transforms").ChildNodes;
-
-				foreach (XmlElement xe in nodes)
-				{
-					if (xe.GetAttribute("id") == id)
+					XmlNode curChildNode = node.SelectSingleNode(layout.GetString("name"));
+					if (curChildNode == null)
 					{
-						xe.SetAttribute("id", "1001");
-
-						foreach (XmlElement xx1 in xe.ChildNodes)
-						{
-							if (xx1.Name == "x")
-								xx1.InnerText = "1001";
-						}
-						break;
+						XmlElement curChildNodeEle = xmlDoc.CreateElement(layout.GetString("name"));
+						// 设置节点属性
+						XmlElementSetDefaultValue(layout, ref curChildNodeEle);
+						node.InsertBefore(curChildNodeEle, preChildNode);
+						curChildNode = curChildNodeEle;
 					}
 				}
-
-				xmlDoc.Save(m_XmlFilePath);
 			}
-		}
 
-		/// <summary>
-		/// 添加一条数据
-		/// </summary>
-		public override void AddXml()
-		{
-			if (File.Exists(m_XmlFilePath))
+			foreach (XmlElement xmlEle in removeList)
 			{
-				XmlDocument xmlDoc = new XmlDocument();
-				xmlDoc.Load(m_XmlFilePath);
-				XmlNode root = xmlDoc.SelectSingleNode("transforms");
-				XmlElement elmNew = xmlDoc.CreateElement("rotation");
-				elmNew.SetAttribute("id", "1");
-				elmNew.SetAttribute("name", "yusong");
-
-				XmlElement rotation_X = xmlDoc.CreateElement("x");
-				rotation_X.InnerText = "0";
-				XmlElement rotation_Y = xmlDoc.CreateElement("y");
-				rotation_Y.InnerText = "1";
-				XmlElement rotation_Z = xmlDoc.CreateElement("z");
-				rotation_Z.InnerText = "2";
-
-				elmNew.AppendChild(rotation_X);
-				elmNew.AppendChild(rotation_Y);
-				elmNew.AppendChild(rotation_Z);
-				root.AppendChild(elmNew);
-				xmlDoc.AppendChild(root);
-				xmlDoc.Save(m_XmlFilePath);
+				rootNode.RemoveChild(xmlEle);
 			}
+			xmlDoc.Save(m_XmlFilePath);
 		}
-
-		/// <summary>
-		/// 删除数据
-		/// </summary>
-		/// <param name="id"></param>
-		public override void DeleteXml(string id)
+		
+		public override void UpdateXml(Dictionary<string, InstanceData> dict)
 		{
-			if (File.Exists(m_XmlFilePath))
+			if (!File.Exists(m_XmlFilePath))
 			{
-				XmlDocument xmlDoc = new XmlDocument();
-				xmlDoc.Load(m_XmlFilePath);
-				XmlNodeList nodeList = xmlDoc.SelectSingleNode("transforms").ChildNodes;
-				foreach (XmlElement xe in nodeList)
-				{
-					if (xe.GetAttribute("id") == id)
-					{
-						// 移除指定id的属性
-						xe.RemoveAttribute("id");
-					}
-
-					foreach (XmlElement x1 in xe.ChildNodes)
-					{
-						// 移除所有z的value
-						if (x1.Name == "z")
-						{
-							x1.RemoveAll();
-
-						}
-					}
-				}
-				xmlDoc.Save(m_XmlFilePath);
+				GameLogger.DebugLog(LOG_CHANNEL.ASSET, "当前路径下XML不存在!");
+				return;
 			}
+
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.Load(m_XmlFilePath);
+
+			List<XmlElement> removeList = new List<XmlElement>();
+
+			XmlNode rootNode = xmlDoc.SelectSingleNode("root");
+			//XmlNodeList nodes = rootNode.ChildNodes;
+			//foreach (XmlElement node in nodes)
+			//{
+			//	if (!node.HasChildNodes)
+			//	{
+			//		removeList.Add(node);
+			//		continue;
+			//	}
+
+			//	XmlNode preChildNode = node.FirstChild;
+			//	foreach (ConfigData layout in m_xmlLayout.Values)
+			//	{
+			//		XmlNode curChildNode = node.SelectSingleNode(layout.GetString("name"));
+			//		if (curChildNode == null)
+			//		{
+			//			XmlElement curChildNodeEle = xmlDoc.CreateElement(layout.GetString("name"));
+			//			// 设置节点属性
+			//			XmlElementSetDefaultValue(layout, ref curChildNodeEle);
+			//			node.InsertBefore(curChildNodeEle, preChildNode);
+			//			curChildNode = curChildNodeEle;
+			//		}
+			//	}
+			//}
+
+			//foreach (XmlElement xmlEle in removeList)
+			//{
+			//	rootNode.RemoveChild(xmlEle);
+			//}
+			xmlDoc.Save(m_XmlFilePath);
 		}
 
 		/// <summary>
