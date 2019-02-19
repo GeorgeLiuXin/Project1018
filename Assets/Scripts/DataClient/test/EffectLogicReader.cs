@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using Extension;
 using System.Xml;
 
-namespace Galaxy
+namespace XWorld
 {
     /// <summary>
     /// 表现效果相关参数    classXMLproperty
@@ -85,7 +84,7 @@ namespace Galaxy
     /// <summary>
     /// 单个表现效果及其相关属性    classXML
     /// </summary>
-    public class EffectLogicParams : List<EffectLogicParamItem>
+    public class EffectLogicParamList : List<EffectLogicParamItem>
     {
         public string sLogicName;
     }
@@ -93,7 +92,7 @@ namespace Galaxy
     /// <summary>
     /// 表现效果集合，对应于一个特效效果ID    classesXML
     /// </summary>
-    public class EffectLogicParamData : List<EffectLogicParams>
+    public class EffectLogicParamData : List<EffectLogicParamList>
     {
 
     }
@@ -101,7 +100,7 @@ namespace Galaxy
     /// <summary>
     /// 表现效果id To 效果集合  classDict
     /// </summary>
-    public class EffectLogicParamDataManager : GalaxyGameManagerBase
+    public class EffectLogicParamDataManager : XWorldGameManagerBase
     {
         public Dictionary<int, EffectLogicParamData> m_dict;
         private string m_xmlPath;
@@ -139,48 +138,61 @@ namespace Galaxy
         }
     }
     
-    public interface IXmlOperation
+    public interface IXmlOperation1
     {
         string m_XmlFilePath
         {
             get;
             set;
         }
-
-        /// <summary>
-        /// 检查xml
-        /// </summary>
-        void CheckXml();
+		
         /// <summary>
         /// 创建xml文件
         /// </summary>
         void CreateXml();
-        
-        /// <summary>
-        /// 更新xml数据
-        /// </summary>
-        /// <param name="dict">数据</param>
-        void AddXml(Dictionary<string, EffectLogicParamItem> dict);
 
-        /// <summary>
-        /// 更新xml数据
-        /// </summary>
-        /// <param name="dict">系统数据</param>
-        void UpdateXml(Dictionary<string, EffectLogicParamItem> dict);
-        /// <summary>
-        /// 删除数据
-        /// </summary>
-        /// <param name="id"></param>
-        void DeleteXml(string id);
+		/// <summary>
+		/// 更新xml数据
+		/// </summary>
+		/// <param name="data">数据</param>
+		void AddXml(EffectLogicParamData data);
+		/// <summary>
+		/// 更新xml数据
+		/// </summary>
+		/// <param name="data">数据</param>
+		void AddXml(Dictionary<int, EffectLogicParamData> datadict);
+
+		/// <summary>
+		/// 更新xml数据
+		/// </summary>
+		/// <param name="data">数据</param>
+		void UpdateXml(EffectLogicParamData data);
+		/// <summary>
+		/// 更新xml数据
+		/// </summary>
+		/// <param name="data">数据</param>
+		void UpdateXml(Dictionary<int, EffectLogicParamData> datadict);
+
+		/// <summary>
+		/// 删除数据
+		/// </summary>
+		/// <param name="id"></param>
+		void DeleteXml(string id);
         /// <summary>
         /// 删除所有数据
         /// </summary>
         void DeleteAllXml();
+
         /// <summary>
         /// 读取xml
         /// </summary>
         void ReadXml();
-    }
+		/// <summary>
+		/// 读取xml
+		/// </summary>
+		/// <param name="id"></param>
+		void ReadXml(string id);
+	}
 
     public class XmlBase
     {
@@ -213,23 +225,18 @@ namespace Galaxy
     }
 
     //XML 表现效果读取方式
-    public class EffectLogicReader : XmlBase, IXmlOperation
-    {
+    public class EffectLogicReader : XmlBase, IXmlOperation1
+	{
 
         public EffectLogicReader(string filePath) : base(filePath)
         {
 
         }
 
-        public void XmlElementSetDefaultValue(ConfigData layout, ref XmlElement elmXml)
-        {
-            // 设置节点默认属性
-            elmXml.SetAttribute("type", layout.GetString("type"));
-            elmXml.SetAttribute("max", layout.GetString("max"));
-            elmXml.SetAttribute("min", layout.GetString("min"));
-            elmXml.SetAttribute("flag", layout.GetInt("flag").ToString());
-            elmXml.InnerText = layout.GetString("defaultvalue");
-        }
+        public string GetPropertyValue(EffectLogicParamItem item)
+		{
+			return item.sValue;
+		}
 
         public void CreateXml()
         {
@@ -246,7 +253,7 @@ namespace Galaxy
             }
         }
         
-        public void AddXml(Dictionary<string, EffectLogicParamItem> dict)
+        public void AddXml(EffectLogicParamData data)
         {
             if (!File.Exists(m_XmlFilePath))
             {
@@ -254,26 +261,70 @@ namespace Galaxy
                 XmlDocument xmlDoc = new XmlDocument();
                 // 创建根节点
                 XmlElement root = xmlDoc.CreateElement("root");
-                root.SetAttribute("curid", "0");
+				int id = Convert.ToInt32(root.GetAttribute("curid"));
 
-                //创建单个实例数据节点
-                XmlElement defaultElm = xmlDoc.CreateElement("instanceid", m_xmlPreName + "0");
-                foreach (ConfigData layout in m_xmlLayout.Values)
-                {
-                    //创建子节点
-                    XmlElement elmXml = xmlDoc.CreateElement(layout.GetString("name"));
-                    // 设置节点属性
-                    XmlElementSetDefaultValue(layout, ref elmXml);
-                    defaultElm.AppendChild(elmXml);
-                }
-                root.AppendChild(defaultElm);
+				id++;
+				//创建整个表现节点
+				XmlElement curParentElm = xmlDoc.CreateElement(id.ToString());
+				foreach (EffectLogicParamList _class in data)
+				{
+					//创建单个表现类型
+					XmlElement elm = xmlDoc.CreateElement(_class.sLogicName);
+					foreach (EffectLogicParamItem _property in _class)
+					{
+						XmlElement elmProperty = xmlDoc.CreateElement(_property.sName);
+						elmProperty.SetAttribute("Type", _property.sType);
+						elmProperty.InnerText = GetPropertyValue(_property);
+						elm.AppendChild(elmProperty);
+					}
+					curParentElm.AppendChild(elm);
+				}
+				root.AppendChild(curParentElm);
 
-                xmlDoc.AppendChild(root);
-                xmlDoc.Save(m_XmlFilePath);
+				root.SetAttribute("curid", id.ToString());
+				xmlDoc.AppendChild(root);
+				xmlDoc.Save(m_XmlFilePath);
             }
-        }
+		}
+		public void AddXml(Dictionary<int, EffectLogicParamData> datadict)
+		{
+			if (!File.Exists(m_XmlFilePath))
+			{
+				// 创建xml文档实例
+				XmlDocument xmlDoc = new XmlDocument();
+				// 创建根节点
+				XmlElement root = xmlDoc.CreateElement("root");
+				int id = Convert.ToInt32(root.GetAttribute("curid"));
 
-        public void DeleteXml(string id)
+				foreach (KeyValuePair<int,EffectLogicParamData> pair in datadict)
+				{
+					id = Mathf.Max(id, pair.Key);
+					//创建整个表现节点
+					XmlElement curParentElm = xmlDoc.CreateElement(pair.Key.ToString());
+					foreach (EffectLogicParamList _class in pair.Value)
+					{
+						//创建单个表现类型
+						XmlElement elm = xmlDoc.CreateElement(_class.sLogicName);
+						foreach (EffectLogicParamItem _property in _class)
+						{
+							XmlElement elmProperty = xmlDoc.CreateElement(_property.sName);
+							elmProperty.SetAttribute("Type", _property.sType);
+							elmProperty.InnerText = GetPropertyValue(_property);
+							elm.AppendChild(elmProperty);
+						}
+						curParentElm.AppendChild(elm);
+					}
+					root.AppendChild(curParentElm);
+				}
+				id++;
+
+				root.SetAttribute("curid", id.ToString());
+				xmlDoc.AppendChild(root);
+				xmlDoc.Save(m_XmlFilePath);
+			}
+		}
+
+		public void DeleteXml(string id)
         {
             if (File.Exists(m_XmlFilePath))
             {
@@ -299,7 +350,16 @@ namespace Galaxy
             }
         }
 
-        public void UpdateXml(Dictionary<string, EffectLogicParamItem> dict)
+		public void UpdateXml(EffectLogicParamData data)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void UpdateXml(Dictionary<int, EffectLogicParamData> datadict)
+		{
+			throw new NotImplementedException();
+		}
+		public void UpdateXml(Dictionary<string, EffectLogicParamItem> dict)
         {
             if (!File.Exists(m_XmlFilePath))
             {
@@ -365,7 +425,30 @@ namespace Galaxy
                     Debug.Log(element);
                 }
             }
-        }
-    }
+		}
+		public void ReadXml(string id)
+		{
+			if (File.Exists(m_XmlFilePath))
+			{
+				XmlDocument xmlDoc = new XmlDocument();
+				xmlDoc = new XmlDocument();
+				xmlDoc.Load(m_XmlFilePath);
+				XmlNodeList nodes = xmlDoc.SelectSingleNode("transforms").ChildNodes;
+				foreach (XmlElement xe in nodes)
+				{
+					Debug.Log("ID: " + xe.GetAttribute("id"));
+					Debug.Log("Name: " + xe.GetAttribute("name"));
+
+					string element = "";
+					foreach (XmlElement x in xe)
+					{
+						element = element + "," + x.InnerText;
+					}
+					Debug.Log(element);
+				}
+			}
+		}
+
+	}
 
 }
