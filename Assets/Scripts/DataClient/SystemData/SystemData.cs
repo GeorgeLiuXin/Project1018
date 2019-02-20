@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Galaxy
+namespace XWorld
 {
+
 	/// <summary>
-	/// 表现效果相关参数    classXMLproperty
+	/// 单个属性数据
 	/// </summary>
-	public class EffectLogicParamItem
+	public class DataPropertyInXml
 	{
 		public string sName;
 		public string sType;
@@ -86,10 +87,12 @@ namespace Galaxy
 	}
 
 	/// <summary>
-	/// 单个表现效果及其相关属性    classXML
+	/// 单个数据Class
 	/// </summary>
-	public class EffectLogicParamList : List<EffectLogicParamItem>
+	public class DataClassInXml : List<DataPropertyInXml>
 	{
+		//XTODO 添加class唯一id
+
 		public string sLogicName;
 
 		//标脏
@@ -100,9 +103,9 @@ namespace Galaxy
 	}
 
 	/// <summary>
-	/// 表现效果集合，对应于一个特效效果ID    classesXML
+	/// 某System的SystemData
 	/// </summary>
-	public class EffectLogicParamData : List<EffectLogicParamList>
+	public class SystemDataInXml : List<DataClassInXml>
 	{
 		//单个数据的唯一id
 		public int iIndex;
@@ -115,55 +118,5 @@ namespace Galaxy
 		public void SetDirty() { bDirty = true; }
 		public void Reset() { bDirty = false; }
 	}
-
-	/// <summary>
-	/// 表现效果id To 效果集合  classDict
-	/// </summary>
-	public class EffectLogicManager : GalaxyGameManagerBase
-    {
-        public Dictionary<int, EffectLogicParamData> m_dict;
-        private string m_xmlPath;
-        private EffectLogicReader reader;
-
-        private PerformanceLogicFactory factory;
-
-        public override void InitManager()
-        {
-            InitXMLPath();
-            reader = new EffectLogicReader(m_xmlPath);
-            InitDataDict();
-        }
-        private void InitXMLPath()
-        {
-#if !UNITY_EDITOR && UNITY_ANDROID
-            m_xmlPath = Application.streamingAssetsPath + "/CombatXmlDefine.xml";
-#elif !UNITY_EDITOR && UNITY_IPHONE
-            m_xmlPath = Application.streamingAssetsPath + "/CombatXmlDefine.xml";
-#else
-            m_xmlPath = Application.streamingAssetsPath + "/CombatXmlDefine.xml";
-#endif
-        }
-        private void InitDataDict()
-        {
-            m_dict = new Dictionary<int, EffectLogicParamData>();
-            reader.ReadXml(ref m_dict);
-        }
-
-        public override void ShutDown()
-        {
-
-        }
-
-        public override void Update(float fElapseTimes)
-        {
-
-        }
-
-        public void ReloadDataDict()
-        {
-            m_dict.Clear();
-            m_dict = null;
-            InitDataDict();
-        }
-    }
+	
 }
