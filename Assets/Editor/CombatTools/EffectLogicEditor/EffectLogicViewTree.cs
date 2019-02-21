@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Extension;
 
 namespace Galaxy
 {
@@ -24,10 +25,11 @@ namespace Galaxy
         }
 
         private GUIStyle style;
-
         public EffectLogicParamData m_data;
 
-        public EffectLogicViewTree(TreeViewState state, MultiColumnHeaderState mchs, EffectLogicParamData data)
+        private bool m_InSearchState;
+
+        public EffectLogicViewTree(TreeViewState state, MultiColumnHeaderState mchs)
             : base(state, new MultiColumnHeader(mchs))
         {
             showBorder = true;
@@ -37,7 +39,7 @@ namespace Galaxy
             style = new GUIStyle(GUI.skin.button);
             style.alignment = TextAnchor.MiddleLeft;
 
-            m_data = data;
+            m_data = null;
             Reload();
         }
 
@@ -70,10 +72,14 @@ namespace Galaxy
         {
             base.RowGUI(args);
 
+            if (!state.searchString.IsNE())
+            {
+                //数据是否同步，不同步则viewtree保留唯一一份数据，其余保留索引
+            }
+
             if (args.item is EffectLogicListViewTreeItem)
             {
                 EffectLogicListViewTreeItem treeItem = args.item as EffectLogicListViewTreeItem;
-
                 Color oldColor = GUI.color;
                 bool expended = IsExpanded(treeItem.id);
                 if (GUI.Button(args.rowRect, "  " + treeItem.m_class.sLogicName + "     Des", style))
@@ -135,6 +141,42 @@ namespace Galaxy
             }
         }
 
+        protected override bool DoesItemMatchSearch(TreeViewItem item, string search)
+        {
+            bool bSearchValue = false;
+            if (search.StartsWith("Value_") || search.StartsWith("value_"))
+            {
+                bSearchValue = true;
+                search = search.Substring(6);
+            }
+
+            if (item is EffectLogicListViewTreeItem)
+            {
+                EffectLogicListViewTreeItem treeItem = item as EffectLogicListViewTreeItem;
+
+                if (!bSearchValue && treeItem.m_class.sLogicName.Contains(search))
+                {
+                    return true;
+                }
+                else
+                {
+                    foreach (EffectLogicViewTreeItem property in treeItem.children)
+                    {
+                        if (bSearchValue && property.m_property.sValue.Contains(search))
+                        {
+                            return true;
+                        }
+                        else if (property.m_property.sName.Contains(search))
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+
         public static MultiColumnHeaderState CreateDefaultMultiColumnHeaderState()
         {
             return new MultiColumnHeaderState(GetColumns());
@@ -183,6 +225,15 @@ namespace Galaxy
             return retVal;
         }
 
+
+        public void RefreshByNewData(EffectLogicParamData data)
+        {
+            m_data = data;
+            rootItem.children.Clear();
+
+            Reload();
+            Repaint();
+        }
 
         private void Refresh()
         {

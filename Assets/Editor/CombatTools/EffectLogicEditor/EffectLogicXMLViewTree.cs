@@ -20,8 +20,9 @@ namespace Galaxy
             showAlternatingRowBackgrounds = true;
             showBorder = true;
             m_IsAddState = false;
-            m_XmlNodeName = "Enter new Xml name...";
+            m_XmlNodeName = "";
             m_DesToDictIndex = new Dictionary<string, int>(_dict);
+            curDataStr = "";
             Reload();
         }
 
@@ -47,6 +48,12 @@ namespace Galaxy
         public override void OnGUI(Rect rect)
         {
             base.OnGUI(rect);
+
+            TreeViewItem item = FindItem(state.lastClickedID, rootItem);
+            if (item != null && curDataStr != item.displayName)
+            {
+                SetCurString(item.displayName);
+            }
         }
 
         protected override void RowGUI(RowGUIArgs args)
@@ -54,6 +61,7 @@ namespace Galaxy
             base.RowGUI(args);
 
             TreeViewItem node = args.item;
+
             if (node.displayName.Equals(m_AddNodeDisplayName))
             {
                 Color oldColor = GUI.color;
@@ -71,7 +79,7 @@ namespace Galaxy
                     using (new EditorGUILayout.HorizontalScope())
                     {
                         m_XmlNodeName = GUILayout.TextField(m_XmlNodeName);
-                        if (GUILayout.Button("添加"))
+                        if (GUILayout.Button("添加", GUILayout.Width(80)))
                         {
                             m_IsAddState = !m_IsAddState;
                             AddEffectLogicParamDataToXml();
@@ -87,8 +95,19 @@ namespace Galaxy
         private void AddEffectLogicParamDataToXml()
         {
 
-            m_XmlNodeName = "Enter new Xml name...";
+            m_XmlNodeName = "";
         }
+
+        private string curDataStr;
+        public delegate void EffectLogicXmlCurDataHandle(string curStr);
+        public EffectLogicXmlCurDataHandle OnChange;
+
+        private void SetCurString(string curStr)
+        {
+            curDataStr = curStr;
+            OnChange(curStr);
+        }
+
     }
-    
+
 }

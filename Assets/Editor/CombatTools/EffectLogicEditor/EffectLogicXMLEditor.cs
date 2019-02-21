@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using System;
+using Extension;
 
 namespace Galaxy
 {
@@ -94,59 +95,101 @@ namespace Galaxy
             GUILayout.EndHorizontal();
         }
 
+        void InitData()
+        {
+            //temp
+            m_DesToDictIndex = new Dictionary<string, int>();
+            m_dataDict = new Dictionary<int, EffectLogicParamData>();
+
+            EffectLogicParamData m_Data1 = new EffectLogicParamData();
+
+            EffectLogicParamList list1 = new EffectLogicParamList();
+            EffectLogicParamItem item1 = new EffectLogicParamItem();
+            item1.sName = "test1";
+            item1.sType = "int32";
+            item1.sValue = "0";
+            EffectLogicParamItem item2 = new EffectLogicParamItem();
+            item2.sName = "test2";
+            item2.sType = "f32";
+            item2.sValue = "0.5";
+            EffectLogicParamItem item3 = new EffectLogicParamItem();
+            item3.sName = "test3";
+            item3.sType = "char";
+            item3.sValue = "hahahahah";
+            list1.sLogicName = "class1";
+            list1.Add(item1);
+            list1.Add(item2);
+            list1.Add(item3);
+
+            EffectLogicParamList list2 = new EffectLogicParamList();
+            EffectLogicParamItem item4 = new EffectLogicParamItem();
+            item4.sName = "test4";
+            item4.sType = "bool";
+            item4.sValue = "true";
+            EffectLogicParamItem item5 = new EffectLogicParamItem();
+            item5.sName = "test5";
+            item5.sType = "int32";
+            item5.sValue = "1";
+            list2.sLogicName = "class2";
+            list2.Add(item1);
+            list2.Add(item4);
+            list2.Add(item5);
+            m_Data1.Add(list1);
+            m_Data1.Add(list2);
+
+            m_Data1.iIndex = 1;
+            m_Data1.sDescribe = "m_Data1";
+            m_DesToDictIndex.Add(m_Data1.sDescribe, m_Data1.iIndex);
+            m_dataDict.Add(m_Data1.iIndex, m_Data1);
+
+            EffectLogicParamData m_Data2 = new EffectLogicParamData();
+
+            EffectLogicParamList list3 = new EffectLogicParamList();
+            EffectLogicParamItem item6 = new EffectLogicParamItem();
+            item6.sName = "test6";
+            item6.sType = "int32";
+            item6.sValue = "0";
+            EffectLogicParamItem item7 = new EffectLogicParamItem();
+            item7.sName = "test7";
+            item7.sType = "f32";
+            item7.sValue = "0.5";
+            list3.sLogicName = "class3";
+            list3.Add(item6);
+            list3.Add(item7);
+
+            EffectLogicParamList list4 = new EffectLogicParamList();
+            EffectLogicParamItem item8 = new EffectLogicParamItem();
+            item8.sName = "test8";
+            item8.sType = "bool";
+            item8.sValue = "true";
+            list4.sLogicName = "class4";
+            list4.Add(item8);
+            m_Data2.Add(list3);
+            m_Data2.Add(list4);
+
+            m_Data2.iIndex = 2;
+            m_Data2.sDescribe = "m_Data2";
+            m_DesToDictIndex.Add(m_Data2.sDescribe, m_Data2.iIndex);
+            m_dataDict.Add(m_Data2.iIndex, m_Data2);
+        }
+
         void InitIfNeeded()
         {
             if (!m_Initialized)
             {
-                //temp
-                m_DesToDictIndex = new Dictionary<string, int>();
-                m_DesToDictIndex.Add("test1", 1);
-                m_DesToDictIndex.Add("test2", 2);
-                m_CurData = new EffectLogicParamData();
-                EffectLogicParamList list1 = new EffectLogicParamList();
-                EffectLogicParamItem item1 = new EffectLogicParamItem();
-                item1.sName = "test1";
-                item1.sType = "int32";
-                item1.sValue = "0";
-                EffectLogicParamItem item2 = new EffectLogicParamItem();
-                item2.sName = "test2";
-                item2.sType = "f32";
-                item2.sValue = "0.5";
-                EffectLogicParamItem item3 = new EffectLogicParamItem();
-                item3.sName = "test3";
-                item3.sType = "char";
-                item3.sValue = "hahahahah";
-                list1.sLogicName = "class1";
-                list1.Add(item1);
-                list1.Add(item2);
-                list1.Add(item3);
-
-                EffectLogicParamList list2 = new EffectLogicParamList();
-                EffectLogicParamItem item4 = new EffectLogicParamItem();
-                item4.sName = "test4";
-                item4.sType = "bool";
-                item4.sValue = "true";
-                EffectLogicParamItem item5 = new EffectLogicParamItem();
-                item5.sName = "test5";
-                item5.sType = "int32";
-                item5.sValue = "1";
-                list2.sLogicName = "class2";
-                list2.Add(item1);
-                list2.Add(item4);
-                list2.Add(item5);
-                m_CurData.Add(list1);
-                m_CurData.Add(list2);
+                InitData();
 
                 // Check if it already exists (deserialized from window layout file or scriptable object)
                 if (m_XmlTreeViewState == null)
                     m_XmlTreeViewState = new TreeViewState();
 
                 m_XmlTreeView = new EffectLogicXMLViewTree(m_XmlTreeViewState, m_DesToDictIndex);
+                InitHandle();
 
                 if (m_TreeViewState == null)
                     m_TreeViewState = new TreeViewState();
 
-                m_TreeView = new EffectLogicViewTree(m_TreeViewState, EffectLogicViewTree.CreateDefaultMultiColumnHeaderState(), m_CurData);
+                m_TreeView = new EffectLogicViewTree(m_TreeViewState, EffectLogicViewTree.CreateDefaultMultiColumnHeaderState());
                 
                 m_SearchField = new SearchField();
                 m_SearchField.downOrUpArrowKeyPressed += m_TreeView.SetFocusAndEnsureSelectedItem;
@@ -181,7 +224,7 @@ namespace Galaxy
             using (new EditorGUILayout.HorizontalScope())
             {
                 EditorGUILayout.LabelField("当前表现效果包含了以下效果: ");
-                if (GUILayout.Button("保存", "miniButton"))
+                if (GUILayout.Button("保存", GUILayout.Width(80)))
                 {
                     save();
                 }
@@ -244,23 +287,20 @@ namespace Galaxy
 
         //描述转换为表现效果对应id
         private Dictionary<string, int> m_DesToDictIndex;
-
+        private Dictionary<int, EffectLogicParamData> m_dataDict;
 
         private EffectLogicParamData m_CurData;
-        
-        private void add()
+        private EffectLogicParamData CurData
         {
-
-        }
-
-        private void save()
-        {
-
-        }
-
-        private void refresh()
-        {
-
+            get
+            {
+                return m_CurData;
+            }
+            set
+            {
+                m_CurData = value;
+                m_TreeView.RefreshByNewData(m_CurData);
+            }
         }
         
         /// <summary>
@@ -283,6 +323,46 @@ namespace Galaxy
                 return;
             }
 
+        }
+
+        private void add()
+        {
+
+        }
+
+        private void save()
+        {
+
+        }
+
+        private void refresh()
+        {
+
+        }
+
+        private int m_CurIndex;
+        private string m_CurDataDes;
+        public void InitHandle()
+        {
+            m_CurDataDes = "";
+            m_XmlTreeView.OnChange += SetCurData;
+        }
+
+        public void SetCurData(string curStr)
+        {
+            if (curStr.IsNE())
+                return;
+
+            if (!m_DesToDictIndex.ContainsKey(curStr))
+                return;
+
+            int index = m_DesToDictIndex[curStr];
+            if (!m_dataDict.ContainsKey(index))
+                return;
+
+            m_CurIndex = index;
+            m_CurDataDes = curStr;
+            CurData = m_dataDict[m_CurIndex];
         }
 
         #endregion
