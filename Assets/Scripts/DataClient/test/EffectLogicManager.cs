@@ -103,11 +103,11 @@ namespace Galaxy
     /// </summary>
     public class EffectLogicManager : GalaxyGameManagerBase
     {
+        public EffectLogicReader reader;
         public Dictionary<int, EffectLogicParamData> m_dict;
         private string m_xmlPath;
-        private EffectLogicReader reader;
 
-        private PerformanceLogicFactory factory;
+        public PerformanceLogicFactory factory;
 
         public override void InitManager()
         {

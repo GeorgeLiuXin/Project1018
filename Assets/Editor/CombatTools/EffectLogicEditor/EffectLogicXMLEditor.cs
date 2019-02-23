@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using System;
 using Extension;
+using System.Linq;
 
 namespace Galaxy
 {
@@ -24,6 +25,9 @@ namespace Galaxy
         }
     }
 
+    /// <summary>
+    /// 仅在非游戏模式下使用
+    /// </summary>
     public class EffectLogicXMLEditorWindow : EditorWindow
     {
         [NonSerialized]
@@ -66,9 +70,10 @@ namespace Galaxy
                     GUILayout.BeginHorizontal();
                     {
                         EditorGUILayout.LabelField("当前表现效果XML列表: ");
-                        if (GUILayout.Button("刷新类型", "miniButton"))
+                        if (GUILayout.Button("刷新", "miniButton"))
                         {
-                            refresh();
+                            RefreshDataType();
+                            RefreshXmlView();
                         }
                     }
                     DoXmlTreeView(xmlRect);
@@ -97,80 +102,87 @@ namespace Galaxy
 
         void InitData()
         {
-            //temp
-            m_DesToDictIndex = new Dictionary<string, int>();
             m_dataDict = new Dictionary<int, EffectLogicParamData>();
+            m_DesToDictIndex = new Dictionary<string, int>();
+            ReadXmlData();
+            m_CurIndex = 0;
+            m_CurDataDes = "";
+            m_IsAddState = false;
 
-            EffectLogicParamData m_Data1 = new EffectLogicParamData();
+            ////temp
+            //m_DesToDictIndex = new Dictionary<string, int>();
+            //m_dataDict = new Dictionary<int, EffectLogicParamData>();
 
-            EffectLogicParamList list1 = new EffectLogicParamList();
-            EffectLogicParamItem item1 = new EffectLogicParamItem();
-            item1.sName = "test1";
-            item1.sType = "int32";
-            item1.sValue = "0";
-            EffectLogicParamItem item2 = new EffectLogicParamItem();
-            item2.sName = "test2";
-            item2.sType = "f32";
-            item2.sValue = "0.5";
-            EffectLogicParamItem item3 = new EffectLogicParamItem();
-            item3.sName = "test3";
-            item3.sType = "char";
-            item3.sValue = "hahahahah";
-            list1.sLogicName = "class1";
-            list1.Add(item1);
-            list1.Add(item2);
-            list1.Add(item3);
+            //EffectLogicParamData m_Data1 = new EffectLogicParamData();
 
-            EffectLogicParamList list2 = new EffectLogicParamList();
-            EffectLogicParamItem item4 = new EffectLogicParamItem();
-            item4.sName = "test4";
-            item4.sType = "bool";
-            item4.sValue = "true";
-            EffectLogicParamItem item5 = new EffectLogicParamItem();
-            item5.sName = "test5";
-            item5.sType = "int32";
-            item5.sValue = "1";
-            list2.sLogicName = "class2";
-            list2.Add(item1);
-            list2.Add(item4);
-            list2.Add(item5);
-            m_Data1.Add(list1);
-            m_Data1.Add(list2);
+            //EffectLogicParamList list1 = new EffectLogicParamList();
+            //EffectLogicParamItem item1 = new EffectLogicParamItem();
+            //item1.sName = "test1";
+            //item1.sType = "int32";
+            //item1.sValue = "0";
+            //EffectLogicParamItem item2 = new EffectLogicParamItem();
+            //item2.sName = "test2";
+            //item2.sType = "f32";
+            //item2.sValue = "0.5";
+            //EffectLogicParamItem item3 = new EffectLogicParamItem();
+            //item3.sName = "test3";
+            //item3.sType = "char";
+            //item3.sValue = "hahahahah";
+            //list1.sLogicName = "class1";
+            //list1.Add(item1);
+            //list1.Add(item2);
+            //list1.Add(item3);
 
-            m_Data1.iIndex = 1;
-            m_Data1.sDescribe = "m_Data1";
-            m_DesToDictIndex.Add(m_Data1.sDescribe, m_Data1.iIndex);
-            m_dataDict.Add(m_Data1.iIndex, m_Data1);
+            //EffectLogicParamList list2 = new EffectLogicParamList();
+            //EffectLogicParamItem item4 = new EffectLogicParamItem();
+            //item4.sName = "test4";
+            //item4.sType = "bool";
+            //item4.sValue = "true";
+            //EffectLogicParamItem item5 = new EffectLogicParamItem();
+            //item5.sName = "test5";
+            //item5.sType = "int32";
+            //item5.sValue = "1";
+            //list2.sLogicName = "class2";
+            //list2.Add(item1);
+            //list2.Add(item4);
+            //list2.Add(item5);
+            //m_Data1.Add(list1);
+            //m_Data1.Add(list2);
 
-            EffectLogicParamData m_Data2 = new EffectLogicParamData();
+            //m_Data1.iIndex = 1;
+            //m_Data1.sDescribe = "m_Data1";
+            //m_DesToDictIndex.Add(m_Data1.sDescribe, m_Data1.iIndex);
+            //m_dataDict.Add(m_Data1.iIndex, m_Data1);
 
-            EffectLogicParamList list3 = new EffectLogicParamList();
-            EffectLogicParamItem item6 = new EffectLogicParamItem();
-            item6.sName = "test6";
-            item6.sType = "int32";
-            item6.sValue = "0";
-            EffectLogicParamItem item7 = new EffectLogicParamItem();
-            item7.sName = "test7";
-            item7.sType = "f32";
-            item7.sValue = "0.5";
-            list3.sLogicName = "class3";
-            list3.Add(item6);
-            list3.Add(item7);
+            //EffectLogicParamData m_Data2 = new EffectLogicParamData();
 
-            EffectLogicParamList list4 = new EffectLogicParamList();
-            EffectLogicParamItem item8 = new EffectLogicParamItem();
-            item8.sName = "test8";
-            item8.sType = "bool";
-            item8.sValue = "true";
-            list4.sLogicName = "class4";
-            list4.Add(item8);
-            m_Data2.Add(list3);
-            m_Data2.Add(list4);
+            //EffectLogicParamList list3 = new EffectLogicParamList();
+            //EffectLogicParamItem item6 = new EffectLogicParamItem();
+            //item6.sName = "test6";
+            //item6.sType = "int32";
+            //item6.sValue = "0";
+            //EffectLogicParamItem item7 = new EffectLogicParamItem();
+            //item7.sName = "test7";
+            //item7.sType = "f32";
+            //item7.sValue = "0.5";
+            //list3.sLogicName = "class3";
+            //list3.Add(item6);
+            //list3.Add(item7);
 
-            m_Data2.iIndex = 2;
-            m_Data2.sDescribe = "m_Data2";
-            m_DesToDictIndex.Add(m_Data2.sDescribe, m_Data2.iIndex);
-            m_dataDict.Add(m_Data2.iIndex, m_Data2);
+            //EffectLogicParamList list4 = new EffectLogicParamList();
+            //EffectLogicParamItem item8 = new EffectLogicParamItem();
+            //item8.sName = "test8";
+            //item8.sType = "bool";
+            //item8.sValue = "true";
+            //list4.sLogicName = "class4";
+            //list4.Add(item8);
+            //m_Data2.Add(list3);
+            //m_Data2.Add(list4);
+
+            //m_Data2.iIndex = 2;
+            //m_Data2.sDescribe = "m_Data2";
+            //m_DesToDictIndex.Add(m_Data2.sDescribe, m_Data2.iIndex);
+            //m_dataDict.Add(m_Data2.iIndex, m_Data2);
         }
 
         void InitIfNeeded()
@@ -226,7 +238,7 @@ namespace Galaxy
                 EditorGUILayout.LabelField("当前表现效果包含了以下效果: ");
                 if (GUILayout.Button("保存", GUILayout.Width(80)))
                 {
-                    save();
+                    SaveClassData();
                 }
             }
             GUILayout.EndArea();
@@ -259,9 +271,22 @@ namespace Galaxy
                     m_TreeView.CollapseAll();
                 }
 
-                if (GUILayout.Button("Add ...", style))
+                if (!m_IsAddState)
                 {
-                    add();
+                    if (GUILayout.Button("Add ...", style))
+                    {
+                        m_IsAddState = !m_IsAddState;
+                    }
+                }
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    m_AddClassIndex = EditorGUILayout.Popup(m_AddClassIndex, m_ClassName);
+                    if (GUILayout.Button("添加", GUILayout.Width(80)))
+                    {
+                        m_IsAddState = !m_IsAddState;
+                        AddClassData();
+                        Repaint();
+                    }
                 }
             }
 
@@ -280,14 +305,6 @@ namespace Galaxy
         }
 
         #region 具体数据逻辑
-
-        protected System.Reflection.FieldInfo[] m_DataFields = null;
-
-        private Dictionary<string, PerformanceLogic> m_ClassNameToLogic;
-
-        //描述转换为表现效果对应id
-        private Dictionary<string, int> m_DesToDictIndex;
-        private Dictionary<int, EffectLogicParamData> m_dataDict;
 
         private EffectLogicParamData m_CurData;
         private EffectLogicParamData CurData
@@ -325,29 +342,35 @@ namespace Galaxy
 
         }
 
-        private void add()
+        private bool m_IsAddState;
+        private int m_AddClassIndex = 0;
+        private void AddClassData()
         {
 
         }
 
-        private void save()
+        private void SaveClassData()
         {
 
         }
 
-        private void refresh()
-        {
+        #endregion
 
-        }
+        #region Handle
 
-        private int m_CurIndex;
-        private string m_CurDataDes;
         public void InitHandle()
         {
-            m_CurDataDes = "";
+            m_XmlTreeView.OnAdd += AddXmlNode;
             m_XmlTreeView.OnChange += SetCurData;
         }
 
+        #endregion
+
+        #region CurData
+
+        private int m_CurIndex;
+        private string m_CurDataDes;
+        
         public void SetCurData(string curStr)
         {
             if (curStr.IsNE())
@@ -363,6 +386,61 @@ namespace Galaxy
             m_CurIndex = index;
             m_CurDataDes = curStr;
             CurData = m_dataDict[m_CurIndex];
+        }
+
+        #endregion
+
+        #region 当前可被创建使用的数据基类
+
+        protected System.Reflection.FieldInfo[] m_DataFields = null;
+
+        private string[] m_ClassName;
+
+        private void RefreshDataType()
+        {
+            m_ClassName = GalaxyGameModule.GetGameManager<EffectLogicManager>().factory.m_dict.Keys.ToArray();
+
+        }
+
+        #endregion
+
+        #region XmlView 当前Xml包含数据
+        
+        //描述转换为表现效果对应id
+        private Dictionary<string, int> m_DesToDictIndex;
+        private Dictionary<int, EffectLogicParamData> m_dataDict;
+
+        /// <summary>
+        /// 读取Xml中所有的数据
+        /// </summary>
+        private void ReadXmlData()
+        {
+            m_dataDict.Clear();
+            m_dataDict = GalaxyGameModule.GetGameManager<EffectLogicManager>().m_dict;
+            m_DesToDictIndex.Clear();
+            foreach (var item in m_dataDict)
+            {
+                m_DesToDictIndex.Add(item.Value.sDescribe, item.Key);
+            }
+        }
+
+        private void RefreshXmlView()
+        {
+            ReadXmlData();
+            Repaint();
+        }
+        
+        private void AddXmlNode(string nodeName)
+        {
+            EffectLogicParamData data = new EffectLogicParamData();
+            data.sDescribe = nodeName;
+            AddXmlNode(data);
+        }
+        private void AddXmlNode(EffectLogicParamData data)
+        {
+            EffectLogicReader reader = GalaxyGameModule.GetGameManager<EffectLogicManager>().reader;
+            reader.AddXml(data);
+            RefreshXmlView();
         }
 
         #endregion

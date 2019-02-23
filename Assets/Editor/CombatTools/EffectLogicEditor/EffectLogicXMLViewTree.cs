@@ -82,7 +82,7 @@ namespace Galaxy
                         if (GUILayout.Button("添加", GUILayout.Width(80)))
                         {
                             m_IsAddState = !m_IsAddState;
-                            AddEffectLogicParamDataToXml();
+                            AddXmlNode();
                             Repaint();
                         }
                     }
@@ -91,21 +91,21 @@ namespace Galaxy
                 GUI.color = oldColor;
             }
         }
-
-        private void AddEffectLogicParamDataToXml()
-        {
-
-            m_XmlNodeName = "";
-        }
-
+        
         private string curDataStr;
         public delegate void EffectLogicXmlCurDataHandle(string curStr);
         public EffectLogicXmlCurDataHandle OnChange;
-
         private void SetCurString(string curStr)
         {
             curDataStr = curStr;
             OnChange(curStr);
+        }
+
+        public EffectLogicXmlCurDataHandle OnAdd;
+        private void AddXmlNode()
+        {
+            OnAdd(m_XmlNodeName);
+            m_XmlNodeName = "";
         }
 
     }

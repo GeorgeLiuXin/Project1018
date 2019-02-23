@@ -75,6 +75,19 @@ namespace Galaxy
             if (!state.searchString.IsNE())
             {
                 //数据是否同步，不同步则viewtree保留唯一一份数据，其余保留索引
+                if (args.item is EffectLogicListViewTreeItem)
+                {
+                    EffectLogicListViewTreeItem treeItem = args.item as EffectLogicListViewTreeItem;
+                    Color oldColor = GUI.color;
+                    bool expended = IsExpanded(treeItem.id);
+                    if (GUI.Button(args.rowRect, "  " + treeItem.m_class.sLogicName + "     Des", style))
+                    {
+                        treeItem.IsFold = !treeItem.IsFold;
+                        expended = !expended;
+                        SetExpanded(treeItem.id, expended);
+                    }
+                    GUI.color = oldColor;
+                }
             }
 
             if (args.item is EffectLogicListViewTreeItem)
