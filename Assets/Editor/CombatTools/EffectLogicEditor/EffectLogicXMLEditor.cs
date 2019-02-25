@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using System;
-using Extension;
 using System.Linq;
 
-namespace Galaxy
+namespace XWorld
 {
     public class EffectLogicXMLEditor : Editor
     {
@@ -398,9 +397,17 @@ namespace Galaxy
 
         private void RefreshDataType()
         {
-            m_ClassName = GalaxyGameModule.GetGameManager<EffectLogicManager>().factory.m_dict.Keys.ToArray();
+            m_ClassName = XWorldGameModule.GetGameManager<EffectLogicManager>().factory.m_dict.Keys.ToArray();
 
         }
+
+		private PerformanceLogicFactory factory;
+		private void AddXmlClassData()
+		{
+			PerformanceLogic logic = factory.GetPerformanceLogic(m_CurIndex);
+			m_DataFields = logic.GetType().GetFields();
+			m_TreeView.AddNewClassData(logic.GetType().Name, m_DataFields);
+		}
 
         #endregion
 
@@ -416,7 +423,7 @@ namespace Galaxy
         private void ReadXmlData()
         {
             m_dataDict.Clear();
-            m_dataDict = GalaxyGameModule.GetGameManager<EffectLogicManager>().m_dict;
+            m_dataDict = XWorldGameModule.GetGameManager<EffectLogicManager>().m_dict;
             m_DesToDictIndex.Clear();
             foreach (var item in m_dataDict)
             {
@@ -438,7 +445,7 @@ namespace Galaxy
         }
         private void AddXmlNode(EffectLogicParamData data)
         {
-            EffectLogicReader reader = GalaxyGameModule.GetGameManager<EffectLogicManager>().reader;
+            EffectLogicReader reader = XWorldGameModule.GetGameManager<EffectLogicManager>().reader;
             reader.AddXml(data);
             RefreshXmlView();
         }

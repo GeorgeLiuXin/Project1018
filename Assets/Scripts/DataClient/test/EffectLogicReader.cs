@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Xml;
-using Extension;
+//using Extension;
 
-namespace Galaxy
+namespace XWorld
 {
     public interface IXmlOperation
     {

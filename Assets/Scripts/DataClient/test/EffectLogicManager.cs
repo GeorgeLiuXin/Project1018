@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Galaxy
+namespace XWorld
 {
     /// <summary>
     /// 表现效果相关参数    classXMLproperty
@@ -101,7 +101,7 @@ namespace Galaxy
     /// <summary>
     /// 表现效果id To 效果集合  classDict
     /// </summary>
-    public class EffectLogicManager : GalaxyGameManagerBase
+    public class EffectLogicManager : XWorldGameManagerBase
     {
         public EffectLogicReader reader;
         public Dictionary<int, EffectLogicParamData> m_dict;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Galaxy
+namespace XWorld
 {
     /// <summary>
     /// buff连线效果逻辑

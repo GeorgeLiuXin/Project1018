@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace Galaxy
+namespace XWorld
 {
 
     public class EffectLogicXMLViewTree : TreeView

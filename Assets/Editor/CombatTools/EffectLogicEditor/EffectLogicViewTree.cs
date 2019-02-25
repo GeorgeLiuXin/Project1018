@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using Extension;
 
-namespace Galaxy
+namespace XWorld
 {
     public class EffectLogicViewTree : TreeView
     {
@@ -238,8 +237,20 @@ namespace Galaxy
             return retVal;
         }
 
+		public void AddNewClassData(string logicName, System.Reflection.FieldInfo[] _DataFields)
+		{
+			EffectLogicParamList list = new EffectLogicParamList();
+			list.sLogicName = logicName;
+			foreach (var field in _DataFields)
+			{
+				EffectLogicParamItem item = new EffectLogicParamItem();
+				item.sName = field.Name;
+				item.sType = field.GetType().ToString();
+				item.sValue = "";
+			}
+		}
 
-        public void RefreshByNewData(EffectLogicParamData data)
+		public void RefreshByNewData(EffectLogicParamData data)
         {
             m_data = data;
             rootItem.children.Clear();
