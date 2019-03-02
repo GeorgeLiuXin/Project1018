@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Extension;
+using UnityEditor;
+using Galaxy.XmlData;
 
-namespace XWorld
+namespace Galaxy
 {
     public class EffectLogicViewTree : TreeView
     {
@@ -14,6 +17,7 @@ namespace XWorld
             Name,
             nameValue,
             Des,
+            Btn,
         }
         enum propertyColumns
         {
@@ -24,7 +28,7 @@ namespace XWorld
         }
 
         private GUIStyle style;
-        public EffectLogicParamData m_data;
+        public XmlDataList m_data;
 
         private bool m_InSearchState;
 
@@ -46,14 +50,13 @@ namespace XWorld
         {
             TreeViewItem root = new TreeViewItem { id = 0, depth = -1, displayName = "Root" };
             root.children = new List<TreeViewItem>();
-            
             if (m_data != null)
             {
-                List<EffectLogicParamList>.Enumerator itor = m_data.GetEnumerator();
+                List<XmlClassData>.Enumerator itor = m_data.GetEnumerator();
 
                 while (itor.MoveNext())
                 {
-                    EffectLogicParamList _class = itor.Current;
+                    XmlClassData _class = itor.Current;
 
                     EffectLogicListViewTreeItem arrayItem = new EffectLogicListViewTreeItem(_class, 0);
                     root.AddChild(arrayItem);
@@ -79,7 +82,7 @@ namespace XWorld
                     EffectLogicListViewTreeItem treeItem = args.item as EffectLogicListViewTreeItem;
                     Color oldColor = GUI.color;
                     bool expended = IsExpanded(treeItem.id);
-                    if (GUI.Button(args.rowRect, "  " + treeItem.m_class.sLogicName + "     Des", style))
+                    if (GUI.Button(args.rowRect, "  " + treeItem.m_class.sLogicName, style))
                     {
                         treeItem.IsFold = !treeItem.IsFold;
                         expended = !expended;
@@ -93,60 +96,74 @@ namespace XWorld
             {
                 EffectLogicListViewTreeItem treeItem = args.item as EffectLogicListViewTreeItem;
                 Color oldColor = GUI.color;
+
+                Rect rect = args.rowRect;
+                Rect rectClassBtn = new Rect(rect.x, rect.y, rect.width - 100, rect.height);
+                Rect rectDeleteBtn = new Rect(rect.width - 60, rect.y, 100, rect.height);
+
                 bool expended = IsExpanded(treeItem.id);
-                if (GUI.Button(args.rowRect, "  " + treeItem.m_class.sLogicName + "     Des", style))
+                if (GUI.Button(rectClassBtn, "  " + treeItem.m_class.sLogicName, style))
                 {
                     treeItem.IsFold = !treeItem.IsFold;
                     expended = !expended;
                     SetExpanded(treeItem.id, expended);
                 }
+
+                if (GUI.Button(rectDeleteBtn, "  " + "删除", style))
+                {
+                    RemoveClassData(treeItem.m_class.sLogicName);
+                }
+
                 GUI.color = oldColor;
             }
             else
             {
                 EffectLogicViewTreeItem treeItem = args.item as EffectLogicViewTreeItem;
                 for (int i = 0; i < args.GetNumVisibleColumns(); ++i)
-                    CellGUI(args.GetCellRect(i), treeItem.m_property, args.GetColumn(i), ref args);
+                    CellGUI(args.GetCellRect(i), treeItem, treeItem.m_property, args.GetColumn(i), ref args);
             }
         }
 
-        private void CellGUI(Rect cellRect, EffectLogicListViewTreeItem item, int column, ref RowGUIArgs args)
-        {
-            Color oldColor = GUI.color;
-            CenterRectUsingSingleLineHeight(ref cellRect);
-
-            switch ((classColumns)column)
-            {
-                case classColumns.Name:
-                    GUI.Label(cellRect, "类名: ");
-                    break;
-                case classColumns.nameValue:
-                    GUI.Label(cellRect, item.m_class.sLogicName);
-                    break;
-                case classColumns.Des:
-                    GUI.Label(cellRect, item.m_class.sLogicName);
-                    break;
-                default:
-                    break;
-            }
-            GUI.color = oldColor;
-        }
-        private void CellGUI(Rect cellRect, EffectLogicParamItem item, int column, ref RowGUIArgs args)
+        private void CellGUI(Rect cellRect, EffectLogicViewTreeItem treeItem, XmlParamItem item, int column, ref RowGUIArgs args)
         {
             CenterRectUsingSingleLineHeight(ref cellRect);
+            
             switch ((propertyColumns)column)
             {
                 case propertyColumns.Name:
-                    GUI.Label(cellRect, item.sName);
+                    EditorGUI.LabelField(cellRect, item.sName);
                     break;
                 case propertyColumns.Type:
-                    GUI.Label(cellRect, item.sType);
+                    EditorGUI.LabelField(cellRect, item.sType);
                     break;
                 case propertyColumns.Des:
-                    GUI.Label(cellRect, item.sName);
+                    EditorGUI.LabelField(cellRect, item.sName);
                     break;
                 case propertyColumns.Value:
-                    item.sValue = GUI.TextField(cellRect, item.sValue);
+                    if (item.sType == "System.Boolean")
+                    {
+                        bool.TryParse(item.sValue, out treeItem.bValue);
+                        treeItem.bValue = EditorGUI.Toggle(cellRect, treeItem.bValue);
+                        item.sValue = treeItem.bValue.ToString();
+                    }
+                    else if (item.sType == "System.Int32")
+                    {
+                        int.TryParse(item.sValue, out treeItem.nValue);
+                        treeItem.nValue = EditorGUI.IntField(cellRect, treeItem.nValue);
+                        item.sValue = treeItem.nValue.ToString();
+                    }
+                    else if (item.sType == "System.Float")
+                    {
+                        float.TryParse(item.sValue, out treeItem.fValue);
+                        treeItem.fValue = EditorGUI.FloatField(cellRect, treeItem.fValue);
+                        item.sValue = treeItem.fValue.ToString();
+                    }
+                    else if (item.sType == "System.String")
+                    {
+                        treeItem.sValue = item.sValue;
+                        treeItem.sValue = EditorGUI.TextField(cellRect, treeItem.sValue);
+                        item.sValue = treeItem.sValue;
+                    }
                     break;
                 default:
                     break;
@@ -205,31 +222,31 @@ namespace XWorld
             retVal[0].headerContent = new GUIContent("属性名", "");
             retVal[0].minWidth = 60;
             retVal[0].width = 150;
-            retVal[0].maxWidth = 400;
+            retVal[0].maxWidth = 300;
             retVal[0].headerTextAlignment = TextAlignment.Left;
             retVal[0].canSort = false;
             retVal[0].autoResize = true;
 
             retVal[1].headerContent = new GUIContent("类型", "");
-            retVal[1].minWidth = 40;
-            retVal[1].width = 50;
-            retVal[1].maxWidth = 90;
+            retVal[1].minWidth = 100;
+            retVal[1].width = 110;
+            retVal[1].maxWidth = 120;
             retVal[1].headerTextAlignment = TextAlignment.Left;
             retVal[1].canSort = false;
             retVal[1].autoResize = true;
 
             retVal[2].headerContent = new GUIContent("描述", "");
-            retVal[2].minWidth = 150;
-            retVal[2].width = 300;
-            retVal[2].maxWidth = 600;
+            retVal[2].minWidth = 240;
+            retVal[2].width = 270;
+            retVal[2].maxWidth = 320;
             retVal[2].headerTextAlignment = TextAlignment.Left;
             retVal[2].canSort = false;
             retVal[2].autoResize = true;
 
             retVal[3].headerContent = new GUIContent("属性值", "");
-            retVal[3].minWidth = 50;
-            retVal[3].width = 150;
-            retVal[3].maxWidth = 300;
+            retVal[3].minWidth = 120;
+            retVal[3].width = 240;
+            retVal[3].maxWidth = 500;
             retVal[3].headerTextAlignment = TextAlignment.Left;
             retVal[3].canSort = false;
             retVal[3].autoResize = true;
@@ -237,24 +254,10 @@ namespace XWorld
             return retVal;
         }
 
-		public void AddNewClassData(string logicName, System.Reflection.FieldInfo[] _DataFields)
-		{
-			EffectLogicParamList list = new EffectLogicParamList();
-			list.sLogicName = logicName;
-			foreach (var field in _DataFields)
-			{
-				EffectLogicParamItem item = new EffectLogicParamItem();
-				item.sName = field.Name;
-				item.sType = field.GetType().ToString();
-				item.sValue = "";
-			}
-		}
 
-		public void RefreshByNewData(EffectLogicParamData data)
+        public void RefreshByNewData(ref XmlDataList data)
         {
             m_data = data;
-            rootItem.children.Clear();
-
             Reload();
             Repaint();
         }
@@ -263,20 +266,57 @@ namespace XWorld
         {
 
         }
-        
+
+        public void AddNewClassData(string logicName, System.Reflection.FieldInfo[] _DataFields)
+        {
+            XmlClassData list = new XmlClassData();
+            list.sLogicName = logicName;
+            foreach (var field in _DataFields)
+            {
+                XmlParamItem item = new XmlParamItem();
+                item.sName = field.Name;
+                item.sType = field.FieldType.ToString();
+                item.sValue = "";
+                list.Add(item);
+            }
+            m_data.SafeAdd(list);
+            
+            Reload();
+            Repaint();
+        }
+
+        public void RemoveClassData(string logicName)
+        {
+            XmlClassData list = null;
+            foreach (var item in m_data)
+            {
+                if (item.sLogicName.Equals(logicName))
+                {
+                    list = item;
+                    break;
+                }
+            }
+            if (list != null)
+            {
+                m_data.Remove(list);
+            }
+            Reload();
+            Repaint();
+        }
 
     }
 
     public class EffectLogicListViewTreeItem : TreeViewItem
     {
-        public EffectLogicParamList m_class;
+        public XmlClassData m_class;
 
         public bool IsFold;
 
-        public EffectLogicListViewTreeItem(EffectLogicParamList _class, int depth) : base(_class.GetHashCode(), depth)
+        public EffectLogicListViewTreeItem(XmlClassData _class, int depth) : base(_class.GetHashCode(), depth)
         {
             m_class = _class;
-            foreach (EffectLogicParamItem item in _class)
+            IsFold = true;
+            foreach (XmlParamItem item in _class)
             {
                 AddChild(new EffectLogicViewTreeItem(item, depth + 1));
             }
@@ -284,9 +324,14 @@ namespace XWorld
     }
     public class EffectLogicViewTreeItem : TreeViewItem
     {
-        public EffectLogicParamItem m_property;
+        public XmlParamItem m_property;
 
-        public EffectLogicViewTreeItem(EffectLogicParamItem _property, int depth) : base(_property.GetHashCode(), depth)
+        public bool bValue;
+        public int nValue;
+        public float fValue;
+        public string sValue;
+
+        public EffectLogicViewTreeItem(XmlParamItem _property, int depth) : base(_property.GetHashCode(), depth)
         {
             m_property = _property;
         }

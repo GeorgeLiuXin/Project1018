@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Extension;
+using Galaxy.XmlData;
 
-namespace XWorld
+namespace Galaxy
 {
 
     public class EffectLogicXMLViewTree : TreeView
@@ -64,48 +66,82 @@ namespace XWorld
 
             if (node.displayName.Equals(m_AddNodeDisplayName))
             {
-                Color oldColor = GUI.color;
-                if (!m_IsAddState)
+                MyRowGUI(args, node);
+            }
+            else
+            {
+                MyRowGUI(args, node.displayName);
+            }
+        }
+        private void MyRowGUI(RowGUIArgs args, TreeViewItem node)
+        {
+            Color oldColor = GUI.color;
+            if (!m_IsAddState)
+            {
+                if (GUI.Button(args.rowRect, node.displayName))
                 {
-                    if (GUI.Button(args.rowRect, node.displayName))
+                    m_IsAddState = !m_IsAddState;
+                    Repaint();
+                }
+            }
+            else
+            {
+                GUILayout.BeginArea(args.rowRect);
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    m_XmlNodeName = EditorGUILayout.TextField(m_XmlNodeName);
+                    if (GUILayout.Button("添加", GUILayout.Width(80)))
                     {
+                        if (m_XmlNodeName.IsNE())
+                            return;
+
                         m_IsAddState = !m_IsAddState;
+                        AddXmlNode();
                         Repaint();
                     }
                 }
-                else
-                {
-                    GUILayout.BeginArea(args.rowRect);
-                    using (new EditorGUILayout.HorizontalScope())
-                    {
-                        m_XmlNodeName = GUILayout.TextField(m_XmlNodeName);
-                        if (GUILayout.Button("添加", GUILayout.Width(80)))
-                        {
-                            m_IsAddState = !m_IsAddState;
-                            AddXmlNode();
-                            Repaint();
-                        }
-                    }
-                    GUILayout.EndArea();
-                }
-                GUI.color = oldColor;
+                GUILayout.EndArea();
+            }
+            GUI.color = oldColor;
+        }
+        private void MyRowGUI(RowGUIArgs args, string nodeName)
+        {
+            Rect rectDeleteBtn = new Rect(args.rowRect.width - 50, args.rowRect.y, 50, args.rowRect.height);
+            if (GUI.Button(rectDeleteBtn, "删除"))
+            {
+                DeleteXmlNode(nodeName);
             }
         }
-        
+
         private string curDataStr;
         public delegate void EffectLogicXmlCurDataHandle(string curStr);
-        public EffectLogicXmlCurDataHandle OnChange;
-        private void SetCurString(string curStr)
-        {
-            curDataStr = curStr;
-            OnChange(curStr);
-        }
 
         public EffectLogicXmlCurDataHandle OnAdd;
         private void AddXmlNode()
         {
             OnAdd(m_XmlNodeName);
             m_XmlNodeName = "";
+        }
+
+        public EffectLogicXmlCurDataHandle OnChange;
+        private void SetCurString(string curStr)
+        {
+            curDataStr = curStr;
+            OnChange(curStr);
+        }
+        public EffectLogicXmlCurDataHandle OnDelete;
+        private void DeleteXmlNode(string curDes)
+        {
+            OnDelete(curDes);
+        }
+
+        public void RefreshXmlClassList(Dictionary<string, int> _dict)
+        {
+            m_DesToDictIndex.Clear();
+            m_DesToDictIndex = new Dictionary<string, int>(_dict);
+
+            Reload();
+            Repaint();
         }
 
     }
