@@ -57,29 +57,22 @@ namespace Galaxy
     /// </summary>
     public abstract class PerformanceLogic
     {
+        protected int m_OwenrID;
+        protected bool m_bDestroy;
+        protected float m_CurTime;
+        protected float m_TotalTime;
+
         public PerformanceLogic()
         {
+            m_OwenrID = 0;
             m_bDestroy = false;
             m_CurTime = 0;
             m_TotalTime = -1;
         }
 
-        public bool m_bDestroy;
-        public void Destroy()
+        public void SetOwner(int nAvatarID)
         {
-            m_bDestroy = true;
-        }
-        public bool IsDestroy()
-        {
-            return m_bDestroy;
-        }
-
-        public float m_CurTime;
-        public float m_TotalTime;
-        public void SetTotalTime(float fTotalTime)
-        {
-            m_CurTime = 0;
-            m_TotalTime = fTotalTime;
+            m_OwenrID = nAvatarID;
         }
 
         public virtual void Init(params object[] values)
@@ -102,6 +95,23 @@ namespace Galaxy
         {
 
         }
+
+        public void SetTotalTime(float fTotalTime)
+        {
+            m_CurTime = 0;
+            m_TotalTime = fTotalTime;
+        }
+
+        public void Destroy()
+        {
+            m_bDestroy = true;
+            Reset();
+        }
+        public bool IsDestroy()
+        {
+            return m_bDestroy;
+        }
+
     }
 
     //测试
