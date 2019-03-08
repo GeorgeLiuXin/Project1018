@@ -60,7 +60,7 @@ namespace Galaxy
             {
                 actor.GetEngineObj().TryGetPrefabPos(StaticParam.POINT_WAIST_NAME, out m_pTarget);
             }
-            UVChainLine uvLogic = m_effectObj.AddComponent<UVChainLine>();
+            UVChainLine uvLogic = m_effectObj.GetOrAddComponent<UVChainLine>();
             uvLogic.start = m_pCaster;
             uvLogic.target = m_pTarget;
             uvLogic.yOffset = m_yOffest;
@@ -73,7 +73,7 @@ namespace Galaxy
 
         public override void Reset()
         {
-
+            m_effectObj.GetComponent<UVChainLine>().enabled = false;
         }
     }
 

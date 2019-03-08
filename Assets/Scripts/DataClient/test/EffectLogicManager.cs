@@ -96,7 +96,7 @@ namespace Galaxy
             {
                 PerformanceLogic logic = factory.GetPerformanceLogic(data.sLogicName);
                 logic.SetOwner(nAvatarID);
-                SetLogicFieldInfo(data);
+                SetLogicFieldInfo(logic, data);
                 logic.Init();
                 list.Add(logic);
             }
@@ -124,7 +124,7 @@ namespace Galaxy
             {
                 PerformanceLogic logic = factory.GetPerformanceLogic(data.sLogicName);
                 logic.SetOwner(nAvatarID);
-                SetLogicFieldInfo(data);
+                SetLogicFieldInfo(logic, data);
                 logic.Init();
                 logic.SetTotalTime(fTime);
                 list.Add(logic);
@@ -153,7 +153,7 @@ namespace Galaxy
             {
                 PerformanceLogic logic = factory.GetPerformanceLogic(data.sLogicName);
                 logic.SetOwner(nAvatarID);
-                SetLogicFieldInfo(data);
+                SetLogicFieldInfo(logic, data);
                 logic.Init(values);
                 list.Add(logic);
             }
@@ -182,7 +182,7 @@ namespace Galaxy
             {
                 PerformanceLogic logic = factory.GetPerformanceLogic(data.sLogicName);
                 logic.SetOwner(nAvatarID);
-                SetLogicFieldInfo(data);
+                SetLogicFieldInfo(logic, data);
                 logic.Init(values);
                 logic.SetTotalTime(fTime);
                 list.Add(logic);
@@ -193,29 +193,29 @@ namespace Galaxy
             return true;
         }
 
-        private void SetLogicFieldInfo(XmlClassData data)
+        private void SetLogicFieldInfo(PerformanceLogic logic, XmlClassData data)
         {
             System.Reflection.FieldInfo field;
             foreach (var item in data)
             {
-                field = GetType().GetField(item.sName);
+                field = logic.GetType().GetField(item.sName);
                 if (field != null)
                 {
                     if (item.sType.Equals("System.Boolean"))
                     {
-                        field.SetValue(this, Convert.ToBoolean(item.sValue));
+                        field.SetValue(logic, Convert.ToBoolean(item.sValue));
                     }
                     else if (item.sType.Equals("System.Int32"))
                     {
-                        field.SetValue(this, Convert.ToInt32(item.sValue));
+                        field.SetValue(logic, Convert.ToInt32(item.sValue));
                     }
                     else if (item.sType.Equals("System.Float"))
                     {
-                        field.SetValue(this, Convert.ToSingle(item.sValue));
+                        field.SetValue(logic, Convert.ToSingle(item.sValue));
                     }
                     else if (item.sType.Equals("System.String"))
                     {
-                        field.SetValue(this, item.sValue);
+                        field.SetValue(logic, item.sValue);
                     }
                 }
             }
