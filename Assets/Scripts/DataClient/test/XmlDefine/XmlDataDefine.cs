@@ -88,7 +88,7 @@ namespace Galaxy.XmlData
     /// </summary>
     public class XmlClassData : List<XmlParamItem>
     {
-        public int iLogicID;
+        public int iLogicIndex;
         public string sLogicName;
     }
 

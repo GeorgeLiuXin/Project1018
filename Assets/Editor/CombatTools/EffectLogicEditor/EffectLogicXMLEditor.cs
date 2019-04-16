@@ -75,15 +75,8 @@ namespace Galaxy
             {
                 GUILayout.BeginVertical();
                 {
-                    GUILayout.BeginHorizontal();
-                    {
-                        EditorGUILayout.LabelField("当前表现效果XML列表: ");
-                        if (GUILayout.Button("刷新", "miniButton"))
-                        {
-                            RefreshDataType();
-                            RefreshXmlView();
-                        }
-                    }
+                    XmlTitleBar(xmlTitleRect);
+                    SearchBar(toolbarRect);
                     DoXmlTreeView(xmlRect);
                 }
                 GUILayout.EndVertical();
@@ -92,8 +85,7 @@ namespace Galaxy
                 {
                     GUILayout.BeginHorizontal();
                     {
-                        titleBar(titleRect);
-                        SearchBar(toolbarRect);
+                        TitleBar(titleRect);
 
                         //tree 生成与初始化
                         DoTreeView(treeViewRect);
@@ -118,7 +110,6 @@ namespace Galaxy
 
             m_AddClassIndex = 0;
             m_CurIndex = 0;
-            m_CurDataDes = "";
             m_ClassName = factory.m_dict.Keys.ToArray();
 
             bNeedToExpand = false;
@@ -143,7 +134,7 @@ namespace Galaxy
                 m_TreeView = new EffectLogicViewTree(m_TreeViewState, EffectLogicViewTree.CreateDefaultMultiColumnHeaderState());
                 
                 m_SearchField = new SearchField();
-                m_SearchField.downOrUpArrowKeyPressed += m_TreeView.SetFocusAndEnsureSelectedItem;
+                m_SearchField.downOrUpArrowKeyPressed += m_XmlTreeView.SetFocusAndEnsureSelectedItem;
 
                 m_Initialized = true;
             }
@@ -154,14 +145,9 @@ namespace Galaxy
             get { return new Rect(300, 0, position.width - 340, 30); }
         }
 
-        Rect toolbarRect
-        {
-            get { return new Rect(300, 30, position.width - 340, 30); }
-        }
-
         Rect treeViewRect
         {
-            get { return new Rect(300, 50, position.width - 340, position.height - 80); }
+            get { return new Rect(300, 25, position.width - 340, position.height - 60); }
         }
 
         Rect bottomToolbarRect
@@ -169,7 +155,37 @@ namespace Galaxy
             get { return new Rect(300, position.height - 27, position.width - 340, 30); }
         }
 
-        void titleBar(Rect rect)
+        Rect xmlTitleRect
+        {
+            get { return new Rect(10, 0, 270, 30); }
+        }
+
+        Rect toolbarRect
+        {
+            get { return new Rect(10, 25, 270, 30); }
+        }
+
+        Rect xmlRect
+        {
+            get { return new Rect(10, 50, 270, position.height - 75); }
+        }
+
+        void XmlTitleBar(Rect rect)
+        {
+            GUILayout.BeginArea(rect);
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                EditorGUILayout.LabelField("当前表现效果XML列表: ");
+                if (GUILayout.Button("刷新", "miniButton"))
+                {
+                    RefreshDataType();
+                    RefreshXmlView();
+                }
+            }
+            GUILayout.EndArea();
+        }
+
+        void TitleBar(Rect rect)
         {
             GUILayout.BeginArea(rect);
             using (new EditorGUILayout.HorizontalScope())
@@ -178,6 +194,7 @@ namespace Galaxy
                 if (GUILayout.Button("保存", GUILayout.Width(80)))
                 {
                     SaveClassData();
+                    UnityEditor.EditorUtility.DisplayDialog("保存成功", "战斗xml保存完成!", "OK");
                 }
             }
             GUILayout.EndArea();
@@ -185,7 +202,7 @@ namespace Galaxy
 
         void SearchBar(Rect rect)
         {
-            m_TreeView.searchString = m_SearchField.OnGUI(rect, m_TreeView.searchString);
+            m_XmlTreeView.searchString = m_SearchField.OnGUI(rect, m_XmlTreeView.searchString);
         }
 
         void DoTreeView(Rect rect)
@@ -223,12 +240,7 @@ namespace Galaxy
 
             GUILayout.EndArea();
         }
-
         
-        Rect xmlRect
-        {
-            get { return new Rect(10, 30, 270, position.height - 40); }
-        }
 
         void DoXmlTreeView(Rect rect)
         {
@@ -281,23 +293,24 @@ namespace Galaxy
         #region CurData
 
         private int m_CurIndex;
-        private string m_CurDataDes;
         
-        public void SetCurData(string curStr)
+        public void SetCurData(string sIndex)
         {
-            if (curStr.IsNE())
+            if (sIndex.IsNE())
                 return;
 
-            if (!m_DesToDictIndex.ContainsKey(curStr))
+            int index = Convert.ToInt32(sIndex);
+            SetCurData(index);
+        }
+        public void SetCurData(int index)
+        {
+            if (!m_DesToDictIndex.ContainsValue(index))
                 return;
-
-            int index = m_DesToDictIndex[curStr];
+            
             if (!m_dataDict.ContainsKey(index))
                 return;
 
             m_CurIndex = index;
-            m_CurDataDes = curStr;
-
             m_CurData = m_dataDict[m_CurIndex];
             m_TreeView.RefreshByNewData(ref m_CurData);
 
@@ -365,7 +378,7 @@ namespace Galaxy
         }
         private void RefreshLogicViewTree()
         {
-            SetCurData(m_CurDataDes);
+            SetCurData(m_CurIndex);
 
             m_TreeView.Reload();
             m_TreeView.Repaint();
@@ -377,29 +390,60 @@ namespace Galaxy
             m_XmlTreeView.Reload();
             m_XmlTreeView.Repaint();
         }
-        
-        private void AddXmlNode(string nodeName)
+
+        private void AddXmlNode(string nodeInfo)
         {
+            string[] strs = nodeInfo.Split('\t');
+            string nodeId = strs[0];
+            string nodeName = strs[1];
+
+            int id = 0;
+            if (!int.TryParse(nodeId, out id))
+            {
+                UnityEditor.EditorUtility.DisplayDialog("添加错误", "当前ID非数字!", "OK");
+                return;
+            }
             XmlDataList data = new XmlDataList();
+            data.iIndex = id;
             data.sDescribe = nodeName;
             AddXmlNode(data);
         }
         private void AddXmlNode(XmlDataList data)
         {
+            if (data.iIndex == 0 || data.sDescribe.IsNE())
+            {
+                UnityEditor.EditorUtility.DisplayDialog("添加错误", "当前战斗xml中已包含当前描述的节点!", "OK");
+                return;
+            }
+            if (m_DesToDictIndex.ContainsValue(data.iIndex))
+            {
+                UnityEditor.EditorUtility.DisplayDialog("添加错误", "当前战斗xml中已包含当前ID的节点!", "OK");
+                return;
+            }
+            if (m_DesToDictIndex.ContainsKey(data.sDescribe))
+            {
+                UnityEditor.EditorUtility.DisplayDialog("添加错误", "当前战斗xml中已包含当前描述的节点!", "OK");
+                return;
+            }
+
             reader.AddXml(data);
             RefreshXmlView();
         }
 
-        private void DeleteXmlNode(string nodeName)
+        private void DeleteXmlNode(string nodeIndex)
         {
-            if (!m_DesToDictIndex.ContainsKey(nodeName))
+            int id = Convert.ToInt32(nodeIndex);
+
+            if (!m_DesToDictIndex.ContainsValue(id))
                 return;
 
-            int id = m_DesToDictIndex[nodeName];
             if (!m_dataDict.ContainsKey(id))
                 return;
 
-            reader.DeleteXml(id.ToString());
+            if (UnityEditor.EditorUtility.DisplayDialog("确认", "是否确认删除改节点?", "Y", "N"))
+            {
+                reader.DeleteXml(id.ToString());
+            }
             
             RefreshXmlView();
         }

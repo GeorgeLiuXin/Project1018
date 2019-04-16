@@ -13,9 +13,9 @@ namespace Galaxy.XmlData
         protected readonly string sRoot = "root";
         protected readonly string iIndex = "iIndex";
         protected readonly string sDes = "sDes";
-        protected readonly string sCurid = "curid";
 
         protected readonly string sPreName = "ID_";
+        protected readonly string sLogicName = "LogicName";
 
         public XmlReaderBase(string filePath) : base(filePath)
         {
@@ -31,6 +31,20 @@ namespace Galaxy.XmlData
             }
         }
 
+        /// <summary>
+        /// 检查当前是否包含改节点
+        /// </summary>
+        /// <param name="parentNode">当前检查的父节点</param>
+        /// <param name="sKey">需要查找的节点名称</param>
+        /// <returns></returns>
+        public bool ContainsNode(XmlElement parentNode, string sKey)
+        {
+            XmlElement checkEle = parentNode.SelectSingleNode(sKey) as XmlElement;
+            if (checkEle != null)
+                return true;
+            return false;
+        }
+
         public string GetPropertyValue(XmlParamItem item)
         {
             return item.sValue;
@@ -44,7 +58,6 @@ namespace Galaxy.XmlData
                 XmlDocument xmlDoc = new XmlDocument();
                 // 创建根节点
                 XmlElement root = xmlDoc.CreateElement(sRoot);
-                root.SetAttribute(sCurid, "0");
                 xmlDoc.AppendChild(root);
 
                 xmlDoc.Save(m_XmlFilePath);
@@ -64,12 +77,15 @@ namespace Galaxy.XmlData
                 if (root == null)
                     return;
 
-                int id = Convert.ToInt32(root.GetAttribute(sCurid));
+                if (data.iIndex == 0)
+                    return;
 
-                id++;
+                if (ContainsNode(root, sPreName + data.iIndex.ToString()))
+                    return;
+
                 //创建整个表现节点
-                XmlElement curParentElm = xmlDoc.CreateElement(sPreName + id.ToString());
-                curParentElm.SetAttribute(iIndex, id.ToString());
+                XmlElement curParentElm = xmlDoc.CreateElement(sPreName + data.iIndex.ToString());
+                curParentElm.SetAttribute(iIndex, data.iIndex.ToString());
                 curParentElm.SetAttribute(sDes, data.sDescribe);
 
                 foreach (XmlClassData _class in data)
@@ -87,7 +103,6 @@ namespace Galaxy.XmlData
                 }
                 root.AppendChild(curParentElm);
 
-                root.SetAttribute(sCurid, id.ToString());
                 xmlDoc.Save(m_XmlFilePath);
             }
         }
@@ -103,11 +118,11 @@ namespace Galaxy.XmlData
                 if (root == null)
                     return;
 
-                int id = Convert.ToInt32(root.GetAttribute(sCurid));
-
                 foreach (KeyValuePair<int, XmlDataList> pair in datadict)
                 {
-                    id = Mathf.Max(id, pair.Key);
+                    if (ContainsNode(root, sPreName + pair.Key.ToString()))
+                        continue;
+
                     //创建整个表现节点
                     XmlElement curParentElm = xmlDoc.CreateElement(sPreName + pair.Key.ToString());
                     curParentElm.SetAttribute(iIndex, pair.Key.ToString());
@@ -128,66 +143,70 @@ namespace Galaxy.XmlData
                     }
                     root.AppendChild(curParentElm);
                 }
-                id++;
-
-                root.SetAttribute(sCurid, id.ToString());
+                
                 xmlDoc.Save(m_XmlFilePath);
             }
         }
 
+        //暂时没用，未测试
         public void UpdateXml(XmlDataList data)
         {
-            if (File.Exists(m_XmlFilePath))
-            {
-                // xml文档实例
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(m_XmlFilePath);
-                // 获取根节点
-                XmlElement root = xmlDoc.SelectSingleNode(sRoot) as XmlElement;
-                if (root == null)
-                    return;
+            //if (File.Exists(m_XmlFilePath))
+            //{
+            //    // xml文档实例
+            //    XmlDocument xmlDoc = new XmlDocument();
+            //    xmlDoc.Load(m_XmlFilePath);
+            //    // 获取根节点
+            //    XmlElement root = xmlDoc.SelectSingleNode(sRoot) as XmlElement;
+            //    if (root == null)
+            //        return;
 
-                XmlElement curParentElm = root.SelectSingleNode(sPreName + data.iIndex.ToString()) as XmlElement;
-                if (curParentElm == null)
-                    return;
+            //    XmlElement curParentElm = root.SelectSingleNode(sPreName + data.iIndex.ToString()) as XmlElement;
+            //    if (curParentElm == null)
+            //        return;
 
-                curParentElm.SetAttribute(iIndex, data.iIndex.ToString());
-                curParentElm.SetAttribute(sDes, data.sDescribe);
-                foreach (XmlClassData _class in data)
-                {
-                    bool bClassCreate = false;
-                    XmlElement elmClass;
-                    elmClass = curParentElm.SelectSingleNode(_class.sLogicName) as XmlElement;
-                    if (elmClass == null)
-                    {
-                        elmClass = xmlDoc.CreateElement(_class.sLogicName);
-                        bClassCreate = true;
-                    }
+            //    curParentElm.SetAttribute(iIndex, data.iIndex.ToString());
+            //    curParentElm.SetAttribute(sDes, data.sDescribe);
+            //    int classIndex = 0;
 
-                    foreach (XmlParamItem _property in _class)
-                    {
-                        bool bPropertyCreate = false;
-                        XmlElement elmProperty;
-                        elmProperty = elmClass.SelectSingleNode(_property.sName) as XmlElement;
-                        if (elmProperty == null)
-                        {
-                            elmProperty = xmlDoc.CreateElement(_property.sName);
-                            bPropertyCreate = true;
-                        }
+            //    foreach (XmlClassData _class in data)
+            //    {
+            //        bool bClassCreate = false;
+            //        XmlElement elmClass;
+            //        elmClass = curParentElm.SelectSingleNode(_class.sLogicName) as XmlElement;
+            //        if (elmClass == null)
+            //        {
+            //            elmClass = xmlDoc.CreateElement(_class.sLogicName + classIndex.ToString());
+            //            elmClass.SetAttribute(sLogicName, _class.sLogicName);
+            //            bClassCreate = true;
+            //            classIndex++;
+            //        }
 
-                        elmProperty.SetAttribute("Type", _property.sType);
-                        elmProperty.InnerText = GetPropertyValue(_property);
+            //        foreach (XmlParamItem _property in _class)
+            //        {
+            //            bool bPropertyCreate = false;
+            //            XmlElement elmProperty;
+            //            elmProperty = elmClass.SelectSingleNode(_property.sName) as XmlElement;
+            //            if (elmProperty == null)
+            //            {
+            //                elmProperty = xmlDoc.CreateElement(_property.sName);
+            //                bPropertyCreate = true;
+            //            }
 
-                        if (bPropertyCreate)
-                            elmClass.AppendChild(elmProperty);
-                    }
+            //            elmProperty.SetAttribute("Type", _property.sType);
+            //            elmProperty.InnerText = GetPropertyValue(_property);
 
-                    if (bClassCreate)
-                        curParentElm.AppendChild(elmClass);
-                }
+            //            if (bPropertyCreate)
+            //                elmClass.AppendChild(elmProperty);
+            //        }
+                    
+            //        curParentElm.SetAttribute(sCurid, classIndex.ToString());
+            //        if (bClassCreate)
+            //            curParentElm.AppendChild(elmClass);
+            //    }
 
-                xmlDoc.Save(m_XmlFilePath);
-            }
+            //    xmlDoc.Save(m_XmlFilePath);
+            //}
         }
         public void UpdateXml(Dictionary<int, XmlDataList> datadict)
         {
@@ -200,9 +219,7 @@ namespace Galaxy.XmlData
                 XmlElement root = xmlDoc.SelectSingleNode(sRoot) as XmlElement;
                 if (root == null)
                     return;
-
-                int maxID = 0;
-
+                
                 foreach (KeyValuePair<int, XmlDataList> pair in datadict)
                 {
                     bool bDataCreate = false;
@@ -242,16 +259,14 @@ namespace Galaxy.XmlData
                             if (bPropertyCreate)
                                 elmClass.AppendChild(elmProperty);
                         }
-
+                        
                         if (bClassCreate)
                             dataElm.AppendChild(elmClass);
                     }
-
-                    maxID = Math.Max(pair.Key, maxID);
+                    
                     if (bDataCreate)
                         root.AppendChild(dataElm);
                 }
-                root.SetAttribute(sCurid, maxID.ToString());
                 xmlDoc.Save(m_XmlFilePath);
             }
         }

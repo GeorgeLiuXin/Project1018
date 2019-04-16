@@ -28,6 +28,7 @@ namespace Galaxy
             m_AvatarOwnLogicDict = new Dictionary<int, List<long>>();
             m_PerformanceLogicDict = new Dictionary<long, List<PerformanceLogic>>();
             m_RemoveList = new List<long>();
+            index = 0;
         }
         private void InitDataDict()
         {
@@ -100,7 +101,7 @@ namespace Galaxy
                 logic.Init();
                 list.Add(logic);
             }
-            longID = GTime.Current.MilliSecond() << 32 + nAvatarID;
+            longID = GetLogicIndex();
             m_PerformanceLogicDict.Add(longID, list);
             AddPerformanceLogicToAvatar(nAvatarID, longID);
             return true;
@@ -129,7 +130,7 @@ namespace Galaxy
                 logic.SetTotalTime(fTime);
                 list.Add(logic);
             }
-            longID = GTime.Current.MilliSecond() << 32 + nAvatarID;
+            longID = GetLogicIndex();
             m_PerformanceLogicDict.Add(longID, list);
             AddPerformanceLogicToAvatar(nAvatarID, longID);
             return true;
@@ -157,7 +158,7 @@ namespace Galaxy
                 logic.Init(values);
                 list.Add(logic);
             }
-            longID = GTime.Current.MilliSecond() << 32 + nAvatarID;
+            longID = GetLogicIndex();
             m_PerformanceLogicDict.Add(longID, list);
             AddPerformanceLogicToAvatar(nAvatarID, longID);
             return true;
@@ -187,7 +188,7 @@ namespace Galaxy
                 logic.SetTotalTime(fTime);
                 list.Add(logic);
             }
-            longID = GTime.Current.MilliSecond() << 32 + nAvatarID;
+            longID = GetLogicIndex();
             m_PerformanceLogicDict.Add(longID, list);
             AddPerformanceLogicToAvatar(nAvatarID, longID);
             return true;
@@ -209,13 +210,40 @@ namespace Galaxy
                     {
                         field.SetValue(logic, Convert.ToInt32(item.sValue));
                     }
-                    else if (item.sType.Equals("System.Float"))
+                    else if (item.sType.Equals("System.Single"))
                     {
                         field.SetValue(logic, Convert.ToSingle(item.sValue));
                     }
                     else if (item.sType.Equals("System.String"))
                     {
                         field.SetValue(logic, item.sValue);
+                    }
+                }
+            }
+        }
+        private void SetLogicFieldInfoTemp(PerformanceLogic logic, XmlClassData data)
+        {
+            object field;
+            foreach (var item in data)
+            {
+                field = logic.GetType().GetField(item.sName);
+                if (field != null)
+                {
+                    if (item.sType.Equals("System.Boolean"))
+                    {
+                        field = Convert.ToBoolean(item.sValue);
+                    }
+                    else if (item.sType.Equals("System.Int32"))
+                    {
+                        field = Convert.ToInt32(item.sValue);
+                    }
+                    else if (item.sType.Equals("System.Single"))
+                    {
+                        field = Convert.ToSingle(item.sValue);
+                    }
+                    else if (item.sType.Equals("System.String"))
+                    {
+                        field = item.sValue;
                     }
                 }
             }
@@ -286,5 +314,19 @@ namespace Galaxy
             InitDataDict();
         }
 
+        #region 获取index
+        private long index;
+        private long GetLogicIndex()
+        {
+            //long longID = GTime.Current.MilliSecond() << 32 + nAvatarID;
+            //return longID;
+            index += 1;
+            if (index > 2147483647)
+            {
+                index = 0;
+            }
+            return index;
+        }
+        #endregion
     }
 }

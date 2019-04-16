@@ -6,6 +6,7 @@ using UnityEngine;
 using Extension;
 using UnityEditor;
 using Galaxy.XmlData;
+using System.Reflection;
 
 namespace Galaxy
 {
@@ -27,6 +28,8 @@ namespace Galaxy
             Value,
         }
 
+        private PerformanceLogicFactory factory;
+
         private GUIStyle style;
         public XmlDataList m_data;
 
@@ -38,11 +41,12 @@ namespace Galaxy
             showBorder = true;
             showAlternatingRowBackgrounds = true;
             DefaultStyles.label.richText = true;
-            
+
             style = new GUIStyle(GUI.skin.button);
             style.alignment = TextAnchor.MiddleLeft;
 
             m_data = null;
+            factory = new PerformanceLogicFactory();
             Reload();
         }
 
@@ -58,7 +62,8 @@ namespace Galaxy
                 {
                     XmlClassData _class = itor.Current;
 
-                    EffectLogicListViewTreeItem arrayItem = new EffectLogicListViewTreeItem(_class, 0);
+                    TemplatePerformanceLogic logic = factory.GetTemplatePerformanceLogic(_class.sLogicName);
+                    EffectLogicListViewTreeItem arrayItem = new EffectLogicListViewTreeItem(_class, 0, logic);
                     root.AddChild(arrayItem);
                 }
             }
@@ -102,7 +107,13 @@ namespace Galaxy
                 Rect rectDeleteBtn = new Rect(rect.width - 60, rect.y, 100, rect.height);
 
                 bool expended = IsExpanded(treeItem.id);
-                if (GUI.Button(rectClassBtn, "  " + treeItem.m_class.sLogicName, style))
+                string des = treeItem.displayName;
+                PerformanceLogicDesAttribute attr = CombatToolHelper.GetAttribute<PerformanceLogicDesAttribute>(treeItem.m_templateLogic.GetType());
+                if (attr != null)
+                {
+                    des = attr.Description;
+                }
+                if (GUI.Button(rectClassBtn, "  " + des, style))
                 {
                     treeItem.IsFold = !treeItem.IsFold;
                     expended = !expended;
@@ -127,7 +138,7 @@ namespace Galaxy
         private void CellGUI(Rect cellRect, EffectLogicViewTreeItem treeItem, XmlParamItem item, int column, ref RowGUIArgs args)
         {
             CenterRectUsingSingleLineHeight(ref cellRect);
-            
+
             switch ((propertyColumns)column)
             {
                 case propertyColumns.Name:
@@ -137,7 +148,7 @@ namespace Galaxy
                     EditorGUI.LabelField(cellRect, item.sType);
                     break;
                 case propertyColumns.Des:
-                    EditorGUI.LabelField(cellRect, item.sName);
+                    EditorGUI.LabelField(cellRect, treeItem.sTemplateParamDes);
                     break;
                 case propertyColumns.Value:
                     if (item.sType == "System.Boolean")
@@ -152,7 +163,7 @@ namespace Galaxy
                         treeItem.nValue = EditorGUI.IntField(cellRect, treeItem.nValue);
                         item.sValue = treeItem.nValue.ToString();
                     }
-                    else if (item.sType == "System.Float")
+                    else if (item.sType == "System.Single")
                     {
                         float.TryParse(item.sValue, out treeItem.fValue);
                         treeItem.fValue = EditorGUI.FloatField(cellRect, treeItem.fValue);
@@ -250,7 +261,7 @@ namespace Galaxy
             retVal[3].headerTextAlignment = TextAlignment.Left;
             retVal[3].canSort = false;
             retVal[3].autoResize = true;
-            
+
             return retVal;
         }
 
@@ -280,7 +291,7 @@ namespace Galaxy
                 list.Add(item);
             }
             m_data.SafeAdd(list);
-            
+
             Reload();
             Repaint();
         }
@@ -309,21 +320,45 @@ namespace Galaxy
     public class EffectLogicListViewTreeItem : TreeViewItem
     {
         public XmlClassData m_class;
+        public TemplatePerformanceLogic m_templateLogic;
 
         public bool IsFold;
 
-        public EffectLogicListViewTreeItem(XmlClassData _class, int depth) : base(_class.GetHashCode(), depth)
+        public EffectLogicListViewTreeItem(XmlClassData _class, int depth, TemplatePerformanceLogic templateLogic) : base(_class.GetHashCode(), depth)
         {
             m_class = _class;
+
+            m_templateLogic = templateLogic;
+
             IsFold = true;
+            string des;
+            MemberInfo info;
             foreach (XmlParamItem item in _class)
             {
-                AddChild(new EffectLogicViewTreeItem(item, depth + 1));
+                info = m_templateLogic.GetType().GetField(item.sName);
+                if (info != null)
+                {
+                    PerformanceLogicItemDesAttribute attr = CombatToolHelper.GetAttribute<PerformanceLogicItemDesAttribute>(info);
+                    if (attr != null)
+                    {
+                        des = attr.Description;
+                    }
+                    else
+                    {
+                        des = item.sName;
+                    }
+                }
+                else
+                {
+                    des = item.sName;
+                }
+                AddChild(new EffectLogicViewTreeItem(item, depth + 1, des));
             }
         }
     }
     public class EffectLogicViewTreeItem : TreeViewItem
     {
+        public string sTemplateParamDes;
         public XmlParamItem m_property;
 
         public bool bValue;
@@ -331,9 +366,11 @@ namespace Galaxy
         public float fValue;
         public string sValue;
 
-        public EffectLogicViewTreeItem(XmlParamItem _property, int depth) : base(_property.GetHashCode(), depth)
+        public EffectLogicViewTreeItem(XmlParamItem _property, int depth, string paramDes) : base(_property.GetHashCode(), depth)
         {
             m_property = _property;
+
+            sTemplateParamDes = paramDes;
         }
     }
 
