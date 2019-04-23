@@ -34,9 +34,13 @@ namespace Galaxy
         enum GridType
         {
             None,
+            Void,
             Land,
             Wall,
-            Size
+            Water,
+            Magma,
+            Grass,
+            Size,
         }
 
         //对应地图
