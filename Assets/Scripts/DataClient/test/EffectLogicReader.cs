@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Xml;
-using Galaxy.XmlData;
+using XWorld.XmlData;
 
-namespace Galaxy
+namespace XWorld
 {
     //XML 表现效果读取方式
     public class EffectLogicReader : XmlReaderBase

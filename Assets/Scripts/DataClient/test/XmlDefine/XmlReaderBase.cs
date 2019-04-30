@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using UnityEngine;
 
-namespace Galaxy.XmlData
+namespace XWorld.XmlData
 {
     //XML读取
     public class XmlReaderBase : XmlBase, IXmlOperation

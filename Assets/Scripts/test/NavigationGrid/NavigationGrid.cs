@@ -1,4 +1,4 @@
-using Galaxy;
+using XWorld;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,158 @@ using UnityEngine.SceneManagement;
 
 namespace Navigation
 {
-    class OpenList : IDisposable
+	class Node
+	{
+		Grid.Position m_pos;
+		Node m_parent;
+		LinkedListNode<Node> m_openListLink;
+		int m_GCost;
+		float m_height = 0;
+		float m_Dynamicheight = 0;
+		bool m_walkable = true;
+		bool m_open;
+		bool m_closed;
+
+		public Node(Grid.Position pos)
+		{
+			m_pos = pos;
+		}
+
+		public void Link(LinkedList<Node> nodeList)
+		{
+			m_openListLink = nodeList.AddLast(this);
+		}
+
+		public void Unlink()
+		{
+			m_openListLink.List.Remove(m_openListLink);
+		}
+
+		public bool Walkable
+		{
+			set
+			{
+				m_walkable = value;
+			}
+
+			get
+			{
+				return m_walkable;
+			}
+		}
+
+		public float Heigh
+		{
+			set
+			{
+				m_height = value;
+				m_pos.Height = value;
+			}
+
+			get
+			{
+				return m_height + m_Dynamicheight;
+			}
+		}
+
+		public float DynamicHeigh
+		{
+			set
+			{
+				m_Dynamicheight = value;
+			}
+
+			get
+			{
+				return m_Dynamicheight;
+			}
+		}
+		
+		public Grid.Position Position
+		{
+			get
+			{
+				return m_pos;
+			}
+		}
+
+		public void Open()
+		{
+			Debug.Assert(!m_open);
+			Debug.Assert(!m_closed);
+
+			m_open = true;
+		}
+
+		public void ResetOpen()
+		{
+			Debug.Assert(m_open);
+			Debug.Assert(!m_closed);
+
+			m_open = false;
+
+			m_GCost = 0;
+		}
+
+		public void Close()
+		{
+			Debug.Assert(m_open);
+			Debug.Assert(!m_closed);
+
+			m_open = false;
+			m_closed = true;
+		}
+
+		public void ResetClose()
+		{
+			Debug.Assert(!m_open);
+			Debug.Assert(m_closed);
+
+			m_closed = false;
+
+			m_GCost = 0;
+		}
+
+		public void SetParent(Node parent, int stepG)
+		{
+			m_parent = parent;
+			m_GCost = parent.m_GCost + stepG;
+		}
+
+		public Node Parent
+		{
+			get
+			{
+				return m_parent;
+			}
+		}
+
+		public int GCost
+		{
+			get
+			{
+				return m_GCost;
+			}
+		}
+
+		public bool IsClosed
+		{
+			get
+			{
+				return m_closed;
+			}
+		}
+
+		public bool IsOpen
+		{
+			get
+			{
+				return m_open;
+			}
+		}
+	}
+
+	class OpenList : IDisposable
     {
         SortedDictionary<int, LinkedList<Node>> m_costToNodes = new SortedDictionary<int, LinkedList<Node>>();
         int m_nodeCount;
@@ -95,170 +246,6 @@ namespace Navigation
         {
             node.Close();
             m_nodes.AddLast(node);
-        }
-    }
-
-    class Node
-    {
-        Grid.Position m_pos;
-        Node m_parent;
-        LinkedListNode<Node> m_openListLink;
-        int m_GCost;
-        float m_height = 0;
-        float m_Dynamicheight = 0;
-        bool m_walkable = true;
-        bool m_open;
-        bool m_closed;
-
-        public Node(Grid.Position pos)
-        {
-            m_pos = pos;
-        }
-
-        public void Link(LinkedList<Node> nodeList)
-        {
-            m_openListLink = nodeList.AddLast(this);
-        }
-
-        public void Unlink()
-        {
-            m_openListLink.List.Remove(m_openListLink);
-        }
-
-        public bool Walkable
-        {
-            set
-            {
-                m_walkable = value;
-            }
-
-            get
-            {
-                return m_walkable;
-            }
-        }
-
-        public float Heigh
-        {
-            set
-            {
-                m_height = value;
-                m_pos.Height = value;
-            }
-
-            get
-            {
-                return m_height+m_Dynamicheight;
-            }
-        }
-
-        public float DynamicHeigh
-        {
-            set
-            {
-                m_Dynamicheight = value;
-            }
-
-            get
-            {
-                return m_Dynamicheight;
-            }
-        }
-
-        public Grid.Position Index
-        {
-            set
-            {
-                m_pos = value;
-            }
-
-            get
-            {
-                return m_pos;
-            }
-        }
-
-        public Grid.Position Position
-        {
-            get
-            {
-                return m_pos;
-            }
-        }
-
-        public void Open()
-        {
-            Debug.Assert(!m_open);
-            Debug.Assert(!m_closed);
-
-            m_open = true;
-        }
-
-        public void ResetOpen()
-        {
-            Debug.Assert(m_open);
-            Debug.Assert(!m_closed);
-
-            m_open = false;
-
-            m_GCost = 0;
-        }
-
-        public void Close()
-        {
-            Debug.Assert(m_open);
-            Debug.Assert(!m_closed);
-
-            m_open = false;
-            m_closed = true;
-        }
-
-        public void ResetClose()
-        {
-            Debug.Assert(!m_open);
-            Debug.Assert(m_closed);
-
-            m_closed = false;
-
-            m_GCost = 0;
-        }
-
-        public void SetParent(Node parent, int stepG)
-        {
-            m_parent = parent;
-            m_GCost = parent.m_GCost + stepG;
-        }
-
-        public Node Parent
-        {
-            get
-            {
-                return m_parent;
-            }
-        }
-
-        public int GCost
-        {
-            get
-            {
-                return m_GCost;
-            }
-        }
-
-        public bool IsClosed
-        {
-            get
-            {
-                return m_closed;
-            }
-        }
-
-        public bool IsOpen
-        {
-            get
-            {
-                return m_open;
-            }
         }
     }
 
@@ -620,53 +607,7 @@ namespace Navigation
 
             return false;
         }
-
-        //         public bool RayCastBak(Vector3 sPos, ref Vector3 ePos)
-        //         {
-        //             float dis = Vector3.Distance(sPos, ePos);
-        //             Vector3 res = sPos;
-        //             Vector3 dir = ePos - sPos;
-        //             dir = dir.normalized * GridSize;
-        //             int cnt = (int)(dis / GridSize) + 1;
-        //             for (int i = 0; i < cnt; ++i)
-        //             {
-        //                 Vector3 checkPos = res + dir;
-        //                 if (!IsWalkable(checkPos))
-        //                 {
-        //                     ePos = res;
-        //                     return true;
-        //                 }
-        //                 float curH = GetHeight(checkPos);
-        //                 if (curH > checkPos.y)
-        //                 {
-        //                     ePos = res;
-        //                     return true;
-        //                 }
-        //                 res = checkPos;
-        //             }
-        //             return false;
-        //         }
-
-
-        Dictionary<int, Galaxy.OBB> ShieldList = new Dictionary<int, Galaxy.OBB>();
-        public void AddShield(int id, Galaxy.OBB sh)
-        {
-            ShieldList.Add(id, sh);
-        }
-        public void RemoveShield(int id)
-        {
-            ShieldList.Remove(id);
-        }
-        public bool RayCastShield(Vector3 sPos, ref Vector3 ePos)
-        {
-            Ray ray = new Ray(sPos, ePos-sPos);
-            foreach (KeyValuePair<int, OBB> pair in ShieldList)
-            {
-                if (pair.Value.Intersect(ray, out ePos))
-                    return true;
-            }
-            return false;
-        }
+		
         public bool RayCast(Vector3 sPos, ref Vector3 ePos)
         {
             float dis = Vector3.Distance(sPos, ePos);
@@ -871,65 +812,5 @@ namespace Navigation
                 m_OnReadDataComplete.Invoke();
             }
         }
-
-        public void CreateDynamicWall(int id, Vector3 sPos, Vector3 ePos, float height, int effectid = 800)
-        {
-            DestroyDynamicWall(id);
-            DynamicWall wall = new DynamicWall();
-            wall.m_Index = id;
-            WallMap.Add(id, wall);
-
-            Vector3 tmp = ePos;
-            float dis = Vector3.Distance(sPos, tmp);
-            Vector3 checkPos = sPos;
-            float lastHeight = GetHeight(sPos);
-            Vector3 dir = ePos - sPos;
-            dir = dir.normalized * GridSize;    
-            int cnt = (int)(dis / GridSize) + 1;
-            for (int i = 0; i < cnt; ++i)
-            {
-                checkPos = checkPos + dir;
-                Node n = GetNode(checkPos);
-                if (n == null)
-                {
-                    continue;
-                }
-                n.DynamicHeigh = height;
-                wall.m_GridList.Add(n.Index);
-            }
-        }
-
-        public void DestroyDynamicWall(int id)
-        {
-            DynamicWall wall;
-            if (!WallMap.TryGetValue(id, out wall))
-                return;
-            foreach (Grid.Position pos in wall.m_GridList)
-            {
-                Node n = GetNode(pos);
-                if (n != null)
-                {
-                    n.DynamicHeigh = 0.0f;
-                }
-            }
-            WallMap.Remove(id);
-            EffectManager effmgr = GalaxyGameModule.GetGameManager<EffectManager>();
-            wall.m_GridList = null;
-            wall = null;
-        }
-
-        Dictionary<int, DynamicWall> WallMap = new Dictionary<int, DynamicWall>();
     }
-
-    class DynamicWall
-    {
-       
-	    public DynamicWall()
-        {
-
-        }
-		public int m_Index = 0;
-        private GameObject m_EffectObj;
-        public List<Grid.Position> m_GridList = new List<Grid.Position>();
-    };
 }

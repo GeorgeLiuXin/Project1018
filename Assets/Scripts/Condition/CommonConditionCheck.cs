@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Data.Common;
 using System.Collections;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -145,7 +144,7 @@ namespace XWorld
                         break;
 
                     Assembly ass = Assembly.GetExecutingAssembly();
-                    GCommonCondition condition = (GCommonCondition)ass.CreateInstance("Galaxy." + sConditionName);
+                    GCommonCondition condition = (GCommonCondition)ass.CreateInstance("XWorld." + sConditionName);
                     if (condition == null)
                         continue;
 

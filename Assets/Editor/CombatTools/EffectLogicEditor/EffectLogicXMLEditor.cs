@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using System;
-using Extension;
 using System.Linq;
-using Galaxy.XmlData;
+using XWorld.XmlData;
 
-namespace Galaxy
+namespace XWorld
 {
     public class EffectLogicXMLEditor : Editor
     {
