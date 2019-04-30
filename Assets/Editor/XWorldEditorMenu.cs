@@ -41,17 +41,17 @@ namespace XWorld
 		}
 
 		/*********************     CombatTools    ************************/
-		[MenuItem("Galaxy Tools/CombatTools/特效编辑器播放", false, 100)]
+		[MenuItem("XWorld Tools/CombatTools/特效编辑器播放", false, 100)]
 		public static void ShowEffectConfigEditor()
 		{
 			EffectConfigEditor.ShowEditor();
 		}
-		[MenuItem("Galaxy Tools/CombatTools/技能伤害数值监视", false, 100)]
+		[MenuItem("XWorld Tools/CombatTools/技能伤害数值监视", false, 100)]
 		public static void ShowCombatCalculationEditor()
 		{
 			CombatCalculationEditor.ShowEditor();
 		}
-		[MenuItem("Galaxy Tools/CombatTools/客户端表现XML配置", false, 100)]
+		[MenuItem("XWorld Tools/CombatTools/客户端表现XML配置", false, 100)]
 		public static void ShowEffectLogicXMLEditor()
 		{
 			EffectLogicXMLEditor.ShowEditor();
