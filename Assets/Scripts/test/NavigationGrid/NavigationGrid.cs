@@ -708,15 +708,15 @@ namespace Navigation
             return bCollition;
         }
 
-        public bool RayCastAvatar(Vector3 tPos, Vector3 sPos, Vector3 ePos, float r)
-        {
-            float dis = Point2SegmentDis.GetDis(tPos, sPos, ePos);
-            if (dis <= r)
-            {
-                return true;
-            }
-            return false;
-        }
+        //public bool RayCastAvatar(Vector3 tPos, Vector3 sPos, Vector3 ePos, float r)
+        //{
+        //    float dis = Point2SegmentDis.GetDis(tPos, sPos, ePos);
+        //    if (dis <= r)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         private Action m_OnReadDataComplete = null;
 
