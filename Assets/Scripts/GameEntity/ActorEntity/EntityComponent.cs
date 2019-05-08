@@ -6,7 +6,7 @@ using UnityEngine;
 namespace XWorld
 {
 
-    public class ActorComponent : DataObj
+    public class EntityComponent : DataObj
     {
 
         private List<ComponentBase> m_ComponentsList;
@@ -63,7 +63,7 @@ namespace XWorld
             m_ComponentsList.Clear();
         }
 
-        protected void SetOwner(ActorObj actor)
+        protected void SetOwner(ActorEntity actor)
         {
             foreach (ComponentBase component in m_ComponentsList)
             {

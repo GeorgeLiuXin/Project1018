@@ -14,25 +14,25 @@ namespace XWorld
 
 	public class ActorManager : XWorldGameManagerBase
     {
-		private Dictionary<int, ActorObj> ActorDict;
-		private Dictionary<int, ActorObj> ActorInstanceIDDict;
+		private Dictionary<int, ActorEntity> ActorDict;
+		private Dictionary<int, ActorEntity> ActorInstanceIDDict;
 		private Dictionary<int, float> DelayRemoveList;
 		private List<int> RemoveAvatarList = new List<int>();
 		
 		public int LocalPlayerID { get; set; }
-		private LocalPlayer m_LocalPlayer;
+		private PlayerEntity m_LocalPlayer;
 		
 		public override void InitManager()
 		{
-			ActorDict = new Dictionary<int, ActorObj>();
-			ActorInstanceIDDict = new Dictionary<int, ActorObj>();
+			ActorDict = new Dictionary<int, ActorEntity>();
+			ActorInstanceIDDict = new Dictionary<int, ActorEntity>();
 			DelayRemoveList = new Dictionary<int, float>();
 			RegisterEvents();
 		}
 
 		public override void Update(float fElapseTimes)
 		{
-			List<ActorObj> actorList = new List<ActorObj>(ActorDict.Values);
+			List<ActorEntity> actorList = new List<ActorEntity>(ActorDict.Values);
 
 			for (int i = 0; i < actorList.Count; i++)
 			{
@@ -44,7 +44,7 @@ namespace XWorld
 				DelayRemoveList[key] -= fElapseTimes;
 				if (DelayRemoveList[key] <= 0.0f)
 				{
-					ActorObj actor = GetActorByID(key);
+					ActorEntity actor = GetActorByID(key);
 					if (actor != null)
 					{
 						RemoveActor(actor);
@@ -111,9 +111,9 @@ namespace XWorld
 
 		}
 		
-		public ActorObj CreateAvatar(int avatarType)
+		public ActorEntity CreateAvatar(int avatarType)
 		{
-			ActorObj actor = null;
+			ActorEntity actor = null;
 			AvatarType type = (AvatarType) avatarType;
 			switch (type)
 			{
@@ -121,7 +121,7 @@ namespace XWorld
 					actor = new NPCPlayer();
 					break;
 				case AvatarType.NPC_Enemy:
-					actor = new NPCEnemy();
+					actor = new EnemyEntity();
 					break;
 				default:
 					break;
@@ -133,12 +133,12 @@ namespace XWorld
 		{
 			return (m_LocalPlayer.AvatarID == avatarID) ? true : false;
 		}
-		public LocalPlayer GetLocalPlayer()
+		public PlayerEntity GetLocalPlayer()
 		{
-			return m_LocalPlayer as LocalPlayer;
+			return m_LocalPlayer as PlayerEntity;
 		}
 		
-		public void AddActor(ActorObj actor)
+		public void AddActor(ActorEntity actor)
 		{
 			if (actor.AvatarID == -1)
 				return;
@@ -147,7 +147,7 @@ namespace XWorld
 			ActorDict[actor.AvatarID] = actor;
 		}
 
-		public void RemoveActor(ActorObj actor)
+		public void RemoveActor(ActorEntity actor)
 		{
 			if (actor.AvatarID == -1)
 				return;
@@ -172,7 +172,7 @@ namespace XWorld
 
 		public void RemoveByServerID(int nAvatarID, bool bForceRemove)
 		{
-			ActorObj act = GetActorByID(nAvatarID);
+			ActorEntity act = GetActorByID(nAvatarID);
 			if (act != null)
 			{
 				if (bForceRemove)
@@ -181,7 +181,7 @@ namespace XWorld
 				}
 				else
 				{
-					ActorObj actObj = act as ActorObj;
+					ActorEntity actObj = act as ActorEntity;
 					if (null != actObj)
 					{
 						//XTODO 死亡移除
@@ -199,7 +199,7 @@ namespace XWorld
 		}
 		public void RemoveAll(bool bExceptLocalPlayer)
 		{
-			List<ActorObj> actorList = new List<ActorObj>(ActorDict.Values);
+			List<ActorEntity> actorList = new List<ActorEntity>(ActorDict.Values);
 			for (int i = 0; i < actorList.Count; i++)
 			{
 				if (actorList[i] != null)
@@ -214,7 +214,7 @@ namespace XWorld
 			DelayRemoveList.Clear();
 		}
 
-		public ActorObj GetActorByID(int clientID)
+		public ActorEntity GetActorByID(int clientID)
 		{
 			if (!ActorDict.ContainsKey(clientID))
 				return null;
@@ -222,7 +222,7 @@ namespace XWorld
 			return ActorDict[clientID];
 		}
 
-		public ActorObj GetByInstanceID(int avatarDID)
+		public ActorEntity GetByInstanceID(int avatarDID)
 		{
 			if (!ActorInstanceIDDict.ContainsKey(avatarDID))
 				return null;
@@ -230,11 +230,11 @@ namespace XWorld
 			return ActorInstanceIDDict[avatarDID];
 		}
 
-		public List<ActorObj> GetAllActor()
+		public List<ActorEntity> GetAllActor()
 		{
 			if (ActorDict.Values != null)
 			{
-				return new List<ActorObj>(ActorDict.Values);
+				return new List<ActorEntity>(ActorDict.Values);
 			}
 			return null;
 		}
