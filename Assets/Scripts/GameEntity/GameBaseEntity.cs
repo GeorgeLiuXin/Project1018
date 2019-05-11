@@ -20,7 +20,9 @@ namespace XWorld
 		GameEntityType GetEntityType();
 
 		bool CreateEngineObj();
+		void AfterCreateEngineObj();
 		void OnEngineObjectLoadEnd(LoadResult result);
+		void BeforeDestroy();
 		void DestroyEngineObj();
 		GameObject GetEngineObj();
 

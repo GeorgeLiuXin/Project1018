@@ -118,7 +118,7 @@ namespace XWorld
 			switch (type)
 			{
 				case AvatarType.NPC_Player:
-					actor = new NPCPlayer();
+					actor = new PlayerEntity();
 					break;
 				case AvatarType.NPC_Enemy:
 					actor = new EnemyEntity();

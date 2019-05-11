@@ -6,15 +6,12 @@ using UnityEngine;
 namespace XWorld
 {
 
-    public class EntityComponent : DataObj
+    public class EntityComponent
     {
-
         private List<ComponentBase> m_ComponentsList;
 
         protected GameObject m_EngineObj = null;
-        protected GameObject m_ModelResObj = null;
-
-        //test
+		
         private ComponentBase m_baseCom;
         public ComponentBase BaseCom
         {
@@ -30,14 +27,8 @@ namespace XWorld
                 return m_baseCom;
             }
         }
-        
-        public virtual bool CreateEngineObj()
-        {
-            //占坑
-            return true;
-        }
 
-        public virtual void AfterCreateEngineObj()
+		public virtual void AfterCreateEngineObj()
         {
             m_ComponentsList = new List<ComponentBase>();
 
@@ -63,7 +54,7 @@ namespace XWorld
             m_ComponentsList.Clear();
         }
 
-        protected void SetOwner(ActorEntity actor)
+        public void SetOwner(ActorEntity actor)
         {
             foreach (ComponentBase component in m_ComponentsList)
             {
@@ -97,23 +88,6 @@ namespace XWorld
                 return false;
 
             return m_ComponentsList.Remove(com);
-        }
-
-        public void SetEngineObj(GameObject engineObj)
-        {
-            m_EngineObj = engineObj;
-        }
-        public GameObject GetEngineObj()
-        {
-            return m_EngineObj;
-        }
-        public void SetModelResObj(GameObject modelResObj)
-        {
-            m_ModelResObj = modelResObj;
-        }
-        public GameObject GetModelResObj()
-        {
-            return m_ModelResObj;
         }
     }
 
