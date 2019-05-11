@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Galaxy
+namespace XWorld
 {
     public class CombatToolHelper
     {

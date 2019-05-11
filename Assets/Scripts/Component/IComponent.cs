@@ -7,7 +7,7 @@ namespace XWorld
 {
     public interface IComponent
     {
-        ActorObj Owner
+        ActorEntity Owner
         {
             get;
             set;

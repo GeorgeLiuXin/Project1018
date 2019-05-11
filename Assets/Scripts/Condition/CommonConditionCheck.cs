@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Data.Common;
 using System.Collections;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -49,7 +48,7 @@ namespace XWorld
             m_nCheckGroup = Convert.ToInt32(initStr);
         }
 
-        public virtual bool Check(ActorObj obj, GCommonConditionParam param)
+        public virtual bool Check(ActorEntity obj, GCommonConditionParam param)
         {
             if (m_nCheckGroup != -1 && manager != null)
             {
@@ -58,7 +57,7 @@ namespace XWorld
             return false;
         }
 
-        public virtual void OnCheckFail(ActorObj obj, GCommonConditionParam param)
+        public virtual void OnCheckFail(ActorEntity obj, GCommonConditionParam param)
         {
             if (manager == null)
                 return;
@@ -69,7 +68,7 @@ namespace XWorld
 
     public class GCommonConditionGroup : List<GCommonCondition>
     {
-        public bool Check(ActorObj obj, GCommonConditionParam param)
+        public bool Check(ActorEntity obj, GCommonConditionParam param)
         {
             bool bSuccess = false;
             for (int i = 0; i < Count; ++i)
@@ -112,7 +111,7 @@ namespace XWorld
         //         public string ConTableName{get;set;}
 
 
-        public bool Check(int nGroupID, ActorObj obj, GCommonConditionParam param)
+        public bool Check(int nGroupID, ActorEntity obj, GCommonConditionParam param)
         {
             ErrorCode = 0;
             if (m_vConditionGroup == null || !m_vConditionGroup.ContainsKey(nGroupID))
@@ -145,7 +144,7 @@ namespace XWorld
                         break;
 
                     Assembly ass = Assembly.GetExecutingAssembly();
-                    GCommonCondition condition = (GCommonCondition)ass.CreateInstance("Galaxy." + sConditionName);
+                    GCommonCondition condition = (GCommonCondition)ass.CreateInstance("XWorld." + sConditionName);
                     if (condition == null)
                         continue;
 
@@ -193,7 +192,7 @@ namespace XWorld
             nSkillID = Convert.ToInt32(initStr);
         }
 
-        public override bool Check(ActorObj obj, GCommonConditionParam param)
+        public override bool Check(ActorEntity obj, GCommonConditionParam param)
         {
             //List<ProjectileClient> projectileList = XWorldGameModule.GetGameManager<ProjectileManager>().GetProjectileByAvatarSkill(obj.ServerID, nSkillID);
             //if (null == projectileList || 0 == projectileList.Count)

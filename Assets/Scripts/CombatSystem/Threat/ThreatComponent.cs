@@ -142,7 +142,7 @@ namespace XWorld
 			m_nTargetThreat = 0;
 		}
 
-		public void OnHurt(ActorObj pAvatar, int nValue)
+		public void OnHurt(ActorEntity pAvatar, int nValue)
 		{
 			if (Owner != null)
 			{
@@ -150,7 +150,7 @@ namespace XWorld
 			}
 		}
 
-		public void OnHeal(ActorObj pAvatar, int nValue)
+		public void OnHeal(ActorEntity pAvatar, int nValue)
 		{
 			if (Owner == null)
 				return;
@@ -169,7 +169,7 @@ namespace XWorld
 			}
 		}
 
-		public void OnTaunt(ActorObj pAvatar, int nValue)
+		public void OnTaunt(ActorEntity pAvatar, int nValue)
 		{
 			if (Owner == null)
 				return;
@@ -190,7 +190,7 @@ namespace XWorld
 			}
 		}
 
-		public void AddThreat(ActorObj pAvatar, int nValue)
+		public void AddThreat(ActorEntity pAvatar, int nValue)
 		{
 			if (Owner == null || pAvatar == null)
 				return;

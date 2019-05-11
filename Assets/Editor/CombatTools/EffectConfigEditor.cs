@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Galaxy
+namespace XWorld
 {
 
     public class EffectConfigEditor : Editor

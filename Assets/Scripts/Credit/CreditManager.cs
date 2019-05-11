@@ -37,7 +37,7 @@ namespace XWorld
         {
             Init();
         }
-        public bool CheckRelation(ActorObj objA, ActorObj objB, TargetType type)
+        public bool CheckRelation(ActorEntity objA, ActorEntity objB, TargetType type)
         {
             if (objA == null || objB == null)
                 return false;

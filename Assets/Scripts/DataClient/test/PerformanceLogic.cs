@@ -3,18 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Galaxy
+namespace XWorld
 {
     public enum ePerformanceLogic
     {
-        ChainLineLogic = 0,
-        ChainLightningLogic,
-        test,
-        BuffEffectLogic,
-        PlayAnimLogic,
-        CameraConfigLogic,
-        WeaponFollowLogic,
-        ProjectileCreateAtMuzzleLogic,
+        test = 0,
     }
 
     public class PerformanceLogicFactory
@@ -27,14 +20,7 @@ namespace Galaxy
         {
             //此处添加的logic\enum\字符串 需要与原本C#代码中逻辑名称一致
             m_dict = new Dictionary<string, ePerformanceLogic>();
-            m_dict.Add("ChainLineLogic", ePerformanceLogic.ChainLineLogic);
-            m_dict.Add("ChainLightningLogic", ePerformanceLogic.ChainLightningLogic);
             m_dict.Add("test", ePerformanceLogic.test);
-            m_dict.Add("BuffEffectLogic", ePerformanceLogic.BuffEffectLogic);
-            m_dict.Add("PlayAnimLogic", ePerformanceLogic.PlayAnimLogic);
-            m_dict.Add("CameraConfigLogic", ePerformanceLogic.CameraConfigLogic);
-            m_dict.Add("WeaponFollowLogic", ePerformanceLogic.WeaponFollowLogic);
-            m_dict.Add("ProjectileCreateAtMuzzleLogic", ePerformanceLogic.ProjectileCreateAtMuzzleLogic);
         }
         
         public PerformanceLogic GetPerformanceLogic(string logicName)
@@ -48,22 +34,8 @@ namespace Galaxy
         {
             switch ((ePerformanceLogic)index)
             {
-                case ePerformanceLogic.ChainLineLogic:
-                    return new ChainLineLogic();
-                case ePerformanceLogic.ChainLightningLogic:
-                    return new ChainLightningLogic();
                 case ePerformanceLogic.test:
                     return new test();
-                case ePerformanceLogic.BuffEffectLogic:
-                    return new BuffEffectLogic();
-                case ePerformanceLogic.PlayAnimLogic:
-                    return new PlayAnimLogic();
-                case ePerformanceLogic.CameraConfigLogic:
-                    return new CameraConfigLogic();
-                case ePerformanceLogic.WeaponFollowLogic:
-                    return new WeaponFollowLogic();
-                case ePerformanceLogic.ProjectileCreateAtMuzzleLogic:
-                    return new ProjectileCreateAtMuzzleLogic();
                 default:
                     return null;
             }

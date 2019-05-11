@@ -6,7 +6,7 @@ namespace XWorld
 {
     public class ComponentBase : MonoBehaviour, IComponent
     {
-        public ActorObj Owner
+        public ActorEntity Owner
         {
             get;
             set;
@@ -28,7 +28,7 @@ namespace XWorld
             OnPreDestroy();
         }
 
-        public virtual void SetOwner(ActorObj logicObject)
+        public virtual void SetOwner(ActorEntity logicObject)
         {
             this.Owner = logicObject;
         }

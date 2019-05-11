@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Galaxy.XmlData;
+using XWorld.XmlData;
 using System;
 
-namespace Galaxy
+namespace XWorld
 {
     public class MapEditor : Editor
     {
@@ -43,8 +43,9 @@ namespace Galaxy
             Size,
         }
 
-        //对应地图
-
+		//对应地图
+		private Dictionary<Vector2Int, GridType> mapData;
+		private GameObject mapObj;
 
         private void OnEnable()
         {
@@ -101,6 +102,20 @@ namespace Galaxy
             }
             GUILayout.EndArea();
         }
+
+		void GridTypeBar(Rect rect)
+		{
+			GUILayout.BeginArea(rect);
+			using (new EditorGUILayout.HorizontalScope())
+			{
+				//对应的格子类型选择
+				if (GUILayout.Button("添加", GUILayout.Width(50)))
+				{
+
+				}
+			}
+			GUILayout.EndArea();
+		}
     }
 
 }

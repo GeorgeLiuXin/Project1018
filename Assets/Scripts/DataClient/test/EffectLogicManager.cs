@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Galaxy.XmlData;
+using XWorld.XmlData;
 
-namespace Galaxy
+namespace XWorld
 {
     /// <summary>
     /// 表现效果id To 效果集合  classDict
     /// </summary>
-    public class EffectLogicManager : GalaxyGameManagerBase
-    {
+    public class EffectLogicManager : XWorldGameManagerBase
+	{
         private PerformanceLogicFactory factory;
         private EffectLogicReader reader;
         private Dictionary<int, XmlDataList> m_dict;

@@ -1,9 +1,8 @@
-﻿using Extension;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Galaxy.XmlData
+namespace XWorld.XmlData
 {
     public interface IXmlOperation
     {

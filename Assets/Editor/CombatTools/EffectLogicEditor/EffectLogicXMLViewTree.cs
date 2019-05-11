@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using Extension;
-using Galaxy.XmlData;
+using XWorld.XmlData;
 using System;
 
-namespace Galaxy
+namespace XWorld
 {
 
     public class EffectLogicXMLViewTree : TreeView
