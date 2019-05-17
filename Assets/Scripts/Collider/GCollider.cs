@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace XWorld
+namespace Galaxy
 {
     public class SSphere
     {
@@ -111,20 +111,29 @@ namespace XWorld
         /// <returns></returns>
         public static bool RectCollideCheck(SRect sRect, SSphere pTarget, Vector3 vDir)
         {
-            Vector2 sRectPos = new Vector2(sRect.center.x, sRect.center.z);
-            Vector2 sTargetPos = new Vector2(pTarget.pos.x, pTarget.pos.z);
+            Quaternion quat = Quaternion.LookRotation(vDir);
+            Quaternion inverseQuat = Quaternion.Inverse(quat);
+            Vector3 sTemp = pTarget.pos - sRect.center;
+            sTemp.y = 0;
+            sTemp = inverseQuat * sTemp;
 
-            Vector2 vAimDir = new Vector2(1, 0);
-            Vector2 vOpAimDir = new Vector2(0, 1);
+            //Vector2 sRectPos = new Vector2(sRect.center.x, sRect.center.z);
+            //Vector2 sTargetPos = new Vector2(pTarget.pos.x, pTarget.pos.z);
+
+            Vector2 vAimDir = new Vector2(0, 1);
+            Vector2 vOpAimDir = new Vector2(1, 0);
 
             //test
 
+            ////取二维向量绝对值
+            //Vector2 offestVec = Vector2.Max((sRectPos - sTargetPos), (sTargetPos - sRectPos));
             //取二维向量绝对值
-            Vector2 offestVec = Vector2.Max((sRectPos - sTargetPos), (sTargetPos - sRectPos));
+            Vector2 offestVec = new Vector2(Mathf.Abs(sTemp.x), Mathf.Abs(sTemp.z));
+
             //取第一象限顶点
             Vector2 vertexVec = vAimDir * (sRect.length * 0.5f) + vOpAimDir * (sRect.width * 0.5f);
             //当x,y某值小于0时即非垂直向量,归置为0即可
-            Vector2 verticalVec = Vector2.Max(offestVec - vertexVec, Vector3.zero);
+            Vector2 verticalVec = Vector2.Max(offestVec - vertexVec, Vector2.zero);
 
             return verticalVec.sqrMagnitude <= pTarget.r * pTarget.r;
         }
@@ -151,7 +160,7 @@ namespace XWorld
             Vector2 vAimDir = new Vector2(vDir.x, vDir.z);
             Vector2 vOpAimDir = new Vector2(-vDir.z, vDir.x);
 
-            float angle = sSector.angle * 0.5f;
+            float angle = sSector.angle * 0.5f * Mathf.Deg2Rad;
 
             // 1. 如果扇形圆心和圆盘圆心的方向
             Vector2 vOffest = sTargetPos - sSectorPos;
